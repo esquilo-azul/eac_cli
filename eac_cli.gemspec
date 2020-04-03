@@ -11,4 +11,6 @@ Gem::Specification.new do |s|
   s.summary     = 'Utilities to build CLI applications with Ruby.'
 
   s.files = Dir['{lib}/**/*', 'Gemfile']
+
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.1'
 end
