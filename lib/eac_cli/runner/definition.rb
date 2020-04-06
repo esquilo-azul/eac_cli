@@ -48,8 +48,8 @@ module EacCli
         @options ||= []
       end
 
-      def pos_arg(name)
-        positional << PositionalArgument.new(name)
+      def pos_arg(name, arg_options = {})
+        positional << PositionalArgument.new(name, arg_options)
       end
 
       def positional

@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   module Runner
     class PositionalArgument
-      common_constructor :name
+      common_constructor :name, :options, default: [{}]
     end
   end
 end
