@@ -13,7 +13,9 @@ module EacCli
       OPTION_DESC_SEP = IDENT * 2
 
       def positional_argument(positional)
-        "<#{positional.name}>"
+        r = "<#{positional.name}>"
+        r += '...' if positional.repeat?
+        r
       end
 
       def option_argument(option)

@@ -6,6 +6,10 @@ module EacCli
   module Runner
     class PositionalArgument
       common_constructor :name, :options, default: [{}]
+
+      def repeat?
+        options[:repeat]
+      end
     end
   end
 end
