@@ -55,6 +55,10 @@ module EacCli
       def positional
         @positional ||= []
       end
+
+      def subcommands
+        positional << PositionalArgument.new('subcommand', subcommand: true)
+      end
     end
   end
 end

@@ -13,9 +13,13 @@ module EacCli
       OPTION_DESC_SEP = IDENT * 2
 
       def positional_argument(positional)
-        r = "<#{positional.name}>"
-        r += '...' if positional.repeat?
-        r
+        if positional.subcommand?
+          ::EacRubyUtils::Console::DocoptRunner::SUBCOMMANDS_MACRO
+        else
+          r = "<#{positional.name}>"
+          r += '...' if positional.repeat?
+          r
+        end
       end
 
       def option_argument(option)

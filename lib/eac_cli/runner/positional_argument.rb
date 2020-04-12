@@ -10,6 +10,10 @@ module EacCli
       def repeat?
         options[:repeat]
       end
+
+      def subcommand?
+        options[:subcommand]
+      end
     end
   end
 end
