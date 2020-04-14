@@ -18,6 +18,7 @@ module EacCli
         else
           r = "<#{positional.name}>"
           r += '...' if positional.repeat?
+          r = "[#{r}]" if positional.optional?
           r
         end
       end
