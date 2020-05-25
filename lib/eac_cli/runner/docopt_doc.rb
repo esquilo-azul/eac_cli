@@ -51,15 +51,22 @@ module EacCli
       end
 
       def self_usage
-        b = IDENT + ::EacRubyUtils::Console::DocoptRunner::PROGRAM_MACRO
-        b += "#{SEP}[options]" if definition.options_argument
-        b + self_usage_arguments
+        IDENT + self_usage_arguments.join(SEP)
       end
 
       def self_usage_arguments
-        definition.options.select(&:show_on_usage?)
-                  .map { |option| "#{SEP}#{option_argument(option)}" }.join +
-          definition.positional.map { |p| "#{SEP}#{positional_argument(p)}" }.join
+        [::EacRubyUtils::Console::DocoptRunner::PROGRAM_MACRO] +
+          definition.options_argument.if_present([]) { |_v| ['[options]'] } +
+          self_usage_arguments_options +
+          self_usage_arguments_positional
+      end
+
+      def self_usage_arguments_options
+        definition.options.select(&:show_on_usage?).map { |option| option_argument(option) }
+      end
+
+      def self_usage_arguments_positional
+        definition.positional.map { |p| positional_argument(p) }
       end
 
       def to_s
