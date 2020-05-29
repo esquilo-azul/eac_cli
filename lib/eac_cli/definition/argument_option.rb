@@ -3,7 +3,7 @@
 require 'eac_cli/runner/base_option'
 
 module EacCli
-  module Runner
+  class Definition
     class ArgumentOption < ::EacCli::Runner::BaseOption
       def argument?
         true

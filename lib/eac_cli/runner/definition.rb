@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner/argument_option'
+require 'eac_cli/definition/argument_option'
 require 'eac_cli/runner/boolean_option'
 require 'eac_cli/runner/positional_argument'
 require 'eac_ruby_utils/core_ext'
@@ -29,7 +29,9 @@ module EacCli
       end
 
       def arg_opt(short, long, description, option_options = {})
-        options << ArgumentOption.new(short, long, description, option_options)
+        options << ::EacCli::Definition::ArgumentOption.new(
+          short, long, description, option_options
+        )
       end
 
       def bool_opt(short, long, description, option_options = {})
