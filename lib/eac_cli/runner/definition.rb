@@ -2,7 +2,7 @@
 
 require 'eac_cli/definition/argument_option'
 require 'eac_cli/definition/boolean_option'
-require 'eac_cli/runner/positional_argument'
+require 'eac_cli/definition/positional_argument'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
@@ -51,7 +51,7 @@ module EacCli
       end
 
       def pos_arg(name, arg_options = {})
-        positional << PositionalArgument.new(name, arg_options)
+        positional << ::EacCli::Definition::PositionalArgument.new(name, arg_options)
       end
 
       def positional
@@ -59,7 +59,7 @@ module EacCli
       end
 
       def subcommands
-        positional << PositionalArgument.new('subcommand', subcommand: true)
+        positional << ::EacCli::Definition::PositionalArgument.new('subcommand', subcommand: true)
       end
 
       def options_first(enable = true)
