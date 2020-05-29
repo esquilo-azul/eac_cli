@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner/definition'
+require 'eac_cli/definition'
 require 'eac_cli/runner/docopt_doc'
 require 'eac_ruby_utils/core_ext'
 
@@ -15,7 +15,7 @@ module EacCli
 
     module ClassMethods
       def runner_definition(&block)
-        @runner_definition ||= ::EacCli::Runner::Definition.new
+        @runner_definition ||= ::EacCli::Definition.new
         @runner_definition.instance_eval(&block) if block
         @runner_definition
       end
