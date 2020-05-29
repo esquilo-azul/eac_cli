@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
-  module Runner
+  class Definition
     class BaseOption
       attr_reader :short, :long, :description, :options
 
@@ -12,6 +12,10 @@ module EacCli
         @long = long
         @description = description
         @options = options.with_indifferent_access
+      end
+
+      def identifier
+        long.to_s.variableize.to_sym
       end
 
       def show_on_usage?
