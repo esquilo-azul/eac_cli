@@ -25,6 +25,10 @@ module EacCli
       def doc
         ::EacCli::Runner::DocoptDoc.new(self.class.runner_definition).to_s
       end
+
+      def docopt_options
+        super.merge(options_first: self.class.runner_definition.options_first?)
+      end
     end
   end
 end

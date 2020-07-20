@@ -59,6 +59,14 @@ module EacCli
       def subcommands
         positional << PositionalArgument.new('subcommand', subcommand: true)
       end
+
+      def options_first(enable = true)
+        @options_first = enable
+      end
+
+      def options_first?
+        @options_first ? true : false
+      end
     end
   end
 end
