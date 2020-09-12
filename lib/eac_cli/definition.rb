@@ -17,7 +17,7 @@ module EacCli
     end
 
     def alt(&block)
-      r = ::EacCli::Runner::Definition.new
+      r = ::EacCli::Definition.new
       r.instance_eval(&block)
       alternatives << r
       r
