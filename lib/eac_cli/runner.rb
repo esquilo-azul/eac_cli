@@ -2,6 +2,7 @@
 
 require 'eac_cli/definition'
 require 'eac_cli/docopt/runner_extension'
+require 'eac_cli/parser'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
@@ -39,6 +40,10 @@ module EacCli
       def context=(new_context)
         @context = new_context
         @parsed = nil
+      end
+
+      def parsed
+        @parsed ||= ::EacCli::Parser.new(self.class.runner_definition).parse(context.argv)
       end
     end
   end
