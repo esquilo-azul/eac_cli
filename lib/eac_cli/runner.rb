@@ -6,6 +6,7 @@ require 'eac_ruby_utils/core_ext'
 
 module EacCli
   module Runner
+    require_sub __FILE__
     extend ::ActiveSupport::Concern
 
     included do
@@ -15,6 +16,12 @@ module EacCli
     end
 
     module ClassMethods
+      def create(*context_args)
+        r = new
+        r.context = ::EacCli::Runner::Context.new(*context_args)
+        r
+      end
+
       def runner_definition(&block)
         @runner_definition ||= ::EacCli::Definition.new
         @runner_definition.instance_eval(&block) if block
