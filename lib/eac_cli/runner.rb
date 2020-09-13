@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/definition'
-require 'eac_cli/docopt/doc_builder'
+require 'eac_cli/docopt/runner_extension'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
@@ -11,6 +11,7 @@ module EacCli
     included do
       extend ClassMethods
       include InstanceMethods
+      ::EacCli::Docopt::RunnerExtension.check(self)
     end
 
     module ClassMethods
@@ -22,13 +23,6 @@ module EacCli
     end
 
     module InstanceMethods
-      def doc
-        ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
-      end
-
-      def docopt_options
-        super.merge(options_first: self.class.runner_definition.options_first?)
-      end
     end
   end
 end
