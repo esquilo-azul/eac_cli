@@ -4,8 +4,8 @@ require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/console/docopt_runner'
 
 module EacCli
-  module Runner
-    class DocoptDoc
+  module Docopt
+    class DocBuilder
       common_constructor :definition
 
       SEP = ' '

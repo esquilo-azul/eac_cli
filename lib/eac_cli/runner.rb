@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/definition'
-require 'eac_cli/runner/docopt_doc'
+require 'eac_cli/docopt/doc_builder'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
@@ -23,7 +23,7 @@ module EacCli
 
     module InstanceMethods
       def doc
-        ::EacCli::Runner::DocoptDoc.new(self.class.runner_definition).to_s
+        ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
       end
 
       def docopt_options
