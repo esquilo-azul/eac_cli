@@ -23,6 +23,16 @@ module EacCli
     end
 
     module InstanceMethods
+      def context
+        return @context if @context
+
+        raise 'Context was required, but was not set yet'
+      end
+
+      def context=(new_context)
+        @context = new_context
+        @parsed = nil
+      end
     end
   end
 end
