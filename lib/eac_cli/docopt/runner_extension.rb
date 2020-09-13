@@ -29,6 +29,14 @@ module EacCli
           super.merge(options_first: self.class.runner_definition.options_first?)
         end
       end
+
+      def extra_available_subcommands
+        self.class.constants
+            .map { |name| self.class.const_get(name) }
+            .select { |c| c.instance_of? Class }
+            .select { |c| c.included_modules.include?(::EacCli::Runner) }
+            .map { |c| c.name.demodulize.underscore.dasherize }
+      end
     end
   end
 end
