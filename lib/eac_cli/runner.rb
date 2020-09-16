@@ -17,9 +17,9 @@ module EacCli
     end
 
     module ClassMethods
-      def create(*context_args)
+      def create(*runner_context_args)
         r = new
-        r.context = ::EacCli::Runner::Context.new(*context_args)
+        r.runner_context = ::EacCli::Runner::Context.new(*runner_context_args)
         r
       end
 
@@ -31,19 +31,19 @@ module EacCli
     end
 
     module InstanceMethods
-      def context
-        return @context if @context
+      def runner_context
+        return @runner_context if @runner_context
 
         raise 'Context was required, but was not set yet'
       end
 
-      def context=(new_context)
-        @context = new_context
+      def runner_context=(new_runner_context)
+        @runner_context = new_runner_context
         @parsed = nil
       end
 
       def parsed
-        @parsed ||= ::EacCli::Parser.new(self.class.runner_definition).parse(context.argv)
+        @parsed ||= ::EacCli::Parser.new(self.class.runner_definition).parse(runner_context.argv)
       end
     end
   end
