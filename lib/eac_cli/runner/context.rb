@@ -9,7 +9,7 @@ module EacCli
 
       def initialize(*context_args)
         options = context_args.extract_options!
-        @argv = (context_args[0] || options.delete(:argv)).freeze
+        @argv = (context_args[0] || options.delete(:argv) || ARGV).dup.freeze
         @parent = context_args[1] || options.delete(:parent)
         @program_name = options.delete(:program_name)
       end
