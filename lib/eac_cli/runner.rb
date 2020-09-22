@@ -23,6 +23,13 @@ module EacCli
         r
       end
 
+      def run(*runner_context_args)
+        r = create(*runner_context_args)
+        r.parsed
+        r.run
+        r
+      end
+
       def runner_definition(&block)
         @runner_definition ||= ::EacCli::Definition.new
         @runner_definition.instance_eval(&block) if block
