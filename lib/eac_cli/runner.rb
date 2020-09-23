@@ -10,13 +10,39 @@ module EacCli
     require_sub __FILE__
     extend ::ActiveSupport::Concern
 
+    class << self
+      def alias_runner_class_methods(klass, from_suffix, to_suffix)
+        %i[create run].each do |method|
+          alias_class_method(klass, build_method_name(method, from_suffix),
+                             build_method_name(method, to_suffix))
+        end
+      end
+
+      private
+
+      def alias_class_method(klass, from, to)
+        sklass = klass.singleton_class
+        return unless sklass.method_defined?(from)
+
+        sklass.alias_method to, from
+      end
+
+      def build_method_name(name, suffix)
+        ss = suffix.if_present('') { |s| "#{s}_" }
+        "#{ss}#{name}"
+      end
+    end
+
+    the_module = self
     included do
-      extend ClassMethods
+      the_module.alias_runner_class_methods(self, '', 'original')
+
+      extend AfterClassMethods
       include InstanceMethods
       ::EacCli::Docopt::RunnerExtension.check(self)
     end
 
-    module ClassMethods
+    module AfterClassMethods
       def create(*runner_context_args)
         r = new
         r.runner_context = ::EacCli::Runner::Context.new(*runner_context_args)
