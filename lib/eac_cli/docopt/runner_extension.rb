@@ -9,7 +9,6 @@ module EacCli
       extend ::ActiveSupport::Concern
 
       included do
-        singleton_class.prepend ClassMethods
         prepend InstanceMethods
       end
 
@@ -17,15 +16,10 @@ module EacCli
         def check(klass)
           return unless klass < ::EacRubyUtils::Console::DocoptRunner
 
-          klass.include(self)
-        end
-      end
+          ::EacCli::Runner.alias_runner_class_methods(klass, '', 'eac_cli')
+          ::EacCli::Runner.alias_runner_class_methods(klass, 'original', '')
 
-      module ClassMethods
-        def create(*context_args)
-          r = new(*context_args)
-          r.runner_context = ::EacCli::Runner::Context.new(*context_args)
-          r
+          klass.include(self)
         end
       end
 
