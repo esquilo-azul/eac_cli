@@ -57,9 +57,13 @@ module EacCli
       end
 
       def runner_definition(&block)
-        @runner_definition ||= ::EacCli::Definition.new
+        @runner_definition ||= super_runner_definition
         @runner_definition.instance_eval(&block) if block
         @runner_definition
+      end
+
+      def super_runner_definition
+        superclass.try(:runner_definition).if_present(&:dup) || ::EacCli::Definition.new
       end
     end
 
