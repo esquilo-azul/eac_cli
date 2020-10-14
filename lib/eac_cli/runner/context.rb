@@ -14,6 +14,22 @@ module EacCli
         @program_name = options.delete(:program_name)
         @runner = runner
       end
+
+      # Call a method in the runner or in one of it ancestors.
+      def call(method_name, *args)
+        return runner.send(method_name, *args) if runner.respond_to?(method_name)
+        return parent_call(method_name, *args) if parent.present?
+
+        raise ::NameError, "No method \"#{method_name}\" found in #{runner} or in its ancestors"
+      end
+
+      protected
+
+      def parent_call(method_name, *args)
+        return parent.context(method_name, *args) if parent.respond_to?(:context)
+
+        parent.runner_context.call(method_name, *args)
+      end
     end
   end
 end
