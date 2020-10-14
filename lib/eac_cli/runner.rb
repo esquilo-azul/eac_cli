@@ -45,7 +45,7 @@ module EacCli
     module AfterClassMethods
       def create(*runner_context_args)
         r = new
-        r.runner_context = ::EacCli::Runner::Context.new(*runner_context_args)
+        r.runner_context = ::EacCli::Runner::Context.new(r, *runner_context_args)
         r
       end
 
