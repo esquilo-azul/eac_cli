@@ -15,7 +15,7 @@ module EacCli
       end
 
       def collect
-        argv.each { |argv_value| colect_argv_value(argv_value) }
+        argv.each { |argv_value| collect_argv_value(argv_value) }
         return unless pending_required_positional?
 
         raise ::EacCli::Parser::Error.new(
@@ -24,7 +24,7 @@ module EacCli
         )
       end
 
-      def colect_argv_value(argv_value)
+      def collect_argv_value(argv_value)
         collector.collect(current_positional, argv_value)
         collected << current_positional
         positional_enumerator.next unless current_positional.repeat?
