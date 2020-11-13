@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/docopt/doc_builder'
+require 'eac_cli/runner'
 require 'eac_ruby_utils/console/docopt_runner'
 
 module EacCli
