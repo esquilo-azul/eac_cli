@@ -15,13 +15,8 @@ module EacCli
       end
 
       def collect
-        argv.each { |argv_value| collect_argv_value(argv_value) }
-        return unless positional_pending?
-
-        raise ::EacCli::Parser::Error.new(
-          definition, argv, 'No value for required positional ' \
-            "\"#{positional_enum.current.identifier}\""
-        )
+        argv.each { |argv_value| colect_argv_value(argv_value) }
+        positional_pending_check
       end
 
       def collect_argv_value(argv_value)
@@ -37,6 +32,15 @@ module EacCli
       def positional_pending?
         !(positional_enum.stopped? || positional_enum.current.optional? ||
             collected.include?(positional_enum.current))
+      end
+
+      def positional_pending_check
+        return unless positional_pending?
+
+        raise ::EacCli::Parser::Error.new(
+          definition, argv, 'No value for required positional ' \
+            "\"#{positional_enum.current.identifier}\""
+        )
       end
     end
   end
