@@ -10,6 +10,7 @@ module EacCli
     require_sub __FILE__
 
     SUBCOMMAND_NAME_ARG = 'subcommand'
+    SUBCOMMAND_ARGS_ARG = 'subcommand_args'
 
     attr_accessor :description
     attr_accessor :options_argument
@@ -68,6 +69,8 @@ module EacCli
 
     def subcommands
       pos_arg(SUBCOMMAND_NAME_ARG, subcommand: true)
+      pos_set << ::EacCli::Definition::PositionalArgument.new(SUBCOMMAND_ARGS_ARG,
+                                                              optional: true, repeat: true)
     end
 
     def subcommands?
