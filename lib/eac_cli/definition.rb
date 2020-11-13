@@ -50,19 +50,19 @@ module EacCli
     end
 
     def pos_arg(name, arg_options = {})
-      positional << ::EacCli::Definition::PositionalArgument.new(name, arg_options)
+      pos_set << ::EacCli::Definition::PositionalArgument.new(name, arg_options)
     end
 
     def positional
-      @positional ||= []
+      pos_set.to_a
     end
 
     def subcommands
-      positional << ::EacCli::Definition::PositionalArgument.new('subcommand', subcommand: true)
+      pos_set << ::EacCli::Definition::PositionalArgument.new('subcommand', subcommand: true)
     end
 
     def subcommands?
-      positional.any?(&:subcommand?)
+      pos_set.any?(&:subcommand?)
     end
 
     def options_first(enable = true)
@@ -71,6 +71,12 @@ module EacCli
 
     def options_first?
       @options_first ? true : false
+    end
+
+    private
+
+    def pos_set
+      @pos_set ||= []
     end
   end
 end
