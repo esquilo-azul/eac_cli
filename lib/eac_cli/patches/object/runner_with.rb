@@ -5,13 +5,14 @@ require 'eac_cli/runner'
 require 'eac_cli/runner_with'
 
 class Object
-  def runner_with(*runners)
+  def runner_with(*runners, &block)
     include ::EacCli::Runner
     enable_simple_cache
     enable_console_speaker
     runners.each do |runner|
       include runner_with_to_module(runner)
     end
+    runner_definition(&block) if block
   end
 
   private
