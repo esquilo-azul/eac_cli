@@ -8,6 +8,9 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   class Definition
     require_sub __FILE__
+
+    SUBCOMMAND_NAME_ARG = 'subcommand'
+
     attr_accessor :description
     attr_accessor :options_argument
 
@@ -64,7 +67,7 @@ module EacCli
     end
 
     def subcommands
-      pos_arg('subcommand', subcommand: true)
+      pos_arg(SUBCOMMAND_NAME_ARG, subcommand: true)
     end
 
     def subcommands?
