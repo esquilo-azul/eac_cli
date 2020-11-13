@@ -5,22 +5,26 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   class Definition
     class PositionalArgument
-      common_constructor :name, :options, default: [{}]
+      enable_listable
+      lists.add_symbol :option, :optional, :repeat, :subcommand
+      common_constructor :name, :options, default: [{}] do
+        options.assert_valid_keys(self.class.lists.option.values)
+      end
 
       def identifier
         name.to_s.variableize.to_sym
       end
 
       def optional?
-        options[:optional]
+        options[OPTION_OPTIONAL]
       end
 
       def repeat?
-        options[:repeat]
+        options[OPTION_REPEAT]
       end
 
       def subcommand?
-        options[:subcommand]
+        options[OPTION_SUBCOMMAND]
       end
     end
   end
