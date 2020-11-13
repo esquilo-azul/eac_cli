@@ -16,7 +16,7 @@ module EacCli
 
       def collect
         argv.each { |argv_value| collect_argv_value(argv_value) }
-        return unless pending_required_positional?
+        return unless positional_pending?
 
         raise ::EacCli::Parser::Error.new(
           definition, argv, 'No value for required positional ' \
@@ -30,7 +30,7 @@ module EacCli
         positional_enumerator.next unless current_positional.repeat?
       end
 
-      def pending_required_positional?
+      def positional_pending?
         !(current_positional.blank? || current_positional.optional? ||
             collected.include?(current_positional))
       end
