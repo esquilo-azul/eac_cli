@@ -20,29 +20,23 @@ module EacCli
 
         raise ::EacCli::Parser::Error.new(
           definition, argv, 'No value for required positional ' \
-            "\"#{current_positional.identifier}\""
+            "\"#{positional_enum.current.identifier}\""
         )
       end
 
       def collect_argv_value(argv_value)
-        collector.collect(current_positional, argv_value)
-        collected << current_positional
-        positional_enumerator.next unless current_positional.repeat?
+        collector.collect(positional_enum.peek, argv_value)
+        collected << positional_enum.peek
+        positional_enum.next unless positional_enum.peek.repeat?
+      end
+
+      def positional_enum
+        @positional_enum ||= definition.positional.each
       end
 
       def positional_pending?
-        !(current_positional.blank? || current_positional.optional? ||
-            collected.include?(current_positional))
-      end
-
-      def positional_enumerator
-        @positional_enumerator ||= definition.positional.each
-      end
-
-      def current_positional
-        positional_enumerator.peek
-      rescue ::StopIteration
-        nil
+        !(positional_enum.stopped? || positional_enum.current.optional? ||
+            collected.include?(positional_enum.current))
       end
     end
   end
