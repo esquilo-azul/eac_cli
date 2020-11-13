@@ -45,4 +45,25 @@ RSpec.describe ::EacCli::Runner do
       expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
     end
   end
+
+  context 'when extra args are not supplied' do
+    let(:runner_class) do
+      the_module = described_class
+      ::Class.new do
+        include the_module
+
+        runner_definition do
+          pos_arg :pos1
+        end
+
+        def run; end
+      end
+    end
+
+    let(:instance) { runner_class.create(%w[aaa bbb]) }
+
+    it do
+      expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
+    end
+  end
 end

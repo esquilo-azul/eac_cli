@@ -10,19 +10,48 @@ module EacCli
 
       private
 
+      def argv_enum
+        @argv_enum ||= argv.each
+      end
+
+      def argv_pending?
+        argv_enum.ongoing?
+      end
+
+      def argv_pending_check
+        return unless argv_pending?
+        return unless positional_enum.stopped?
+
+        raise ::EacCli::Parser::Error.new(
+          definition, argv, "No positional left for argv \"#{argv_enum.current}\""
+        )
+      end
+
       def collected
         @collected ||= ::Set.new
       end
 
       def collect
-        argv.each { |argv_value| colect_argv_value(argv_value) }
-        positional_pending_check
+        loop do
+          break unless enums('pending?').any?
+
+          enums('pending_check')
+          collect_argv_value
+        end
       end
 
-      def collect_argv_value(argv_value)
-        collector.collect(positional_enum.peek, argv_value)
+      def collect_argv_value
+        collector.collect(*enums('enum', &:peek))
         collected << positional_enum.peek
         positional_enum.next unless positional_enum.peek.repeat?
+        argv_enum.next
+      end
+
+      def enums(method_suffix, &block)
+        %w[positional argv].map do |method_prefix|
+          v = send("#{method_prefix}_#{method_suffix}")
+          block ? block.call(v) : v
+        end
       end
 
       def positional_enum
@@ -36,6 +65,7 @@ module EacCli
 
       def positional_pending_check
         return unless positional_pending?
+        return unless argv_enum.stopped?
 
         raise ::EacCli::Parser::Error.new(
           definition, argv, 'No value for required positional ' \
