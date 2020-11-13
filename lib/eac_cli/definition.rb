@@ -58,7 +58,7 @@ module EacCli
     end
 
     def subcommands
-      pos_set << ::EacCli::Definition::PositionalArgument.new('subcommand', subcommand: true)
+      pos_arg('subcommand', subcommand: true)
     end
 
     def subcommands?
