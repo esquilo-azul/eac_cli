@@ -18,6 +18,10 @@ module EacCli
         end
       end
 
+      def runner?(object)
+        object.is_a?(::Class) && object.included_modules.include?(::EacCli::Runner)
+      end
+
       private
 
       def alias_class_method(klass, from, to)
