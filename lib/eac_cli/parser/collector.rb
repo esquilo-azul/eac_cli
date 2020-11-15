@@ -31,6 +31,10 @@ module EacCli
         end
       end
 
+      def supplied?(option)
+        data[option].present?
+      end
+
       private
 
       def data
