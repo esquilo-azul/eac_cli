@@ -32,6 +32,8 @@ module EacCli
 
       def parse_argv
         @arguments = options_first? ? option_parser.order(argv) : option_parser.parse(argv)
+      rescue ::OptionParser::InvalidOption => e
+        raise ::EacCli::Parser::Error.new(definition, argv, e.message)
       end
 
       def build_banner
