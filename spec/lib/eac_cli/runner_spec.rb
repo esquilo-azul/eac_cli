@@ -14,6 +14,9 @@ RSpec.describe ::EacCli::Runner do
         bool_opt '-o', '--opt2', 'A boolean option'
         pos_arg :pos1
         pos_arg :pos2, repeat: true, optional: true
+        alt do
+          bool_opt '-a', '--opt3', 'A boolean option in a alternative.', required: true
+        end
       end
 
       def run; end
@@ -44,6 +47,12 @@ RSpec.describe ::EacCli::Runner do
     it do
       expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
     end
+  end
+
+  context 'when alternative args are supplied' do
+    let(:instance) { runner_class.create(%w[--opt3]) }
+
+    it { expect(instance.parsed.opt3?).to eq(true) }
   end
 
   context 'when extra args are not supplied' do
