@@ -45,6 +45,10 @@ module EacCli
       self.description = description
     end
 
+    def help_formatter
+      @help_formatter ||= ::EacCli::Definition::HelpFormatter.new(self)
+    end
+
     def options_arg(options_argument)
       self.options_argument = options_argument
     end
