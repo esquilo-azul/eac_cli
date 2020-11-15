@@ -19,11 +19,15 @@ module EacCli
       def collect
         build_banner
         build_options
-        @arguments = option_parser.parse(argv)
+        parse_argv
       end
 
       def option_parser_uncached
         ::OptionParser.new
+      end
+
+      def parse_argv
+        @arguments = option_parser.parse(argv)
       end
 
       def build_banner
