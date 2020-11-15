@@ -30,6 +30,10 @@ module EacCli
         DEFAULT_REQUIRED
       end
 
+      def to_s
+        "#{self.class.name.demodulize}[#{identifier}]"
+      end
+
       def show_on_usage?
         options[:usage]
       end
