@@ -5,13 +5,16 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   class Definition
     class BaseOption
+      enable_listable
+      lists.add_symbol :option, :usage
       attr_reader :short, :long, :description, :options
 
       def initialize(short, long, description, options = {})
         @short = short
         @long = long
         @description = description
-        @options = options.with_indifferent_access
+        @options = options.symbolize_keys
+        @options.assert_valid_keys(::EacCli::Definition::BaseOption.lists.option.values)
       end
 
       def identifier
