@@ -20,10 +20,22 @@ module EacCli
 
       private
 
+      def check_required_options
+        definition.options.each do |option|
+          next unless option.required?
+          next if collector.supplied?(option)
+
+          raise ::EacCli::Parser::Error.new(
+            definition, argv, "Option \"#{option}\" is required and a value was not supplied"
+          )
+        end
+      end
+
       def collect
         build_banner
         build_options
         parse_argv
+        check_required_options
       end
 
       def option_parser_uncached
