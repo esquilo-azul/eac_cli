@@ -14,6 +14,10 @@ module EacCli
       common_constructor(:definition, :argv, :collector) { collect }
       attr_reader :arguments
 
+      def options_first?
+        definition.options_first? || definition.subcommands?
+      end
+
       private
 
       def collect
@@ -27,7 +31,7 @@ module EacCli
       end
 
       def parse_argv
-        @arguments = option_parser.parse(argv)
+        @arguments = options_first? ? option_parser.order(argv) : option_parser.parse(argv)
       end
 
       def build_banner
