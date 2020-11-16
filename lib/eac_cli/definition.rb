@@ -54,17 +54,23 @@ module EacCli
     end
 
     def pos_arg(name, arg_options = {})
-      raise 'Positional arguments are blocked' if positional_arguments_blocked?
+      new_pos_arg = ::EacCli::Definition::PositionalArgument.new(name, arg_options)
+      raise 'Positional arguments are blocked' if positional_arguments_blocked?(new_pos_arg)
 
-      pos_set << ::EacCli::Definition::PositionalArgument.new(name, arg_options)
+      pos_set << new_pos_arg
     end
 
     def positional
       pos_set.to_a
     end
 
-    def positional_arguments_blocked?
-      pos_set.any? { |e| e.optional? || e.repeat? }
+    def positional_arguments_blocked?(new_pos_arg)
+      last = pos_set.last
+      return false unless last
+      return true if last.repeat?
+      return true if last.optional? && new_pos_arg.required?
+
+      false
     end
 
     def subcommands
