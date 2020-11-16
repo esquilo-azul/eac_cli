@@ -25,12 +25,6 @@ module EacCli
 
       common_constructor :definition
 
-      def option_argument(option)
-        b = option.long
-        b += '=VALUE' if option.argument?
-        b
-      end
-
       def positional_argument(positional)
         if positional.subcommand?
           ::EacRubyUtils::Console::DocoptRunner::SUBCOMMANDS_MACRO
@@ -66,7 +60,7 @@ module EacCli
 
       def self_usage_arguments_options
         definition.options.select(&:show_on_usage?).map do |option|
-          self.class.option_argument(option)
+          self.class.option_long(option)
         end
       end
 
