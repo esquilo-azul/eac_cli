@@ -5,8 +5,10 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   class Definition
     class PositionalArgument
+      DEFAULT_REQUIRED = true
+
       enable_listable
-      lists.add_symbol :option, :optional, :repeat, :subcommand
+      lists.add_symbol :option, :optional, :repeat, :required, :subcommand
       common_constructor :name, :options, default: [{}] do
         options.assert_valid_keys(self.class.lists.option.values)
       end
@@ -16,11 +18,18 @@ module EacCli
       end
 
       def optional?
-        options[OPTION_OPTIONAL]
+        !required?
       end
 
       def repeat?
         options[OPTION_REPEAT]
+      end
+
+      def required?
+        return true if options.key?(OPTION_REQUIRED) && options.fetch(OPTION_REQUIRED)
+        return false if options.key?(OPTION_OPTIONAL) && options.fetch(OPTION_OPTIONAL)
+
+        DEFAULT_REQUIRED
       end
 
       def subcommand?
