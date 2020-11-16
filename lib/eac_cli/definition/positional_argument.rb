@@ -35,6 +35,10 @@ module EacCli
       def subcommand?
         options[OPTION_SUBCOMMAND]
       end
+
+      def to_s
+        "#{self.class.name.demodulize}[#{identifier}]"
+      end
     end
   end
 end
