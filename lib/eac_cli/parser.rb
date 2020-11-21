@@ -11,27 +11,22 @@ module EacCli
     private
 
     def parsed_uncached
-      result_or_error = parse_definition(definition)
-      return result_or_error unless result_or_error.is_a?(::Exception)
+      raise 'Definition has no alternatives' if alternatives.empty?
 
-      definition.alternatives.each do |alternative|
-        alt_result_or_error = parse_definition(alternative)
-        return alt_result_or_error unless alt_result_or_error.is_a?(::Exception)
+      alternatives.each do |alt_parser|
+        return alt_parser.parsed unless alt_parser.error?
       end
 
-      raise result_or_error
+      raise first_error
     end
 
-    def parse_definition(definition)
-      ::EacCli::Parser::Collector.to_data(definition) do |collector|
-        ::EacCli::Parser::PositionalCollection.new(
-          definition,
-          ::EacCli::Parser::OptionsCollection.new(definition, argv, collector).arguments,
-          collector
-        )
-      end
-    rescue ::EacCli::Parser::Error => e
-      e
+    def alternatives_uncached
+      definition.alternatives
+                .map { |alternative| ::EacCli::Parser::Alternative.new(alternative, argv) }
+    end
+
+    def first_error_uncached
+      alternatives.lazy.select(&:error?).map(&:error).first
     end
   end
 end

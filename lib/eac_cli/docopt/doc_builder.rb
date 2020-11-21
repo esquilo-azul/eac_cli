@@ -6,6 +6,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 module EacCli
   module Docopt
     class DocBuilder
+      require_sub __FILE__
       common_constructor :definition
 
       SEP = ' '
@@ -20,21 +21,6 @@ module EacCli
         end
       end
 
-      def positional_argument(positional)
-        if positional.subcommand?
-          ::EacRubyUtils::Console::DocoptRunner::SUBCOMMANDS_MACRO
-        else
-          r = "<#{positional.name}>"
-          r += '...' if positional.repeat?
-          r = "[#{r}]" if positional.optional?
-          r
-        end
-      end
-
-      def option_argument(option)
-        option_long(option)
-      end
-
       def option_definition(option)
         option.short + SEP + self.class.option_long(option) + OPTION_DESC_SEP + option.description
       end
@@ -43,36 +29,26 @@ module EacCli
         b = include_header ? "#{header.humanize}:\n" : ''
         b += send("self_#{header}") + "\n"
         definition.alternatives.each do |alternative|
-          b += self.class.new(alternative).section(header, false)
+          b += IDENT + ::EacCli::Docopt::DocBuilder::Alternative.new(alternative).to_s + "\n"
         end
         b
       end
 
-      def self_options
-        definition.options.map { |option| IDENT + option_definition(option) }.join("\n")
+      def options_section
+        "Options:\n" +
+          definition.alternatives.flat_map(&:options)
+                    .map { |option| IDENT + option_definition(option) + "\n" }.join
       end
 
-      def self_usage
-        IDENT + self_usage_arguments.join(SEP)
-      end
-
-      def self_usage_arguments
-        [::EacRubyUtils::Console::DocoptRunner::PROGRAM_MACRO] +
-          definition.options_argument.if_present([]) { |_v| ['[options]'] } +
-          self_usage_arguments_options +
-          self_usage_arguments_positional
-      end
-
-      def self_usage_arguments_options
-        definition.options.select(&:show_on_usage?).map { |option| option_argument(option) }
-      end
-
-      def self_usage_arguments_positional
-        definition.positional.map { |p| positional_argument(p) }
+      def usage_section
+        "Usage:\n" +
+          definition.alternatives.map do |alternative|
+            IDENT + ::EacCli::Docopt::DocBuilder::Alternative.new(alternative).to_s + "\n"
+          end.join
       end
 
       def to_s
-        "#{definition.description}\n\n#{section('usage')}\n#{section('options')}\n"
+        "#{definition.description}\n\n#{usage_section}\n#{options_section}\n"
       end
     end
   end
