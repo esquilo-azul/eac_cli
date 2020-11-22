@@ -5,9 +5,12 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   class Parser
     require_sub __FILE__
+    enable_simple_cache
     common_constructor :definition, :argv
 
-    def parsed
+    private
+
+    def parsed_uncached
       result_or_error = parse_definition(definition)
       return result_or_error unless result_or_error.is_a?(::Exception)
 
@@ -18,8 +21,6 @@ module EacCli
 
       raise result_or_error
     end
-
-    private
 
     def parse_definition(definition)
       ::EacCli::Parser::Collector.to_data(definition) do |collector|
