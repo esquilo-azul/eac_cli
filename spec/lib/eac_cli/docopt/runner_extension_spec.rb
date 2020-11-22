@@ -22,4 +22,14 @@ RSpec.describe ::EacCli::Docopt::RunnerExtension do
 
   it { expect(instance.options.fetch('--opt1')).to eq('aaa') }
   it { expect(instance.options.fetch('<pos1>')).to eq('bbb') }
+  it { expect(instance.doc).to eq(<<~EXPECTED) }
+    A stub runner.
+
+    Usage:
+      __PROGRAM__ [options] <pos1>
+
+    Options:
+      -o --opt1=<value>    A argument option
+
+  EXPECTED
 end
