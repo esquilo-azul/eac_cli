@@ -7,7 +7,7 @@ module EacCli
     require_sub __FILE__
     common_constructor :definition, :argv
 
-    def parse
+    def parsed
       result_or_error = parse_definition(definition)
       return result_or_error unless result_or_error.is_a?(::Exception)
 

@@ -84,7 +84,7 @@ module EacCli
       end
 
       def parsed
-        @parsed ||= ::EacCli::Parser.new(self.class.runner_definition, runner_context.argv).parse
+        @parsed ||= ::EacCli::Parser.new(self.class.runner_definition, runner_context.argv).parsed
       end
     end
   end
