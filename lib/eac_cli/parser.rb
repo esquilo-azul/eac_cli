@@ -5,14 +5,14 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   class Parser
     require_sub __FILE__
-    common_constructor :definition
+    common_constructor :definition, :argv
 
-    def parse(argv)
-      result_or_error = parse_definition(definition, argv)
+    def parse
+      result_or_error = parse_definition(definition)
       return result_or_error unless result_or_error.is_a?(::Exception)
 
       definition.alternatives.each do |alternative|
-        alt_result_or_error = parse_definition(alternative, argv)
+        alt_result_or_error = parse_definition(alternative)
         return alt_result_or_error unless alt_result_or_error.is_a?(::Exception)
       end
 
@@ -21,7 +21,7 @@ module EacCli
 
     private
 
-    def parse_definition(definition, argv)
+    def parse_definition(definition)
       ::EacCli::Parser::Collector.to_data(definition) do |collector|
         ::EacCli::Parser::PositionalCollection.new(
           definition,
