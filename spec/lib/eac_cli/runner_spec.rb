@@ -23,8 +23,10 @@ RSpec.describe ::EacCli::Runner do
     end
   end
 
+  let(:instance) { runner_class.create(argv) }
+
   context 'when all args are supplied' do
-    let(:instance) { runner_class.create(%w[--opt1 aaa --opt2 bbb ccc ddd]) }
+    let(:argv) { %w[--opt1 aaa --opt2 bbb ccc ddd] }
 
     it { expect(instance.parsed.opt1).to eq('aaa') }
     it { expect(instance.parsed.opt2?).to eq(true) }
@@ -33,7 +35,7 @@ RSpec.describe ::EacCli::Runner do
   end
 
   context 'when only required args are supplied' do
-    let(:instance) { runner_class.create(%w[bbb]) }
+    let(:argv) { %w[bbb] }
 
     it { expect(instance.parsed.opt1).to be_nil }
     it { expect(instance.parsed.opt2?).to eq(false) }
@@ -42,7 +44,7 @@ RSpec.describe ::EacCli::Runner do
   end
 
   context 'when required args are not supplied' do
-    let(:instance) { runner_class.create(%w[]) }
+    let(:argv) { %w[] }
 
     it do
       expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
@@ -50,7 +52,7 @@ RSpec.describe ::EacCli::Runner do
   end
 
   context 'when alternative args are supplied' do
-    let(:instance) { runner_class.create(%w[--opt3]) }
+    let(:argv) { %w[--opt3] }
 
     it { expect(instance.parsed.opt3?).to eq(true) }
   end
@@ -69,7 +71,7 @@ RSpec.describe ::EacCli::Runner do
       end
     end
 
-    let(:instance) { runner_class.create(%w[aaa bbb]) }
+    let(:argv) { %w[aaa bbb] }
 
     it do
       expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
