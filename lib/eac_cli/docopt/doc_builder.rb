@@ -12,6 +12,14 @@ module EacCli
       IDENT = SEP * 2
       OPTION_DESC_SEP = IDENT * 2
 
+      class << self
+        def option_long(option)
+          b = option.long
+          b += '=<value>' if option.argument?
+          b
+        end
+      end
+
       def positional_argument(positional)
         if positional.subcommand?
           ::EacRubyUtils::Console::DocoptRunner::SUBCOMMANDS_MACRO
@@ -28,13 +36,7 @@ module EacCli
       end
 
       def option_definition(option)
-        option.short + SEP + option_long(option) + OPTION_DESC_SEP + option.description
-      end
-
-      def option_long(option)
-        b = option.long
-        b += '=<value>' if option.argument?
-        b
+        option.short + SEP + self.class.option_long(option) + OPTION_DESC_SEP + option.description
       end
 
       def section(header, include_header = true)
