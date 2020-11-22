@@ -23,12 +23,16 @@ module EacCli
     def alt(&block)
       r = ::EacCli::Definition.new
       r.instance_eval(&block)
-      alternatives << r
+      alternatives_set[new_alternative_key] = r
       r
     end
 
     def alternatives
-      @alternatives ||= []
+      alternatives_set.values
+    end
+
+    def alternative(key)
+      alternatives_set.fetch(key)
     end
 
     def arg_opt(short, long, description, option_options = {})
@@ -96,6 +100,18 @@ module EacCli
     end
 
     private
+
+    def alternatives_set
+      @alternatives_set ||= ::ActiveSupport::HashWithIndifferentAccess.new
+    end
+
+    def new_alternative_key
+      @last_key ||= 0
+      loop do
+        @last_key += 1
+        break @last_key unless alternatives_set.key?(@last_key)
+      end
+    end
 
     def pos_set
       @pos_set ||= []
