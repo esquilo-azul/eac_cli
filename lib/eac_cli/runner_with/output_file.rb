@@ -22,7 +22,7 @@ module EacCli
         if parsed.output_file.present?
           ::File.write(parsed.output_file, output_content)
         else
-          out output_content
+          $stdout.write(output_content)
         end
       end
     end
