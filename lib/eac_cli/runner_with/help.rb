@@ -13,6 +13,21 @@ module EacCli
           options_argument false
           bool_opt '-h', '--help', 'Show help.', usage: true
         end
+
+        set_callback :run, :before do
+          help_run
+        end
+      end
+
+      def help_run
+        return unless parsed.help?
+
+        puts help_text
+        raise ::EacCli::Runner::Exit
+      end
+
+      def help_text
+        ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
       end
     end
   end
