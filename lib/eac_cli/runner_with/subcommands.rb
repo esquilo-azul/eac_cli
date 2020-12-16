@@ -44,7 +44,7 @@ module EacCli
 
       def run_with_subcommand
         if subcommand_name
-          subcommand_runner.run
+          subcommand_runner.run_run
         else
           run_without_subcommand
         end

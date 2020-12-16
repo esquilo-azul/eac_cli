@@ -55,8 +55,7 @@ module EacCli
 
       def run(*runner_context_args)
         r = create(*runner_context_args)
-        r.parsed
-        r.run
+        r.run_run
         r
       end
 
@@ -72,6 +71,11 @@ module EacCli
     end
 
     module InstanceMethods
+      def run_run
+        parsed
+        run
+      end
+
       def runner_context
         return @runner_context if @runner_context
 
