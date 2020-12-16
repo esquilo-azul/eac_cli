@@ -76,6 +76,8 @@ module EacCli
       def run_run
         parsed
         run_callbacks(:run) { run }
+      rescue ::EacCli::Runner::Exit # rubocop:disable Lint/SuppressedException
+        # Do nothing
       end
 
       def runner_context
