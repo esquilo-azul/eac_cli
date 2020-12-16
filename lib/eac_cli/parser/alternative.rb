@@ -22,6 +22,10 @@ module EacCli
         error.present?
       end
 
+      def success?
+        !error?
+      end
+
       def parsed
         @parsed ||= collector.to_data.freeze
       end
