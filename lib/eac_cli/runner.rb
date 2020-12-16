@@ -44,6 +44,8 @@ module EacCli
       extend AfterClassMethods
       include InstanceMethods
       ::EacCli::Docopt::RunnerExtension.check(self)
+      include ActiveSupport::Callbacks
+      define_callbacks :run
     end
 
     module AfterClassMethods
@@ -73,7 +75,7 @@ module EacCli
     module InstanceMethods
       def run_run
         parsed
-        run
+        run_callbacks(:run) { run }
       end
 
       def runner_context
