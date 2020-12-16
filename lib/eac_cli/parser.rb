@@ -12,12 +12,14 @@ module EacCli
 
     def parsed_uncached
       raise 'Definition has no alternatives' if alternatives.empty?
+      raise first_error unless alternatives.select(&:success?).any?
 
-      alternatives.each do |alt_parser|
-        return alt_parser.parsed unless alt_parser.error?
-      end
+      alternatives_parsed(true).merge(alternatives_parsed(false))
+    end
 
-      raise first_error
+    def alternatives_parsed(error)
+      alternatives.select { |a| error == a.error? }.map(&:parsed).reverse
+                  .inject(::EacRubyUtils::Struct.new) { |a, e| a.merge(e) }
     end
 
     def alternatives_uncached

@@ -28,7 +28,10 @@ RSpec.describe ::EacCli::Runner do
 
   context 'when all args are supplied' do
     let(:argv) { %w[--opt1 aaa --opt2 bbb ccc ddd] }
-    let(:parsed_expected) { { opt1: 'aaa', opt2: true, pos1: 'bbb', pos2: %w[ccc ddd] } }
+    let(:parsed_expected) do
+      { opt1: 'aaa', opt2: true, opt3: false, pos1: 'bbb',
+        pos2: %w[ccc ddd] }
+    end
 
     it { expect(parsed_actual).to eq(parsed_expected) }
     it { expect(instance.parsed.opt1).to eq('aaa') }
@@ -39,7 +42,7 @@ RSpec.describe ::EacCli::Runner do
 
   context 'when only required args are supplied' do
     let(:argv) { %w[bbb] }
-    let(:parsed_expected) { { opt1: nil, opt2: false, pos1: 'bbb', pos2: [] } }
+    let(:parsed_expected) { { opt1: nil, opt2: false, opt3: false, pos1: 'bbb', pos2: [] } }
 
     it { expect(parsed_actual).to eq(parsed_expected) }
     it { expect(instance.parsed.opt1).to be_nil }
@@ -58,7 +61,7 @@ RSpec.describe ::EacCli::Runner do
 
   context 'when alternative args are supplied' do
     let(:argv) { %w[--opt3] }
-    let(:parsed_expected) { { opt3: true } }
+    let(:parsed_expected) { { opt1: nil, opt2: false, opt3: true, pos1: nil, pos2: [] } }
 
     it { expect(parsed_actual).to eq(parsed_expected) }
     it { expect(instance.parsed.opt3?).to eq(true) }
