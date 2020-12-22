@@ -27,7 +27,9 @@ module EacCli
       end
 
       def help_text
-        ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
+        r = ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
+        r += help_extra_text if respond_to?(:help_extra_text)
+        r
       end
     end
   end
