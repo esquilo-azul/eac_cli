@@ -31,6 +31,11 @@ module EacCli
         end
       end
 
+      def help_extra_text
+        (['Subcommands:'] + available_subcommands.keys.map { |s| "  #{s}" })
+          .map { |v| "#{v}\n" }.join
+      end
+
       def method_missing(method_name, *arguments, &block)
         return run_with_subcommand(*arguments, &block) if
         run_with_subcommand_alias_run?(method_name)

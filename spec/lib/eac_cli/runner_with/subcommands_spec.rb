@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/runner'
+require 'eac_cli/runner_with/help'
 require 'eac_cli/runner_with/subcommands'
 
 RSpec.describe ::EacCli::RunnerWith::Subcommands do
@@ -51,6 +52,34 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
 
     it do
       expect { instance.run }.to raise_error(::EacCli::Parser::Error)
+    end
+  end
+
+  context 'with help' do
+    let(:instance) { parent_runner.create(%w[--help]) }
+    let(:expected_output) do
+      <<~OUTPUT
+        A stub root runner.
+
+        Usage:
+          __PROGRAM__ [options] __SUBCOMMANDS__ [<subcommand_args>...]
+          __PROGRAM__ --help
+
+        Options:
+          -r --root-var=<value>    A root variable.
+          -h --help    Show help.
+
+        Subcommands:
+          child-cmd
+      OUTPUT
+    end
+
+    before do
+      parent_runner.include(::EacCli::RunnerWith::Help)
+    end
+
+    it 'show help text' do
+      expect { instance.run_run }.to output(expected_output).to_stdout_from_any_process
     end
   end
 end
