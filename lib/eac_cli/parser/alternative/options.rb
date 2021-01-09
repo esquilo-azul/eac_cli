@@ -4,11 +4,9 @@ module EacCli
   class Parser
     class Alternative
       module Options
-        DOUBLE_DASH = '--'
-
         private
 
-        attr_accessor :argument_option, :double_dash
+        attr_accessor :argument_option
 
         def argument_option_collect_argv(option)
           self.argument_option = option
@@ -17,10 +15,6 @@ module EacCli
 
         def argv_current_option?
           phase == PHASE_ANY && argv_enum.peek.start_with?('-')
-        end
-
-        def argv_current_double_dash?
-          argv_enum.peek == DOUBLE_DASH && !double_dash
         end
 
         def boolean_option_collect_argv(option)
