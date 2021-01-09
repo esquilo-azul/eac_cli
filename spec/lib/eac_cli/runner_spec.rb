@@ -11,7 +11,7 @@ RSpec.describe ::EacCli::Runner do
 
       runner_definition do
         arg_opt '-o', '--opt1', 'A arg option.'
-        bool_opt '-o', '--opt2', 'A boolean option'
+        bool_opt '-p', '--opt2', 'A boolean option'
         pos_arg :pos1
         pos_arg :pos2, repeat: true, optional: true
         alt do
@@ -44,6 +44,21 @@ RSpec.describe ::EacCli::Runner do
     let(:argv) { %w[--opt1=aaa pos1] }
 
     it { expect(instance.parsed.opt1).to eq('aaa') }
+  end
+
+  context 'with valid grouped short options' do
+    let(:argv) { %w[-po aaa pos1] }
+
+    it { expect(instance.parsed.opt1).to eq('aaa') }
+    it { expect(instance.parsed.opt2?).to eq(true) }
+  end
+
+  context 'with invalid grouped short options' do
+    let(:argv) { %w[-op aaa pos1] }
+
+    it do
+      expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
+    end
   end
 
   context 'when only required args are supplied' do

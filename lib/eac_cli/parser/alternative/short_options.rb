@@ -13,12 +13,31 @@ module EacCli
             !argv_current_long_option?
         end
 
-        def short_option_collect_argv_value
-          alternative.options.any? do |option|
-            next false unless option.short == argv_enum.peek
+        def find_short_option(char)
+          alternative.options.find { |option| short_without_prefix(option.short) == char }
+        end
 
-            option_collect_option(option)
-          end || raise_argv_current_invalid_option
+        def short_option_collect_argv_value
+          last_option = nil
+          short_without_prefix(argv_enum.peek).each_char do |char|
+            raise_error "Option \"#{last_option}\" requires a argument not provided" if
+            last_option.present?
+
+            collected_option = short_option_collect_char(char)
+            last_option = collected_option if collected_option.argument?
+          end
+        end
+
+        # @return [EacCli::Definition::BaseOption] The option collected.
+        def short_option_collect_char(char)
+          option = find_short_option(char)
+          raise_error "Invalid short option \"#{char}\"" unless option
+
+          option_collect_option(option)
+        end
+
+        def short_without_prefix(short)
+          short.gsub(/\A#{::Regexp.quote(SHORT_OPTION_PREFIX)}/, '')
         end
       end
     end
