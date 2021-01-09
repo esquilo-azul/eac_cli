@@ -6,6 +6,14 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   module RunnerWith
     module Subcommands
+      class << self
+        def runner?(object)
+          ::EacCli::Runner.runner?(object) || (
+            object.is_a?(::Class) && object < ::EacRubyUtils::Console::DocoptRunner
+          )
+        end
+      end
+
       common_concern do
         include ::EacCli::Runner
       end
@@ -19,7 +27,7 @@ module EacCli
       def available_subcommands_auto
         self.class.constants
             .map { |name| [name.to_s.underscore.gsub('_', '-'), self.class.const_get(name)] }
-            .select { |c| ::EacCli::Runner.runner?(c[1]) }
+            .select { |c| ::EacCli::RunnerWith::Subcommands.runner?(c[1]) }
             .to_h.with_indifferent_access
       end
 
@@ -49,7 +57,11 @@ module EacCli
 
       def run_with_subcommand
         if subcommand_name
-          subcommand_runner.run_run
+          if subcommand_runner.respond_to?(:run_run)
+            subcommand_runner.run_run
+          else
+            subcommand_runner.run
+          end
         else
           run_without_subcommand
         end
