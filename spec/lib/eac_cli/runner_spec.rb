@@ -40,6 +40,12 @@ RSpec.describe ::EacCli::Runner do
     it { expect(instance.parsed.pos2).to eq(%w[ccc ddd]) }
   end
 
+  context 'with long option and argument in same position' do
+    let(:argv) { %w[--opt1=aaa pos1] }
+
+    it { expect(instance.parsed.opt1).to eq('aaa') }
+  end
+
   context 'when only required args are supplied' do
     let(:argv) { %w[bbb] }
     let(:parsed_expected) { { opt1: nil, opt2: false, opt3: false, pos1: 'bbb', pos2: [] } }
