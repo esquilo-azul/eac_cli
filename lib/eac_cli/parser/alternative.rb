@@ -35,7 +35,7 @@ module EacCli
       attr_accessor :phase
 
       def any_collect_argv_value
-        %w[double_dash option].each do |arg_type|
+        %w[double_dash long_option option].each do |arg_type|
           return send("#{arg_type}_collect_argv_value") if send("argv_current_#{arg_type}?")
         end
 

@@ -16,7 +16,7 @@ module EacCli
 
         def option_collect_argv_value
           alternative.options.any? do |option|
-            next false unless [option.short, option.long].include?(argv_enum.peek)
+            next false unless option.short == argv_enum.peek
 
             option_collect_option(option)
           end || raise_argv_current_invalid_option
