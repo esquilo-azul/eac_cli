@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/docopt/doc_builder'
+require 'eac_cli/docopt/runner_context_replacement'
 require 'eac_cli/runner'
 require 'eac_ruby_utils/console/docopt_runner'
 
@@ -31,6 +32,10 @@ module EacCli
 
         def docopt_options
           super.merge(options_first: self.class.runner_definition.options_first?)
+        end
+
+        def runner_context
+          @runner_context ||= ::EacCli::Docopt::RunnerContextReplacement.new(self)
         end
       end
 
