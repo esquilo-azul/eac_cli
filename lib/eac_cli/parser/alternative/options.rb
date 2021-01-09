@@ -20,14 +20,18 @@ module EacCli
           alternative.options.any? do |option|
             next false unless [option.short, option.long].include?(argv_enum.peek)
 
-            if option.argument?
-              argument_option_collect_argv(option)
-            else
-              boolean_option_collect_argv(option)
-            end
-
-            true
+            option_collect_option(option)
           end || raise_argv_current_invalid_option
+        end
+
+        def option_collect_option(option)
+          if option.argument?
+            argument_option_collect_argv(option)
+          else
+            boolean_option_collect_argv(option)
+          end
+
+          option
         end
 
         def raise_argv_current_invalid_option
