@@ -6,25 +6,12 @@ module EacCli
       module Options
         private
 
-        attr_accessor :argument_option
-
-        def argument_option_collect_argv(option)
-          self.argument_option = option
-          self.phase = PHASE_OPTION_ARGUMENT
-        end
-
         def argv_current_option?
           phase == PHASE_ANY && argv_enum.peek.start_with?('-')
         end
 
         def boolean_option_collect_argv(option)
           collector.collect(option, true)
-        end
-
-        def option_argument_collect_argv_value
-          collector.collect(argument_option, argv_enum.peek)
-          self.argument_option = nil
-          self.phase = PHASE_ANY
         end
 
         def option_collect_argv_value
