@@ -35,11 +35,11 @@ module EacCli
       attr_accessor :phase
 
       def any_collect_argv_value
-        if argv_current_option?
-          option_collect_argv_value
-        else
-          positional_collect_argv_value
+        %w[option].each do |arg_type|
+          return send("#{arg_type}_collect_argv_value") if send("argv_current_#{arg_type}?")
         end
+
+        positional_collect_argv_value
       end
 
       def collector
