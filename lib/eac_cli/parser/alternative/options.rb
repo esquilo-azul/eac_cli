@@ -15,8 +15,6 @@ module EacCli
         end
 
         def option_collect_argv_value
-          return double_dash_collect_argv_value if argv_current_double_dash?
-
           alternative.options.any? do |option|
             next false unless [option.short, option.long].include?(argv_enum.peek)
 
