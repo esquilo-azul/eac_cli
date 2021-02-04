@@ -6,6 +6,8 @@ module EacCli
       def run_run
         parsed
         run_callbacks(:run) { run }
+      rescue ::EacCli::Parser::Error => e
+        $stderr.write("#{e}\n")
       rescue ::EacCli::Runner::Exit # rubocop:disable Lint/SuppressedException
         # Do nothing
       end
