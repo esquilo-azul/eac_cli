@@ -40,7 +40,7 @@ module EacCli
       end
 
       def help_extra_text
-        (['Subcommands:'] + available_subcommands.keys.map { |s| "  #{s}" })
+        (['Subcommands:'] + available_subcommands.keys.sort.map { |s| "  #{s}" })
           .map { |v| "#{v}\n" }.join
       end
 
