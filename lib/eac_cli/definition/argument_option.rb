@@ -9,6 +9,10 @@ module EacCli
         true
       end
 
+      def build_value(new_value, _previous_value)
+        new_value
+      end
+
       def default_value
         nil
       end

@@ -13,6 +13,14 @@ module EacCli
         options.assert_valid_keys(self.class.lists.option.values)
       end
 
+      def build_value(new_value, previous_value)
+        if previous_value.is_a?(::Array)
+          previous_value + [new_value]
+        else
+          new_value
+        end
+      end
+
       def default_value
         repeat? ? [] : nil
       end

@@ -24,11 +24,7 @@ module EacCli
       end
 
       def collect(option, value)
-        if data[option].is_a?(::Array)
-          data[option] << value
-        else
-          data[option] = value
-        end
+        data[option] = option.build_value(value, data[option])
       end
 
       def supplied?(option)
