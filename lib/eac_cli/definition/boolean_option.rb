@@ -8,6 +8,10 @@ module EacCli
       def argument?
         false
       end
+
+      def default_value
+        false
+      end
     end
   end
 end

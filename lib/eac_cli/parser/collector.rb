@@ -42,14 +42,10 @@ module EacCli
       end
 
       def default_values
-        definition.options.each { |option| data[option] = option_default_value(option) }
+        definition.options.each { |option| data[option] = option.default_value }
         definition.positional.each do |positional|
           data[positional] = positional_default_value(positional)
         end
-      end
-
-      def option_default_value(option)
-        option.argument? ? nil : false
       end
 
       def positional_default_value(positional)

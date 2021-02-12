@@ -8,6 +8,7 @@ module EacCli
       DEFAULT_REQUIRED = false
 
       enable_listable
+      enable_abstract_methods :default_value
       lists.add_symbol :option, :optional, :usage, :required
       attr_reader :short, :long, :description, :options
 
