@@ -9,12 +9,12 @@ module EacCli
         false
       end
 
-      def build_value(_new_value, _previous_value)
-        true
+      def build_value(_new_value, previous_value)
+        repeat? ? previous_value + 1 : true
       end
 
       def default_value
-        false
+        repeat? ? 0 : false
       end
     end
   end

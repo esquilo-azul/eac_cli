@@ -9,7 +9,7 @@ module EacCli
 
       enable_listable
       enable_abstract_methods :build_value, :default_value
-      lists.add_symbol :option, :optional, :usage, :required
+      lists.add_symbol :option, :optional, :usage, :repeat, :required
       attr_reader :short, :long, :description, :options
 
       def initialize(short, long, description, options = {})
@@ -22,6 +22,10 @@ module EacCli
 
       def identifier
         long.to_s.variableize.to_sym
+      end
+
+      def repeat?
+        options[OPTION_REPEAT]
       end
 
       def required?
