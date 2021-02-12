@@ -43,13 +43,7 @@ module EacCli
 
       def default_values
         definition.options.each { |option| data[option] = option.default_value }
-        definition.positional.each do |positional|
-          data[positional] = positional_default_value(positional)
-        end
-      end
-
-      def positional_default_value(positional)
-        positional.repeat? ? [] : nil
+        definition.positional.each { |positional| data[positional] = positional.default_value }
       end
     end
   end

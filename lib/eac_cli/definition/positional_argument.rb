@@ -13,6 +13,10 @@ module EacCli
         options.assert_valid_keys(self.class.lists.option.values)
       end
 
+      def default_value
+        repeat? ? [] : nil
+      end
+
       def identifier
         name.to_s.variableize.to_sym
       end
