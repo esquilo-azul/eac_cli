@@ -20,8 +20,18 @@ module EacCli
           b
         end
 
+        def option_short(option)
+          b = option.short
+          b += '=<value>' if option.argument?
+          b
+        end
+
         def option_usage_full(option)
-          option.short + SEP + option_long(option)
+          if option.long.present?
+            [option.short, option_long(option)].reject(&:blank?).join(SEP)
+          else
+            option_short(option)
+          end
         end
       end
 

@@ -10,15 +10,12 @@ module EacCli
       SUBCOMMAND_NAME_ARG = :subcommand
       SUBCOMMAND_ARGS_ARG = :subcommand_args
 
-      def arg_opt(short, long, description, option_options = {})
-        options_set << ::EacCli::Definition::ArgumentOption.new(
-          short, long, description, option_options
-        )
+      def arg_opt(*args)
+        options_set << ::EacCli::Definition::ArgumentOption.from_args(args)
       end
 
-      def bool_opt(short, long, description, option_options = {})
-        options_set << ::EacCli::Definition::BooleanOption.new(short, long, description,
-                                                               option_options)
+      def bool_opt(*args)
+        options_set << ::EacCli::Definition::BooleanOption.from_args(args)
       end
 
       def options
