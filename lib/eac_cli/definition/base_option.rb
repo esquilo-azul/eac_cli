@@ -10,14 +10,10 @@ module EacCli
       enable_listable
       enable_abstract_methods :build_value, :default_value
       lists.add_symbol :option, :optional, :usage, :repeat, :required
-      attr_reader :short, :long, :description, :options
-
-      def initialize(short, long, description, options = {})
-        @short = short
-        @long = long
-        @description = description
-        @options = options.symbolize_keys
-        @options.assert_valid_keys(::EacCli::Definition::BaseOption.lists.option.values)
+      common_constructor :short, :long, :description, :options, default: [{}] do
+        self.options = ::EacCli::Definition::BaseOption.lists.option.hash_keys_validate!(
+          options.symbolize_keys
+        )
       end
 
       def identifier
