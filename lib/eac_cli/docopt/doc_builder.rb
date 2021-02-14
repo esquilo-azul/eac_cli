@@ -19,10 +19,14 @@ module EacCli
           b += '=<value>' if option.argument?
           b
         end
+
+        def option_usage_full(option)
+          option.short + SEP + option_long(option)
+        end
       end
 
       def option_definition(option)
-        option.short + SEP + self.class.option_long(option) + OPTION_DESC_SEP + option.description
+        self.class.option_usage_full(option) + OPTION_DESC_SEP + option.description
       end
 
       def section(header, include_header = true)
