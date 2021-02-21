@@ -14,7 +14,9 @@ module EacCli
         end
 
         def find_short_option(char)
-          alternative.options.find { |option| short_without_prefix(option.short) == char }
+          alternative.options.find do |option|
+            short_without_prefix(option.short).if_present(false) { |v| v == char }
+          end
         end
 
         def short_option_collect_argv_value
@@ -37,7 +39,7 @@ module EacCli
         end
 
         def short_without_prefix(short)
-          short.gsub(/\A#{::Regexp.quote(SHORT_OPTION_PREFIX)}/, '')
+          short.to_s.gsub(/\A#{::Regexp.quote(SHORT_OPTION_PREFIX)}/, '')
         end
       end
     end
