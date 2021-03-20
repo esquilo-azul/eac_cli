@@ -3,13 +3,20 @@
 module EacCli
   module Runner
     module InstanceMethods
+      PARSER_ERROR_EXIT_CODE = 1
+
       def run_run
         parsed
         run_callbacks(:run) { run }
       rescue ::EacCli::Parser::Error => e
-        $stderr.write("#{e}\n")
+        run_parser_error(e)
       rescue ::EacCli::Runner::Exit # rubocop:disable Lint/SuppressedException
         # Do nothing
+      end
+
+      def run_parser_error(error)
+        $stderr.write("#{error}\n")
+        ::Kernel.exit(PARSER_ERROR_EXIT_CODE)
       end
 
       def runner_context
