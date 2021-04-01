@@ -36,7 +36,9 @@ module EacCli
       end
 
       def option_definition(option)
-        self.class.option_usage_full(option) + OPTION_DESC_SEP + option.description
+        self.class.option_usage_full(option) + option.description.if_present('') do |v|
+          OPTION_DESC_SEP + v
+        end
       end
 
       def section(header, include_header = true)
