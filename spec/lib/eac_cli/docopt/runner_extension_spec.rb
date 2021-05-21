@@ -4,7 +4,7 @@ require 'eac_cli/docopt/runner_extension'
 
 RSpec.describe ::EacCli::Docopt::RunnerExtension do
   let(:stub_runner) do
-    r = Class.new(::EacRubyUtils::Console::DocoptRunner) do
+    r = Class.new(::EacCli::DocoptRunner) do
       def run; end
     end
     r.include ::EacCli::Runner

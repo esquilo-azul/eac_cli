@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
+require 'eac_cli/docopt_runner'
 
 module EacCli
   module Docopt

@@ -3,7 +3,7 @@
 require 'eac_cli/docopt/doc_builder'
 require 'eac_cli/docopt/runner_context_replacement'
 require 'eac_cli/runner'
-require 'eac_ruby_utils/console/docopt_runner'
+require 'eac_cli/docopt_runner'
 
 module EacCli
   module Docopt
@@ -16,7 +16,7 @@ module EacCli
 
       class << self
         def check(klass)
-          return unless klass < ::EacRubyUtils::Console::DocoptRunner
+          return unless klass < ::EacCli::DocoptRunner
 
           ::EacCli::Runner.alias_runner_class_methods(klass, '', 'eac_cli')
           ::EacCli::Runner.alias_runner_class_methods(klass, 'original', '')

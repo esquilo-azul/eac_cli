@@ -11,7 +11,7 @@ module EacCli
       class << self
         def runner?(object)
           ::EacCli::Runner.runner?(object) || (
-            object.is_a?(::Class) && object < ::EacRubyUtils::Console::DocoptRunner
+            object.is_a?(::Class) && object < ::EacCli::DocoptRunner
           )
         end
       end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
+require 'eac_cli/docopt_runner'
 
 module EacCli
   module Docopt
@@ -11,7 +11,7 @@ module EacCli
 
         def to_s
           (
-            [::EacRubyUtils::Console::DocoptRunner::PROGRAM_MACRO] +
+            [::EacCli::DocoptRunner::PROGRAM_MACRO] +
               alternative.options_argument?.if_present([]) { |_v| ['[options]'] } +
               options +
               positionals
@@ -36,7 +36,7 @@ module EacCli
 
         def positional(positional)
           if positional.subcommand?
-            ::EacRubyUtils::Console::DocoptRunner::SUBCOMMANDS_MACRO
+            ::EacCli::DocoptRunner::SUBCOMMANDS_MACRO
           else
             r = "<#{positional.name}>"
             r += '...' if positional.repeat?
