@@ -7,7 +7,7 @@ module EacCli
   module DefaultRunner
     common_concern do
       include ::EacCli::RunnerWith::Help
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
     end
   end
