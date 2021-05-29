@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/hash/indifferent_access'
-require 'active_support/core_ext/hash/slice'
+require 'eac_ruby_utils/core_ext'
 require 'docopt'
-require 'eac_ruby_utils/contextualizable'
-require 'eac_ruby_utils/patches/hash/sym_keys_hash'
-Dir["#{__dir__}/#{::File.basename(__FILE__, '.*')}/_*.rb"].sort.each do |partial|
-  require partial
-end
 
 module EacCli
   class DocoptRunner
+    require_sub __FILE__
     include ::EacRubyUtils::Contextualizable
 
     class << self
