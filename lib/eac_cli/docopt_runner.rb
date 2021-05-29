@@ -6,7 +6,7 @@ require 'docopt'
 module EacCli
   class DocoptRunner
     require_sub __FILE__
-    include ::EacRubyUtils::Contextualizable
+    include ::EacCli::DocoptRunner::Context
 
     class << self
       def create(settings = {})
