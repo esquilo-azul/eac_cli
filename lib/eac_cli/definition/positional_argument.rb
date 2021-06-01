@@ -6,9 +6,10 @@ module EacCli
   class Definition
     class PositionalArgument
       DEFAULT_REQUIRED = true
+      DEFAULT_VISIBLE = true
 
       enable_listable
-      lists.add_symbol :option, :optional, :repeat, :required, :subcommand
+      lists.add_symbol :option, :optional, :repeat, :required, :subcommand, :visible
       common_constructor :name, :options, default: [{}] do
         options.assert_valid_keys(self.class.lists.option.values)
       end
@@ -50,6 +51,10 @@ module EacCli
 
       def to_s
         "#{self.class.name.demodulize}[#{identifier}]"
+      end
+
+      def visible?
+        options.key?(OPTION_VISIBLE) ? options.fetch(OPTION_VISIBLE) : DEFAULT_VISIBLE
       end
     end
   end

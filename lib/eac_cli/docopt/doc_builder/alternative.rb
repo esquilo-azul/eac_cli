@@ -31,10 +31,12 @@ module EacCli
         end
 
         def positionals
-          alternative.positional.map { |p| positional(p) }
+          alternative.positional.map { |p| positional(p) }.reject(&:blank?)
         end
 
         def positional(positional)
+          return unless positional.visible?
+
           if positional.subcommand?
             ::EacCli::DocoptRunner::SUBCOMMANDS_MACRO
           else
