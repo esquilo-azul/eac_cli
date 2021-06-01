@@ -60,7 +60,7 @@ module EacCli
       end
 
       def run_with_subcommand
-        if subcommand_name
+        if run_subcommand?
           if subcommand_runner.respond_to?(:run_run)
             subcommand_runner.run_run
           else
@@ -77,6 +77,10 @@ module EacCli
 
       def run_without_subcommand
         "Method #{__method__} should be overrided in #{self.class.name}"
+      end
+
+      def run_subcommand?
+        subcommand_name.present?
       end
 
       def subcommands?
