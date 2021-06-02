@@ -26,6 +26,8 @@ module EacCli
         input_value
       end
 
+      delegate :value=, to: :sub_entry
+
       private
 
       def sub_value_to_return
