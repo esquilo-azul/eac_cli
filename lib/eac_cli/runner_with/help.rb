@@ -20,7 +20,7 @@ module EacCli
       end
 
       def help_run
-        return unless parsed.help?
+        return unless show_help?
 
         puts help_text
         raise ::EacCli::Runner::Exit
@@ -30,6 +30,10 @@ module EacCli
         r = ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
         r += help_extra_text if respond_to?(:help_extra_text)
         r
+      end
+
+      def show_help?
+        parsed.help? && !if_respond(:run_subcommand?, false)
       end
     end
   end
