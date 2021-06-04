@@ -70,8 +70,8 @@ module EacCli
       end
 
       def entry_value_from_input(entry_key, options)
-        entry_value = request_input("Value for entry \"#{entry_key}\"",
-                                    options.request_input_options)
+        entry_value = input("Value for entry \"#{entry_key}\"",
+                            options.request_input_options)
         warn('Entered value is blank') if entry_value.blank?
         entry_value
       end

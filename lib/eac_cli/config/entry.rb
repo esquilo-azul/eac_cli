@@ -10,7 +10,7 @@ module EacCli
       require_sub __FILE__, include_modules: true
       enable_listable
       enable_simple_cache
-      include ::EacCli::Speaker
+      enable_speaker
 
       common_constructor :config, :path, :options do
         self.path = ::EacConfig::EntryPath.assert(path)

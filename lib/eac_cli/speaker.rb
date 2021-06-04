@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require 'io/console'
-require 'eac_ruby_utils/patches/hash/options_consumer'
-require 'eac_ruby_utils/require_sub'
-::EacRubyUtils.require_sub __FILE__
+require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/speaker/receiver'
 
 module EacCli
-  # https://github.com/fazibear/colorize
-  module Speaker
-    def on_speaker_node(&block)
-      ::EacCli::Speaker.on_node(&block)
+  class Speaker
+    require_sub __FILE__, include_modules: true
+    include ::EacRubyUtils::Speaker::Receiver
+
+    common_constructor :options, default: [{}] do
+      self.options = self.class.lists.option.hash_keys_validate!(options)
     end
 
     def puts(string = '')
       string.to_s.each_line do |line|
-        current_node.stderr.puts(current_node.stderr_line_prefix.to_s + line)
+        err_out.puts(err_line_prefix.to_s + line)
       end
     end
 
     def out(string = '')
-      current_node.stdout.write(string.to_s)
+      out_out.write(string.to_s)
     end
 
     def fatal_error(string)
@@ -52,7 +52,7 @@ module EacCli
     #   +bool+ ([Boolean], default: +false+): requires a answer "yes" or "no".
     #   +list+ ([Hash] or [Array], default: +nil+): requires a answer from a list.
     #   +noecho+ ([Boolean], default: +false+): does not output answer.
-    def request_input(question, options = {})
+    def input(question, options = {})
       bool, list, noecho = options.to_options_consumer.consume_all(:bool, :list, :noecho)
       if list
         request_from_list(question, list, noecho)
@@ -110,22 +110,18 @@ module EacCli
     end
 
     def request_string(question, noecho)
-      current_node.stderr.write "#{question}: ".to_s.yellow
+      err_out.write "#{question}: ".to_s.yellow
       noecho ? request_string_noecho : request_string_echo
     end
 
     def request_string_noecho
-      r = current_node.stdin.noecho(&:gets).chomp.strip
-      current_node.stderr.write("\n")
+      r = in_in.noecho(&:gets).chomp.strip
+      err_out.write("\n")
       r
     end
 
     def request_string_echo
-      current_node.stdin.gets.chomp.strip
-    end
-
-    def current_node
-      ::EacCli::Speaker.current_node
+      in_in.gets.chomp.strip
     end
   end
 end

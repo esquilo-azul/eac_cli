@@ -18,7 +18,7 @@ module EacCli
         end
 
         def undefined_value_no_loop
-          request_input("Value for entry \"#{path}\"", options.request_input_options)
+          input("Value for entry \"#{path}\"", options.request_input_options)
         end
       end
     end

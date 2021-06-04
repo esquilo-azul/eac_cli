@@ -4,7 +4,7 @@ require 'active_support/hash_with_indifferent_access'
 require 'ostruct'
 
 module EacCli
-  module Speaker
+  class Speaker
     class List
       class << self
         def build(list)
