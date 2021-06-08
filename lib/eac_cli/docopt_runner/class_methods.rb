@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'docopt'
+
 module EacCli
   class DocoptRunner
     module ClassMethods
@@ -7,7 +9,7 @@ module EacCli
 
       def run(options = {})
         create(options).send(:run)
-      rescue Docopt::Exit => e
+      rescue ::Docopt::Exit => e
         STDERR.write(e.message + "\n")
         ::Kernel.exit(DOCOPT_ERROR_EXIT_CODE)
       end
