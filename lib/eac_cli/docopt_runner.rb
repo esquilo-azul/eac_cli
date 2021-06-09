@@ -6,6 +6,7 @@ require 'docopt'
 module EacCli
   class DocoptRunner
     require_sub __FILE__
+    extend ::EacCli::DocoptRunner::ClassMethods
     include ::EacCli::DocoptRunner::Context
 
     class << self
