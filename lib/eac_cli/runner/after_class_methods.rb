@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'eac_cli/speaker'
+require 'eac_ruby_utils/speaker'
+
 module EacCli
   module Runner
     module AfterClassMethods
@@ -10,9 +13,11 @@ module EacCli
       end
 
       def run(*runner_context_args)
-        r = create(*runner_context_args)
-        r.run_run
-        r
+        on_asserted_speaker do
+          r = create(*runner_context_args)
+          r.run_run
+          r
+        end
       end
 
       def runner_definition(&block)
@@ -23,6 +28,18 @@ module EacCli
 
       def super_runner_definition
         superclass.try(:runner_definition).if_present(&:dup) || ::EacCli::Definition.new
+      end
+
+      private
+
+      def on_asserted_speaker
+        if ::EacRubyUtils::Speaker.context.optional_current
+          yield
+        else
+          ::EacRubyUtils::Speaker.context.on(::EacCli::Speaker.new) do
+            yield
+          end
+        end
       end
     end
   end
