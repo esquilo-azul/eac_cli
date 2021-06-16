@@ -10,6 +10,10 @@ module EacCli
       def argv
         runner.settings[:argv] || ARGV
       end
+
+      def program_name
+        runner.settings[:program_name] || $PROGRAM_NAME
+      end
     end
   end
 end

@@ -15,7 +15,7 @@ module EacCli
       end
 
       def run_parser_error(error)
-        $stderr.write("#{error}\n")
+        $stderr.write("#{program_name}: #{error}\n")
         ::Kernel.exit(PARSER_ERROR_EXIT_CODE)
       end
 
@@ -32,6 +32,10 @@ module EacCli
 
       def parsed
         @parsed ||= ::EacCli::Parser.new(self.class.runner_definition, runner_context.argv).parsed
+      end
+
+      def program_name
+        runner_context.if_present(&:program_name) || $PROGRAM_NAME
       end
     end
   end
