@@ -10,7 +10,7 @@ module EacCli
         include ::EacCli::Runner
 
         runner_definition.alt do
-          bool_opt '-h', '--help', 'Show help.', usage: true
+          bool_opt '-h', '--help', 'Show help.', usage: true, required: true
           pos_arg :any_arg_with_help, repeat: true, optional: true, visible: false
         end
 
