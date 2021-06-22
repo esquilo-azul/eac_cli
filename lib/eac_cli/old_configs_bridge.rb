@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'eac_cli/config'
+require 'eac_config/envvars_node'
+require 'eac_config/yaml_file_node'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
