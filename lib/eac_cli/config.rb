@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_config/envvars_node'
-require 'eac_config/yaml_file_node'
-
 module EacCli
   class Config
     require_sub __FILE__
