@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_cli/parser/alternative'
+
 RSpec.describe ::EacCli::Parser::Alternative do
   let(:instance) { described_class.new(alternative, argv) }
   let(:actual_parsed) { instance.parsed.to_h.symbolize_keys }
