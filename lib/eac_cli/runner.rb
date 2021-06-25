@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'eac_cli/definition'
-require 'eac_cli/docopt/runner_extension'
 require 'eac_cli/parser'
 require 'eac_ruby_utils/core_ext'
 
@@ -43,7 +42,6 @@ module EacCli
 
       extend AfterClassMethods
       include InstanceMethods
-      ::EacCli::Docopt::RunnerExtension.check(self)
       include ActiveSupport::Callbacks
       define_callbacks :run
     end
