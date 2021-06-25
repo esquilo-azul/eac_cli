@@ -10,9 +10,7 @@ module EacCli
 
       class << self
         def runner?(object)
-          ::EacCli::Runner.runner?(object) || (
-            object.is_a?(::Class) && object < ::EacCli::DocoptRunner
-          )
+          ::EacCli::Runner.runner?(object)
         end
       end
 
