@@ -8,6 +8,7 @@ module EacCli
       class Builder
         class Alternative
           PROGRAM_MACRO = '__PROGRAM__'
+          SUBCOMMANDS_MACRO = '__SUBCOMMANDS__'
 
           common_constructor :alternative
 
@@ -40,7 +41,7 @@ module EacCli
             return unless positional.visible?
 
             if positional.subcommand?
-              ::EacCli::DocoptRunner::SUBCOMMANDS_MACRO
+              SUBCOMMANDS_MACRO
             else
               r = "<#{positional.name}>"
               r += '...' if positional.repeat?
