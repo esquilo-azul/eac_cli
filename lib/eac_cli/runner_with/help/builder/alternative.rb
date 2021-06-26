@@ -7,11 +7,13 @@ module EacCli
     module Help
       class Builder
         class Alternative
+          PROGRAM_MACRO = '__PROGRAM__'
+
           common_constructor :alternative
 
           def to_s
             (
-              [::EacCli::DocoptRunner::PROGRAM_MACRO] +
+              [PROGRAM_MACRO] +
                 alternative.options_argument?.if_present([]) { |_v| ['[options]'] } +
                 options +
                 positionals
