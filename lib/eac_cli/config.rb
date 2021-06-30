@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
+
 module EacCli
   class Config
     require_sub __FILE__
