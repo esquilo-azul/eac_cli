@@ -21,8 +21,6 @@ module EacCli
         return sub_value_to_return if sub_entry.found?
         return nil unless options.required?
 
-        puts "|#{sub_entry.path}|"
-
         input_value
       end
 
