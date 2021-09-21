@@ -36,9 +36,9 @@ module EacCli
         end
 
         def option_definition(option)
-          self.class.option_usage_full(option) + option.description.if_present('') do |v|
-            OPTION_DESC_SEP + v
-          end
+          [self.class.option_usage_full(option), option.description,
+           option.default_value? ? "[Default: \"#{option.default_value}\"]" : nil]
+            .reject(&:blank?).join(OPTION_DESC_SEP)
         end
 
         def section(header, include_header = true)

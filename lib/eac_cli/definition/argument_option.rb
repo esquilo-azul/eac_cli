@@ -13,7 +13,7 @@ module EacCli
         repeat? ? previous_value + [new_value] : new_value
       end
 
-      def default_value
+      def default_default_value
         repeat? ? [] : nil
       end
     end

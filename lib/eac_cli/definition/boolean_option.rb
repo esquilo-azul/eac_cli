@@ -14,6 +14,12 @@ module EacCli
       end
 
       def default_value
+        return super unless default_value?
+
+        raise "Unallowed default value for boolean options (Option: #{self})"
+      end
+
+      def default_default_value
         repeat? ? 0 : false
       end
     end

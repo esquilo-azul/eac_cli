@@ -18,13 +18,21 @@ module EacCli
 
       enable_listable
       enable_abstract_methods :build_value, :default_value
-      lists.add_symbol :option, :optional, :usage, :repeat, :required
+      lists.add_symbol :option, :default, :optional, :usage, :repeat, :required
       common_constructor :short, :long, :description, :options, default: [{}] do
         raise 'Nor short neither long selector was set' if short.blank? && long.blank?
 
         self.options = ::EacCli::Definition::BaseOption.lists.option.hash_keys_validate!(
           options.symbolize_keys
         )
+      end
+
+      def default_value
+        default_value? ? options[OPTION_DEFAULT] : default_default_value
+      end
+
+      def default_value?
+        options.key?(OPTION_DEFAULT)
       end
 
       def identifier
