@@ -5,7 +5,7 @@ require 'eac_config/entry_path'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
-  class Config
+  class Config < ::SimpleDelegator
     class Entry
       require_sub __FILE__, include_modules: true
       enable_listable

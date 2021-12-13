@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
-  class Config
+  class Config < ::SimpleDelegator
     class Entry
       class Options
         enable_simple_cache
