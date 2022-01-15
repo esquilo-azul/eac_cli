@@ -24,10 +24,8 @@ module EacCli
       def disable_speaker_input_request
         ::RSpec.configure do |config|
           config.around do |example|
-            ::EacRubyUtils::Speaker.context.on(
-              ::EacCli::Speaker.new(err_out: ::StringIO.new, out_out: ::StringIO.new,
-                                    in_in: FailIfRequestInput.new)
-            ) { example.run }
+            ::EacRubyUtils::Speaker
+              .context.on(::EacCli::Speaker.new(in_in: FailIfRequestInput.new)) { example.run }
           end
         end
       end
