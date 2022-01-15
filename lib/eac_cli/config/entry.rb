@@ -24,6 +24,10 @@ module EacCli
         input_value
       end
 
+      def secret_value
+        self.class.new(config, path, options.merge(noecho: true)).value
+      end
+
       delegate :found?, :value=, to: :sub_entry
 
       private
