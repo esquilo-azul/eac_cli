@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*', 'Gemfile']
 
   s.add_dependency 'colorize', '~> 0.8.1'
-  s.add_dependency 'eac_config', '~> 0.7'
+  s.add_dependency 'eac_config', '~> 0.8'
   s.add_dependency 'eac_ruby_utils', '~> 0.80'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.3'
