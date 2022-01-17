@@ -25,7 +25,7 @@ module EacCli
       end
 
       def secret_value
-        self.class.new(config, path, options.merge(noecho: true)).value
+        self.class.new(config, path, options.to_h.merge(noecho: true).to_h).value
       end
 
       delegate :found?, :value=, to: :sub_entry
