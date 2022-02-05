@@ -23,9 +23,8 @@ module EacCli
       out_out.write(string.to_s)
     end
 
-    def fatal_error(string)
+    def error(string)
       puts "ERROR: #{string}".white.on_red
-      Kernel.exit 1
     end
 
     def title(string)
