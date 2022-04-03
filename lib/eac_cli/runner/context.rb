@@ -23,6 +23,10 @@ module EacCli
         raise ::NameError, "No method \"#{method_name}\" found in #{runner} or in its ancestors"
       end
 
+      def respond_to_call?((method_name))
+        parent.respond_to?(:runner_context) && parent.runner_context.respond_to_call?(method_name)
+      end
+
       protected
 
       def parent_call(method_name, *args)
