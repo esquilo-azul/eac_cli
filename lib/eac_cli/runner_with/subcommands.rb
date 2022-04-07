@@ -95,7 +95,7 @@ module EacCli
         raise(::EacCli::Parser::Error.new(
                 self.class.runner_definition, runner_context.argv,
                 "Subcommand \"#{subcommand_name}\" not found " \
-                  "(Available: #{available_subcommands.keys}"
+                  "(Available: #{available_subcommands.keys})"
               ))
       end
 
