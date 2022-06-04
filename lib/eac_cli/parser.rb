@@ -19,12 +19,12 @@ module EacCli
 
     def alternatives_parsed(error)
       alternatives.select { |a| error == a.error? }.map(&:parsed).reverse
-                  .inject(::EacRubyUtils::Struct.new) { |a, e| a.merge(e) }
+        .inject(::EacRubyUtils::Struct.new) { |a, e| a.merge(e) }
     end
 
     def alternatives_uncached
       definition.alternatives
-                .map { |alternative| ::EacCli::Parser::Alternative.new(alternative, argv) }
+        .map { |alternative| ::EacCli::Parser::Alternative.new(alternative, argv) }
     end
 
     def first_error_uncached

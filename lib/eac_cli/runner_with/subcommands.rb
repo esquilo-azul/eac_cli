@@ -17,7 +17,7 @@ module EacCli
       common_concern do
         include ::EacCli::Runner
         runner_definition.singleton_class
-                         .include(::EacCli::RunnerWith::Subcommands::DefinitionConcern)
+          .include(::EacCli::RunnerWith::Subcommands::DefinitionConcern)
       end
 
       EXTRA_AVAILABLE_SUBCOMMANDS_METHOD_NAME = :extra_available_subcommands
@@ -28,9 +28,9 @@ module EacCli
 
       def available_subcommands_auto
         self.class.constants
-            .map { |name| [name.to_s.underscore.gsub('_', '-'), self.class.const_get(name)] }
-            .select { |c| ::EacCli::RunnerWith::Subcommands.runner?(c[1]) }
-            .to_h.with_indifferent_access
+          .map { |name| [name.to_s.underscore.gsub('_', '-'), self.class.const_get(name)] }
+          .select { |c| ::EacCli::RunnerWith::Subcommands.runner?(c[1]) }
+          .to_h.with_indifferent_access
       end
 
       def available_subcommands_extra

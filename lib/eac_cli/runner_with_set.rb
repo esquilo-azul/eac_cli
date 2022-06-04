@@ -32,8 +32,8 @@ module EacCli
 
     def key_to_module(key)
       namespace_set.lazy
-                   .map { |namespace| key_to_module_in_namespace(namespace, key) }
-                   .find(&:present?) ||
+        .map { |namespace| key_to_module_in_namespace(namespace, key) }
+        .find(&:present?) ||
         raise("Not module found with key \"#{key}\" (Namespaces: #{namespace_set})")
     end
 

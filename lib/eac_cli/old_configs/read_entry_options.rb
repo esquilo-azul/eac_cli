@@ -8,7 +8,7 @@ module EacCli
       enable_simple_cache
       common_constructor :options do
         self.options = options.to_h.symbolize_keys
-                              .assert_valid_keys(DEFAULT_VALUES.keys).freeze
+                         .assert_valid_keys(DEFAULT_VALUES.keys).freeze
       end
 
       DEFAULT_VALUES = {

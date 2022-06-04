@@ -3,19 +3,33 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
+  TargetRubyVersion: 2.7
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.gemspec'
+    - 'spec/**/*_spec.rb'
 
 Layout/LineLength:
   Max: 100
 
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
 
 Rails/Exit:
   Enabled: false
 
+Rails/DynamicFindBy:
+  Enabled: false
+
 Rails/Output:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/TimeZone:
   Enabled: false
 
 Style/AsciiComments:

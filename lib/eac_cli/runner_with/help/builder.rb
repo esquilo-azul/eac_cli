@@ -54,7 +54,7 @@ module EacCli
         def options_section
           "Options:\n" +
             definition.alternatives.flat_map(&:options)
-                      .map { |option| IDENT + option_definition(option) + "\n" }.join
+              .map { |option| IDENT + option_definition(option) + "\n" }.join
         end
 
         def usage_section

@@ -17,7 +17,7 @@ module EacCli
                    ::EacConfig::PathsHash.parse_entry_key(entry_key)
                  end
           path.join('_').gsub(/[^a-z0-9_]/i, '').gsub(/\A_+/, '').gsub(/_+\z/, '')
-              .gsub(/_{2,}/, '_').upcase
+            .gsub(/_{2,}/, '_').upcase
         end
       end
 
