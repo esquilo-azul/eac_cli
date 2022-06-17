@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'colorize', '~> 0.8.1'
   s.add_dependency 'eac_config', '~> 0.8'
-  s.add_dependency 'eac_ruby_utils', '~> 0.83'
+  s.add_dependency 'eac_ruby_utils', '~> 0.95'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
 end
