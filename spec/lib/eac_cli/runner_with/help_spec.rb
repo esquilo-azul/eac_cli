@@ -20,23 +20,28 @@ RSpec.describe ::EacCli::RunnerWith::Help do
     end
   end
 
-  let(:runner_argv) { ['--help'] }
-  let(:instance) { runner.create(argv: runner_argv) }
-  let(:expected_output) do
-    <<~OUTPUT
-      A stub runner.
+  [
+    ['--help']
+  ].each do |runner_argv|
+    context "when runner ARGV is #{runner_argv}" do
+      let(:instance) { runner.create(argv: runner_argv) }
+      let(:expected_output) do
+        <<~OUTPUT
+          A stub runner.
 
-      Usage:
-        __PROGRAM__ [options] <a_argument>
-        __PROGRAM__ --help
+          Usage:
+            __PROGRAM__ [options] <a_argument>
+            __PROGRAM__ --help
 
-      Options:
-        -h --help    Show help.
+          Options:
+            -h --help    Show help.
 
-    OUTPUT
-  end
+        OUTPUT
+      end
 
-  it 'show help text' do
-    expect { instance.run_run }.to output(expected_output).to_stdout_from_any_process
+      it 'show help text' do
+        expect { instance.run_run }.to output(expected_output).to_stdout_from_any_process
+      end
+    end
   end
 end
