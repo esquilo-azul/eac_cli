@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   module RunnerWith
     module Help
-      require_sub __FILE__
+      require_sub __FILE__, require_dependency: true
       common_concern do
         include ::EacCli::Runner
 
