@@ -33,7 +33,7 @@ module EacCli
         # @return [EacCli::Definition::BaseOption] The option collected.
         def short_option_collect_char(char)
           option = find_short_option(char)
-          raise_error "Invalid short option \"#{char}\"" unless option
+          raise_argv_current_invalid_option unless option
 
           option_collect_option(option)
         end
