@@ -7,6 +7,8 @@ require 'eac_ruby_utils/speaker'
 module EacCli
   module Runner
     class ClassRunner
+      PARSER_ERROR_EXIT_CODE = 1
+
       common_constructor :klass, :context_args
 
       def create
@@ -18,9 +20,18 @@ module EacCli
       def run
         on_asserted_speaker do
           r = create
-          r.run_run
+          begin
+            r.run_run
+          rescue ::EacCli::Parser::Error => e
+            run_parser_error(r, e)
+          end
           r
         end
+      end
+
+      def run_parser_error(runner_instance, error)
+        $stderr.write("#{runner_instance.program_name}: #{error}\n")
+        ::Kernel.exit(PARSER_ERROR_EXIT_CODE)
       end
 
       private
