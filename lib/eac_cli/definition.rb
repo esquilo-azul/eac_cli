@@ -39,10 +39,6 @@ module EacCli
       self.description = description
     end
 
-    def help_formatter
-      @help_formatter ||= ::EacCli::Definition::HelpFormatter.new(self)
-    end
-
     def main_alternative
       @main_alternative ||= begin
         r = ::EacCli::Definition::Alternative.new
