@@ -7,18 +7,20 @@ module EacCli
     module Help
       class Builder
         class Alternative
+          enable_method_class
+
           PROGRAM_MACRO = '__PROGRAM__'
           SUBCOMMANDS_MACRO = '__SUBCOMMANDS__'
 
-          common_constructor :alternative
+          common_constructor :builder, :alternative
 
-          def to_s
+          def result
             (
               [PROGRAM_MACRO] +
                 alternative.options_argument?.if_present([]) { |_v| ['[options]'] } +
                 options +
                 positionals
-            ).join(::EacCli::RunnerWith::Help::Builder::SEP)
+            ).join(builder.word_separator)
           end
 
           def options

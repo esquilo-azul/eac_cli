@@ -6,7 +6,7 @@ module EacCli
   module RunnerWith
     module Help
       class Builder
-        require_sub __FILE__
+        require_sub __FILE__, require_dependency: true
         common_constructor :runner
 
         SEP = ' '
@@ -55,8 +55,7 @@ module EacCli
           b = include_header ? "#{header.humanize}:\n" : ''
           b += send("self_#{header}") + "\n"
           definition.alternatives.each do |alternative|
-            b += IDENT + ::EacCli::RunnerWith::Help::Builder::Alternative.new(alternative).to_s +
-                 "\n"
+            b += IDENT + self.alternative(alternative) + "\n"
           end
           b
         end
@@ -70,7 +69,7 @@ module EacCli
         def usage_section
           "Usage:\n" +
             definition.alternatives.map do |alternative|
-              IDENT + ::EacCli::RunnerWith::Help::Builder::Alternative.new(alternative).to_s + "\n"
+              IDENT + self.alternative(alternative) + "\n"
             end.join
         end
 
