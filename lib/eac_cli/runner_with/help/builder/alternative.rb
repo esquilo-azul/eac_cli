@@ -15,7 +15,7 @@ module EacCli
 
           def result
             (
-              [program_name] +
+              program_name +
                 alternative.options_argument?.if_present([]) { |_v| ['[options]'] } +
                 options +
                 positionals
@@ -52,7 +52,9 @@ module EacCli
           end
 
           def program_name
-            builder.runner.program_name
+            r = builder.runner.program_name
+            r = [r] unless r.is_a?(::Enumerable)
+            r
           end
         end
       end

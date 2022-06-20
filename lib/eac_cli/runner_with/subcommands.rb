@@ -104,7 +104,7 @@ module EacCli
       end
 
       def subcommand_program
-        subcommand_name
+        [program_name, subcommand_name]
       end
 
       def subcommand_runner
