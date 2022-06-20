@@ -28,12 +28,18 @@ module EacCli
 
           def option_usage_full(option)
             if option.long.present?
-              [option.short, option_long(option)].reject(&:blank?).join(SEP)
+              [option.short, option_long(option)].reject(&:blank?).join(word_separator)
             else
               option_short(option)
             end
           end
+
+          def word_separator
+            SEP
+          end
         end
+
+        delegate :word_separator, to: :class
 
         def definition
           runner.class.runner_definition
