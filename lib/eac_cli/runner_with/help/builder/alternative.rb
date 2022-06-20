@@ -9,14 +9,13 @@ module EacCli
         class Alternative
           enable_method_class
 
-          PROGRAM_MACRO = '__PROGRAM__'
           SUBCOMMANDS_MACRO = '__SUBCOMMANDS__'
 
           common_constructor :builder, :alternative
 
           def result
             (
-              [PROGRAM_MACRO] +
+              [program_name] +
                 alternative.options_argument?.if_present([]) { |_v| ['[options]'] } +
                 options +
                 positionals
@@ -50,6 +49,10 @@ module EacCli
               r = "[#{r}]" if positional.optional?
               r
             end
+          end
+
+          def program_name
+            builder.runner.program_name
           end
         end
       end

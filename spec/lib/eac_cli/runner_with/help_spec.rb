@@ -26,7 +26,7 @@ RSpec.describe ::EacCli::RunnerWith::Help do
   ].each do |runner_argv|
     context "when runner ARGV is #{runner_argv}" do
       let(:instance) { runner.create(argv: runner_argv) }
-      let(:expected_output) do
+      let(:expected_output_source) do
         <<~OUTPUT
           A stub runner.
 
@@ -38,6 +38,9 @@ RSpec.describe ::EacCli::RunnerWith::Help do
             -h --help    Show help.
 
         OUTPUT
+      end
+      let(:expected_output) do
+        expected_output_source.gsub('__PROGRAM__', instance.program_name)
       end
 
       it 'show help text' do

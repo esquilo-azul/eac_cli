@@ -57,7 +57,7 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
 
   context 'with help' do
     let(:instance) { parent_runner.create(%w[--help]) }
-    let(:expected_output) do
+    let(:expected_output_source) do
       <<~OUTPUT
         A stub root runner.
 
@@ -72,6 +72,9 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
         Subcommands:
           child-cmd
       OUTPUT
+    end
+    let(:expected_output) do
+      expected_output_source.gsub('__PROGRAM__', instance.program_name)
     end
 
     before do
