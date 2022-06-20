@@ -7,7 +7,7 @@ module EacCli
     module Help
       class Builder
         require_sub __FILE__
-        common_constructor :definition
+        common_constructor :runner
 
         SEP = ' '
         IDENT = SEP * 2
@@ -33,6 +33,10 @@ module EacCli
               option_short(option)
             end
           end
+        end
+
+        def definition
+          runner.class.runner_definition
         end
 
         def option_definition(option)

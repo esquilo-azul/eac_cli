@@ -28,7 +28,7 @@ module EacCli
       end
 
       def help_text
-        r = ::EacCli::RunnerWith::Help::Builder.new(self.class.runner_definition).to_s
+        r = ::EacCli::RunnerWith::Help::Builder.new(self).to_s
         r += help_extra_text if respond_to?(:help_extra_text)
         r
       end
