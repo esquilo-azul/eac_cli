@@ -47,6 +47,10 @@ module EacCli
         end
       end
 
+      def available_subcommands_to_s
+        available_subcommands.keys.sort.join(', ')
+      end
+
       def help_extra_text
         (['Subcommands:'] + available_subcommands.keys.sort.map { |s| "  #{s}" })
           .map { |v| "#{v}\n" }.join
@@ -101,7 +105,7 @@ module EacCli
         raise(::EacCli::Parser::Error.new(
                 self.class.runner_definition, runner_context.argv,
                 "Subcommand \"#{subcommand_name}\" not found " \
-                  "(Available: #{available_subcommands.keys})"
+                  "(Available: #{available_subcommands_to_s})"
               ))
       end
 
