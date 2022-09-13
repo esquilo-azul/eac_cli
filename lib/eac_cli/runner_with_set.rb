@@ -10,9 +10,7 @@ module EacCli
 
     def add_namespace(namespace)
       namespace = sanitize_namespace(namespace)
-      raise "\"#{namespace}\" already was included" if namespace_set.include?(namespace)
-
-      namespace_set << namespace
+      namespace_set << namespace unless namespace_set.include?(namespace)
       self
     end
 
