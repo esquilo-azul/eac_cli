@@ -18,32 +18,18 @@ module EacCli
       end
 
       def run
-        on_asserted_speaker do
-          r = create
-          begin
-            r.run_run
-          rescue ::EacCli::Parser::Error => e
-            run_parser_error(r, e)
-          end
-          r
+        r = create
+        begin
+          r.run_run
+        rescue ::EacCli::Parser::Error => e
+          run_parser_error(r, e)
         end
+        r
       end
 
       def run_parser_error(runner_instance, error)
         $stderr.write("#{runner_instance.program_name}: #{error}\n")
         ::Kernel.exit(PARSER_ERROR_EXIT_CODE)
-      end
-
-      private
-
-      def on_asserted_speaker
-        if ::EacRubyUtils::Speaker.context.optional_current
-          yield
-        else
-          ::EacRubyUtils::Speaker.context.on(::EacCli::Speaker.new) do
-            yield
-          end
-        end
       end
     end
   end
