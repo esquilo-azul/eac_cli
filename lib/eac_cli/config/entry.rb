@@ -2,19 +2,24 @@
 
 require 'eac_cli/speaker'
 require 'eac_config/entry_path'
+require 'eac_config/node_entry'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Config < ::SimpleDelegator
-    class Entry
+    class Entry < ::EacConfig::NodeEntry
       require_sub __FILE__, include_modules: true
       enable_listable
       enable_simple_cache
       enable_speaker
 
-      common_constructor :config, :path, :options do
-        self.path = ::EacConfig::EntryPath.assert(path)
+      common_constructor :root_node, :path, :options, super_args: -> { [root_node, path] } do
         self.options = ::EacCli::Config::Entry::Options.new(options)
+      end
+
+      # @return [EacCli::Config]
+      def config
+        root_node
       end
 
       def value

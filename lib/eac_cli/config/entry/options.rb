@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+require 'eac_config/node_entry'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Config < ::SimpleDelegator
-    class Entry
+    class Entry < ::EacConfig::NodeEntry
       class Options
         enable_simple_cache
         enable_listable
