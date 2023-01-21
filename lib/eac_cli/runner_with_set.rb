@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/gems_registry'
+
 module EacCli
   class RunnerWithSet
     class << self
