@@ -26,6 +26,8 @@ module EacCli
           message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT),
           bool: true
         )
+      rescue ::EacCli::Speaker::InputRequested => e
+        fatal_error e.message
       end
 
       def run_confirm(message = nil)
