@@ -47,7 +47,15 @@ module EacCli
 
         # @return [String, nil]
         def extra_section
-          runner.if_respond(:help_extra_text)
+          ess = extra_sections
+          return nil if ess.none?
+
+          ess.join(SECTION_SEPARATOR)
+        end
+
+        # @return [Enumerable<String>]
+        def extra_sections
+          runner.if_respond(:help_extra_text, []) { |v| [v] }
         end
 
         def option_definition(option)
