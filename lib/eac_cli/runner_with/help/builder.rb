@@ -45,6 +45,11 @@ module EacCli
           runner.class.runner_definition
         end
 
+        # @return [String, nil]
+        def extra_section
+          runner.if_respond(:help_extra_text)
+        end
+
         def option_definition(option)
           [self.class.option_usage_full(option), option.description,
            option.default_value? ? "[Default: \"#{option.default_value}\"]" : nil]
@@ -68,8 +73,9 @@ module EacCli
         end
 
         def to_s
-          ["#{definition.description}\n", usage_section, options_section]
-            .map { |s| "#{s}#{SECTION_SEPARATOR}" }.join
+          r = ["#{definition.description}\n", usage_section, options_section]
+                .map { |s| "#{s}#{SECTION_SEPARATOR}" }.join
+          extra_section.if_present(r) { |v| r + v }
         end
       end
     end

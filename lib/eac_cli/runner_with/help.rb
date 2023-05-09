@@ -27,10 +27,9 @@ module EacCli
         raise ::EacCli::Runner::Exit
       end
 
+      # @return [String]
       def help_text
-        r = ::EacCli::RunnerWith::Help::Builder.new(self).to_s
-        r += help_extra_text if respond_to?(:help_extra_text)
-        r
+        ::EacCli::RunnerWith::Help::Builder.new(self).to_s
       end
 
       def show_help?
