@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_cli/runner_with/help/list_section'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
@@ -9,9 +10,7 @@ module EacCli
         require_sub __FILE__, require_dependency: true
         common_constructor :runner
 
-        SEP = ' '
-        IDENT = SEP * 2
-        OPTION_DESC_SEP = IDENT * 2
+        OPTION_DESC_SEP = ::EacCli::RunnerWith::Help::ListSection::IDENTATION * 2
         SECTION_SEPARATOR = "\n"
 
         class << self
@@ -36,7 +35,7 @@ module EacCli
           end
 
           def word_separator
-            SEP
+            ::EacCli::RunnerWith::Help::ListSection::WORD_SEPARATOR
           end
         end
 
@@ -52,17 +51,20 @@ module EacCli
             .reject(&:blank?).join(OPTION_DESC_SEP)
         end
 
+        # @return [String]
         def options_section
-          "Options:\n" +
-            definition.alternatives.flat_map(&:options)
-              .map { |option| IDENT + option_definition(option) + "\n" }.join
+          ::EacCli::RunnerWith::Help::ListSection.new(
+            'Options',
+            definition.alternatives.flat_map(&:options).map { |option| option_definition(option) }
+          )
         end
 
+        # @return [String]
         def usage_section
-          "Usage:\n" +
-            definition.alternatives.map do |alternative|
-              IDENT + self.alternative(alternative) + "\n"
-            end.join
+          ::EacCli::RunnerWith::Help::ListSection.new(
+            'Usage',
+            definition.alternatives.map { |alternative| self.alternative(alternative) }
+          )
         end
 
         def to_s
