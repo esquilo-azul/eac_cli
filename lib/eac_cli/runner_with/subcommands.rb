@@ -51,9 +51,12 @@ module EacCli
         available_subcommands.keys.sort.join(', ')
       end
 
+      # @return [Hash<String, Enumerable<String>]
       def help_extra_text
-        (['Subcommands:'] + available_subcommands.keys.sort.map { |s| "  #{s}" })
-          .map { |v| "#{v}\n" }.join
+        {
+          'Subcommands' =>
+          available_subcommands.keys.sort
+        }
       end
 
       def method_missing(method_name, *arguments, &block)

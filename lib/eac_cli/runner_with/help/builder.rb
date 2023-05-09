@@ -55,7 +55,15 @@ module EacCli
 
         # @return [Enumerable<String>]
         def extra_sections
-          runner.if_respond(:help_extra_text, []) { |v| [v] }
+          runner.if_respond(:help_extra_text, []) do |v|
+            if v.is_a?(::Hash)
+              v.map do |title, lines|
+                ::EacCli::RunnerWith::Help::ListSection.new(title, lines)
+              end
+            else
+              [v.to_s]
+            end
+          end
         end
 
         def option_definition(option)
