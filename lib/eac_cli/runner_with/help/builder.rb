@@ -12,6 +12,7 @@ module EacCli
         SEP = ' '
         IDENT = SEP * 2
         OPTION_DESC_SEP = IDENT * 2
+        SECTION_SEPARATOR = "\n"
 
         class << self
           def option_long(option)
@@ -65,7 +66,8 @@ module EacCli
         end
 
         def to_s
-          "#{definition.description}\n\n#{usage_section}\n#{options_section}\n"
+          ["#{definition.description}\n", usage_section, options_section]
+            .map { |s| "#{s}#{SECTION_SEPARATOR}" }.join
         end
       end
     end
