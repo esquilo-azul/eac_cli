@@ -51,15 +51,6 @@ module EacCli
             .reject(&:blank?).join(OPTION_DESC_SEP)
         end
 
-        def section(header, include_header = true)
-          b = include_header ? "#{header.humanize}:\n" : ''
-          b += send("self_#{header}") + "\n"
-          definition.alternatives.each do |alternative|
-            b += IDENT + self.alternative(alternative) + "\n"
-          end
-          b
-        end
-
         def options_section
           "Options:\n" +
             definition.alternatives.flat_map(&:options)
