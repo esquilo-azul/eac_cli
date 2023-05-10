@@ -87,9 +87,7 @@ module EacCli
         end
 
         def to_s
-          r = ["#{definition.description}\n", usage_section, options_section]
-                .map { |s| "#{s}#{SECTION_SEPARATOR}" }.join
-          extra_section.if_present(r) { |v| r + v }.strip + LINE_BREAK
+          join_sections(definition.description, usage_section, options_section, *extra_sections)
         end
       end
     end
