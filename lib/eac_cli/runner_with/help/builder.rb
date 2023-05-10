@@ -11,8 +11,6 @@ module EacCli
         require_sub __FILE__, require_dependency: true
         common_constructor :runner
 
-        SECTION_SEPARATOR = "\n"
-
         class << self
           def option_long(option)
             b = option.long

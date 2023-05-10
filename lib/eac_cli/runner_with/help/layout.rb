@@ -15,6 +15,7 @@ module EacCli
           WORD_SEPARATOR = ' '
           IDENTATION = WORD_SEPARATOR * 2
           OPTION_DESCRIPTION_SEPARATOR = IDENTATION * 2
+          SECTION_SEPARATOR = "\n"
 
           # @param title String
           # @param items [Enumerable<String>]
