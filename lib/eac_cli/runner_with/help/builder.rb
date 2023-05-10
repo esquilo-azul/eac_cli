@@ -11,7 +11,6 @@ module EacCli
         require_sub __FILE__, require_dependency: true
         common_constructor :runner
 
-        OPTION_DESC_SEP = IDENTATION * 2
         SECTION_SEPARATOR = "\n"
 
         class << self
@@ -70,7 +69,7 @@ module EacCli
         def option_definition(option)
           [self.class.option_usage_full(option), option.description,
            option.default_value? ? "[Default: \"#{option.default_value}\"]" : nil]
-            .reject(&:blank?).join(OPTION_DESC_SEP)
+            .reject(&:blank?).join(OPTION_DESCRIPTION_SEPARATOR)
         end
 
         # @return [String]
