@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner_with/help/list_section'
+require 'eac_cli/runner_with/help/layout'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
   module RunnerWith
     module Help
       class Builder
+        include ::EacCli::RunnerWith::Help::Layout
         require_sub __FILE__, require_dependency: true
         common_constructor :runner
 
-        OPTION_DESC_SEP = ::EacCli::RunnerWith::Help::ListSection::IDENTATION * 2
+        OPTION_DESC_SEP = IDENTATION * 2
         SECTION_SEPARATOR = "\n"
 
         class << self
@@ -35,7 +36,7 @@ module EacCli
           end
 
           def word_separator
-            ::EacCli::RunnerWith::Help::ListSection::WORD_SEPARATOR
+            WORD_SEPARATOR
           end
         end
 
@@ -58,7 +59,7 @@ module EacCli
           runner.if_respond(:help_extra_text, []) do |v|
             if v.is_a?(::Hash)
               v.map do |title, lines|
-                ::EacCli::RunnerWith::Help::ListSection.new(title, lines)
+                list_section(title, lines)
               end
             else
               [v.to_s]
@@ -74,7 +75,7 @@ module EacCli
 
         # @return [String]
         def options_section
-          ::EacCli::RunnerWith::Help::ListSection.new(
+          list_section(
             'Options',
             definition.alternatives.flat_map(&:options).map { |option| option_definition(option) }
           )
@@ -82,7 +83,7 @@ module EacCli
 
         # @return [String]
         def usage_section
-          ::EacCli::RunnerWith::Help::ListSection.new(
+          list_section(
             'Usage',
             definition.alternatives.map { |alternative| self.alternative(alternative) }
           )
