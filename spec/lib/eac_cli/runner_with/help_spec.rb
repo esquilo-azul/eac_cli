@@ -36,7 +36,6 @@ RSpec.describe ::EacCli::RunnerWith::Help do
 
           Options:
             -h --help    Show help.
-
         OUTPUT
       end
       let(:expected_output) do
