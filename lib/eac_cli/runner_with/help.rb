@@ -26,6 +26,12 @@ module EacCli
         ::EacCli::RunnerWith::Help::Layout.list_section(title, items)
       end
 
+      # @param items [Enumerable<String>]
+      # @return [String]
+      def help_join_sections(*sections)
+        ::EacCli::RunnerWith::Help::Layout.join_sections(*sections)
+      end
+
       def help_run
         return unless show_help?
 
