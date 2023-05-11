@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require 'eac_cli/definition/default_value'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Definition
     class BaseOption
       require_sub __FILE__
+      include ::EacCli::Definition::DefaultValue
 
       class << self
         def from_args(args)
