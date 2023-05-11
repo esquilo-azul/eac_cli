@@ -20,6 +20,12 @@ module EacCli
         end
       end
 
+      # @param items [Enumerable<String>]
+      # @return [String]
+      def help_list_section(title, items)
+        ::EacCli::RunnerWith::Help::Layout.list_section(title, items)
+      end
+
       def help_run
         return unless show_help?
 
