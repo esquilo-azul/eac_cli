@@ -43,24 +43,10 @@ module EacCli
           runner.class.runner_definition
         end
 
-        # @return [String, nil]
-        def extra_section
-          ess = extra_sections
-          return nil if ess.none?
-
-          ess.join(SECTION_SEPARATOR)
-        end
-
         # @return [Enumerable<String>]
         def extra_sections
           runner.if_respond(:help_extra_text, []) do |v|
-            if v.is_a?(::Hash)
-              v.map do |title, lines|
-                list_section(title, lines)
-              end
-            else
-              [v.to_s]
-            end
+            [v.to_s]
           end
         end
 

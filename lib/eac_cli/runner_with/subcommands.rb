@@ -53,10 +53,7 @@ module EacCli
 
       # @return [Hash<String, Enumerable<String>]
       def help_extra_text
-        {
-          'Subcommands' =>
-          available_subcommands.keys.sort
-        }
+        help_list_section('Subcommands', available_subcommands.keys.sort)
       end
 
       def method_missing(method_name, *arguments, &block)
