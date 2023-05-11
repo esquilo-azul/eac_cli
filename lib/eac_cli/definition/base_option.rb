@@ -17,7 +17,7 @@ module EacCli
       DEFAULT_REQUIRED = false
 
       enable_listable
-      enable_abstract_methods :build_value, :default_value
+      enable_abstract_methods :build_value
       lists.add_symbol :option, :default, :optional, :usage, :repeat, :required
       common_constructor :short, :long, :description, :options, default: [{}] do
         raise 'Nor short neither long selector was set' if short.blank? && long.blank?
