@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner'
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/abstract_methods'
+require 'eac_ruby_utils/acts_as_abstract'
 
 module EacCli
   module RunnerWith
