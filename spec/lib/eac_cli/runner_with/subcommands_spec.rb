@@ -19,6 +19,8 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
       end
 
       delegate :root_var, to: :parsed
+
+      def method_in_parent_runner; end
     end
   end
 
@@ -31,7 +33,10 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
         pos_arg :child_var
       end
 
-      def run; end
+      def run
+        runner_context.call(:method_in_parent_runner)
+        method_in_parent_runner
+      end
     end
   end
 
@@ -45,6 +50,10 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
     it { expect(instance.parsed.subcommand_args).to eq(%w[--child-opt 456]) }
     it { expect(instance.subcommand_runner.parsed.child_opt).to eq(true) }
     it { expect(instance.subcommand_runner.parsed.child_var).to eq('456') }
+
+    it do
+      expect { instance.run_run }.not_to raise_error
+    end
   end
 
   context 'when subcommand is not supplied' do

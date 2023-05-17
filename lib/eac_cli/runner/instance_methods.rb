@@ -30,13 +30,13 @@ module EacCli
       end
 
       def respond_to_missing?(method, include_all = false)
-        runner_context.respond_to_call?(method) || super
+        runner_context.parent_respond_to?(method) || super
       end
 
       def method_missing(method, *args, &block)
-        return super unless runner_context.respond_to_call?(method)
+        return super unless runner_context.parent_respond_to?(method)
 
-        runner_context.call(method, *args, &block)
+        runner_context.parent_call(method, *args, &block)
       end
     end
   end

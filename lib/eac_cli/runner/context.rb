@@ -18,16 +18,20 @@ module EacCli
       # Call a method in the runner or in one of it ancestors.
       def call(method_name, *args)
         return runner.send(method_name, *args) if runner.respond_to?(method_name)
-        return parent_call(method_name, *args) if parent.present?
+        return parent_call(method_name, *args) if parent_respond_to?(method_name)
 
         raise ::NameError, "No method \"#{method_name}\" found in #{runner} or in its ancestors"
       end
 
-      def respond_to_call?((method_name))
-        parent.respond_to?(:runner_context) && parent.runner_context.respond_to_call?(method_name)
-      end
+      # @param method_name [Symbol]
+      # @return [Boolean]
+      def parent_respond_to?(method_name)
+        parent.if_present(false) do |v|
+          next true if v.respond_to?(method_name)
 
-      protected
+          v.if_respond(:runner_context, false) { |w| w.parent_respond_to?(method_name) }
+        end
+      end
 
       def parent_call(method_name, *args)
         return parent.runner_context.call(method_name, *args) if parent.respond_to?(:runner_context)
