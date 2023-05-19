@@ -3,6 +3,7 @@
 require 'eac_ruby_utils/core_ext'
 require 'eac_cli/runner/context_responders/parent'
 require 'eac_cli/runner/context_responders/runner'
+require 'eac_cli/runner/context_responders/set'
 
 module EacCli
   module Runner
@@ -19,11 +20,12 @@ module EacCli
 
       # Call a method in the runner or in one of it ancestors.
       def call(method_name, *args)
-        ::EacCli::Runner::ContextResponders::Runner.new(self, method_name)
-          .if_callable { |v| return v.call(*args) }
-        parent_responder(method_name).if_respond { |v| return v.call(*args) }
+        context_call_responder(method_name).call(*args)
+      end
 
-        raise ::NameError, "No method \"#{method_name}\" found in #{runner} or in its ancestors"
+      # @return [EacCli::Runner::ContextResponders]
+      def context_call_responder(method_name)
+        ::EacCli::Runner::ContextResponders::Set.new(self, method_name, %i[runner parent])
       end
 
       # @param method_name [Symbol]
