@@ -42,14 +42,15 @@ module EacCli
         pos_set.to_a
       end
 
-      def positional_arguments_blocked?(new_pos_arg)
+      def positional_arguments_blocked_reason(new_pos_arg)
         last = pos_set.last
-        return false unless last
-        return true if subcommands?
-        return true if last.repeat?
-        return true if last.optional? && new_pos_arg.if_present(&:required?)
+        return nil unless last
+        return 'there are subcommands' if subcommands?
+        return 'last argument repeats' if last.repeat?
+        return 'new argument is required and last is optional' if
+          last.optional? && new_pos_arg.if_present(&:required?)
 
-        false
+        nil
       end
 
       def subcommands
@@ -65,8 +66,10 @@ module EacCli
       private
 
       def check_positional_blocked(new_pos_arg)
-        raise ::EacCli::Definition::Error, 'Positional arguments are blocked' if
-        positional_arguments_blocked?(new_pos_arg)
+        positional_arguments_blocked_reason(new_pos_arg).if_present do |v|
+          raise ::EacCli::Definition::Error, "Positional arguments are blocked: #{v}" \
+            " (New argument: #{new_pos_arg})"
+        end
       end
 
       def pos_set
