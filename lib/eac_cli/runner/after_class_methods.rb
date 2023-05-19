@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/definition'
+require 'eac_cli/definition/error'
 require 'eac_cli/runner/class_runner'
 
 module EacCli
@@ -21,7 +22,11 @@ module EacCli
 
       def runner_definition(&block)
         @runner_definition ||= super_runner_definition
-        @runner_definition.instance_eval(&block) if block
+        begin
+          @runner_definition.instance_eval(&block) if block
+        rescue ::EacCli::Definition::Error => _e
+          raise ::EacCli::Definition::Error, "Definition error for #{self}"
+        end
         @runner_definition
       end
 
