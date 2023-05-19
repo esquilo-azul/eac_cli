@@ -65,7 +65,8 @@ module EacCli
       private
 
       def check_positional_blocked(new_pos_arg)
-        raise 'Positional arguments are blocked' if positional_arguments_blocked?(new_pos_arg)
+        raise ::EacCli::Definition::Error, 'Positional arguments are blocked' if
+        positional_arguments_blocked?(new_pos_arg)
       end
 
       def pos_set

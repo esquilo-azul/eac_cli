@@ -26,7 +26,8 @@ module EacCli
           common_constructor :value
 
           def type
-            TYPES.find { |type| send("#{type}?") } || raise("Unknown type for \"#{value}\"")
+            TYPES.find { |type| send("#{type}?") } ||
+              raise(::EacCli::Definition::Error, "Unknown type for \"#{value}\"")
           end
 
           def short?

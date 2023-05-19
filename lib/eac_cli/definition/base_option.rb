@@ -42,7 +42,7 @@ module EacCli
           v.to_s.if_present { |vv| return vv.variableize.to_sym }
         end
 
-        raise 'No short or long option to build identifier'
+        raise(::EacCli::Definition::Error, 'No short or long option to build identifier')
       end
 
       def repeat?
