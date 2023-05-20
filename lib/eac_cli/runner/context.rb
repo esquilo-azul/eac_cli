@@ -29,6 +29,12 @@ module EacCli
       end
 
       # @param method_name [Symbol]
+      # @return [EacCli::Runner::ContextResponders::Parent]
+      def runner_missing_method_responder(method_name)
+        parent_responder(method_name)
+      end
+
+      # @param method_name [Symbol]
       # @return [Boolean]
       def parent_respond_to?(method_name)
         parent.if_present(false) do |v|
