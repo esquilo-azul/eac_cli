@@ -3,6 +3,7 @@
 require 'eac_ruby_utils/core_ext'
 require 'eac_cli/runner/context_responders/parent'
 require 'eac_cli/runner/context_responders/runner'
+require 'eac_cli/runner/context_responders/runner_missing_method'
 require 'eac_cli/runner/context_responders/set'
 
 module EacCli
@@ -31,7 +32,8 @@ module EacCli
       # @param method_name [Symbol]
       # @return [EacCli::Runner::ContextResponders::Parent]
       def runner_missing_method_responder(method_name)
-        parent_responder(method_name)
+        ::EacCli::Runner::ContextResponders::RunnerMissingMethod
+          .new(self, method_name)
       end
 
       # @param method_name [Symbol]

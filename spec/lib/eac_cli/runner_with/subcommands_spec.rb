@@ -19,6 +19,7 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
       end
 
       delegate :root_var, to: :parsed
+      for_context :method_in_parent_runner
 
       def method_in_parent_runner; end
     end
