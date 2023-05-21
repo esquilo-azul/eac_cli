@@ -20,8 +20,8 @@ module EacCli
       end
 
       # Call a method in the runner or in one of it ancestors.
-      def call(method_name, *args)
-        context_call_responder(method_name).call(*args)
+      def call(method_name, *args, &block)
+        context_call_responder(method_name).call(*args, &block)
       end
 
       # @return [EacCli::Runner::ContextResponders]
