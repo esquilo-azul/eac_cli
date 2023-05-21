@@ -46,8 +46,9 @@ module EacCli
         end
       end
 
-      def parent_call(method_name, *args)
-        return parent.runner_context.call(method_name, *args) if parent.respond_to?(:runner_context)
+      def parent_call(method_name, *args, &block)
+        return parent.runner_context.call(method_name, *args, &block) if
+          parent.respond_to?(:runner_context)
 
         raise "Parent #{parent} do not respond to .context or .runner_context (Runner: #{runner})"
       end
