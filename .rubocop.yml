@@ -1,8 +1,5 @@
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Gemspec/RequiredRubyVersion:
-  Exclude:
-  - eac_cli.gemspec
 Layout/LineContinuationLeadingSpace:
   Exclude:
   - lib/eac_cli/definition/alternative.rb
