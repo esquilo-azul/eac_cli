@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Rails/Exit:
-  Exclude:
-  - lib/eac_cli/runner/class_runner.rb
 Style/ArgumentsForwarding:
   Exclude:
   - lib/eac_cli/runner/context_responders/set.rb
