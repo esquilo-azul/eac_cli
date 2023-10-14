@@ -5,7 +5,7 @@ module EacCli
     class Exit < ::StandardError
       attr_reader :status
 
-      def initialize(status = true)
+      def initialize(status = true) # rubocop:disable Style/OptionalBooleanParameter
         super
         @status = status
       end

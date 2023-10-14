@@ -66,7 +66,7 @@ module EacCli
       alternatives.any?(&:subcommands?)
     end
 
-    def options_first(enable = true)
+    def options_first(enable = true) # rubocop:disable Style/OptionalBooleanParameter
       @options_first = enable
     end
 
