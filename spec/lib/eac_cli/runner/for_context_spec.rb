@@ -22,7 +22,7 @@ require 'eac_cli/runner'
     end
   end
 
-  let(:child_runner_class_1) do
+  let(:child_runner_class1) do
     example = self
     ::Class.new do
       include example.described_class
@@ -39,7 +39,7 @@ require 'eac_cli/runner'
     end
   end
 
-  let(:child_runner_class_2) do
+  let(:child_runner_class2) do
     example = self
     ::Class.new do
       include example.described_class
@@ -62,7 +62,7 @@ require 'eac_cli/runner'
   it { expect(parent_runner.for_context?(:method_not_for_context)).to eq(false) }
 
   context 'when method is for context' do
-    let(:child_runner_class) { child_runner_class_1 }
+    let(:child_runner_class) { child_runner_class1 }
 
     it do
       expect { child_runner.run }.not_to raise_error
@@ -70,7 +70,7 @@ require 'eac_cli/runner'
   end
 
   context 'when method is not for context' do
-    let(:child_runner_class) { child_runner_class_2 }
+    let(:child_runner_class) { child_runner_class2 }
 
     it do
       expect { child_runner.run }.to raise_error(::NameError)
