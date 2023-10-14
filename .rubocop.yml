@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantFilterChain:
-  Exclude:
-  - lib/eac_cli/parser.rb
 Style/RedundantInitialize:
   Exclude:
   - lib/eac_cli/config.rb

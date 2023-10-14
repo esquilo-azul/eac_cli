@@ -12,7 +12,7 @@ module EacCli
 
     def parsed_uncached
       raise 'Definition has no alternatives' if alternatives.empty?
-      raise first_error unless alternatives.select(&:success?).any?
+      raise first_error unless alternatives.any?(&:success?)
 
       alternatives_parsed(true).merge(alternatives_parsed(false))
     end
