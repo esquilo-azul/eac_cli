@@ -56,7 +56,7 @@ RSpec.describe ::EacCli::RunnerWith::Output do
     end
   end
 
-  context 'without --output option as to default file' do
+  context 'without --output option as to default file' do # rubocop:disable RSpec/MultipleMemoizedHelpers
     let(:output_file) { temp_dir.join('default_file') }
     let(:runner_argv) do
       ['--output', ::EacCli::RunnerWith::Output::DEFAULT_FILE_OPTION,
@@ -69,7 +69,7 @@ RSpec.describe ::EacCli::RunnerWith::Output do
     it { expect(output_file.read).to eq(stub_text) }
   end
 
-  context 'with --output option' do
+  context 'with --output option' do # rubocop:disable RSpec/MultipleMemoizedHelpers
     let(:output_file) { temp_dir.join('a output file') }
     let(:runner_argv) { ['--output', output_file.to_path, stub_text] }
 
