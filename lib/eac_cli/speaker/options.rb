@@ -11,15 +11,15 @@ module EacCli
       end
 
       def err_out
-        option(OPTION_ERR_OUT, ::EacCli::Speaker::STDERR)
+        option(OPTION_ERR_OUT, $stderr)
       end
 
       def out_out
-        option(OPTION_OUT_OUT, ::EacCli::Speaker::STDOUT)
+        option(OPTION_OUT_OUT, $stdout)
       end
 
       def in_in
-        option(OPTION_IN_IN, ::EacCli::Speaker::STDIN)
+        option(OPTION_IN_IN, $stdin)
       end
 
       def err_line_prefix
