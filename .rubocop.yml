@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/UselessMethodDefinition:
-  Exclude:
-  - lib/eac_cli/config.rb
 Naming/VariableNumber:
   Exclude:
   - spec/lib/eac_cli/runner/for_context_spec.rb

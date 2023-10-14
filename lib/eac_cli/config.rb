@@ -6,10 +6,6 @@ module EacCli
   class Config < ::SimpleDelegator
     require_sub __FILE__
 
-    def initialize(sub_node)
-      super(sub_node)
-    end
-
     def entry(path, options = {})
       ::EacCli::Config::Entry.new(self, path, options)
     end
