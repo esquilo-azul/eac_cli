@@ -10,6 +10,15 @@ module EacCli
       SUBCOMMAND_NAME_ARG = :subcommand
       SUBCOMMAND_ARGS_ARG = :subcommand_args
 
+      # @return [Boolean]
+      def any_opt
+        @any_opt = true
+      end
+
+      def any_opt?
+        @any_opt ? true : false
+      end
+
       def arg_opt(*args)
         options_set << ::EacCli::Definition::ArgumentOption.from_args(args)
       end
