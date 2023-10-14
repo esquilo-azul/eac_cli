@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/MissingSuper:
-  Exclude:
-  - lib/eac_cli/runner/exit.rb
 Lint/RedundantCopDisableDirective:
   Exclude:
   - lib/eac_cli/runner/instance_methods.rb

@@ -6,6 +6,7 @@ module EacCli
       attr_reader :status
 
       def initialize(status = true)
+        super
         @status = status
       end
     end
