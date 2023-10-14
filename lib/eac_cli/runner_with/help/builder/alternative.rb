@@ -35,7 +35,7 @@ module EacCli
           end
 
           def positionals
-            alternative.positional.map { |p| positional(p) }.reject(&:blank?)
+            alternative.positional.map { |p| positional(p) }.compact_blank
           end
 
           def positional(positional)

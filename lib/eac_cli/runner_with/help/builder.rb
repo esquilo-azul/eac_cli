@@ -26,7 +26,7 @@ module EacCli
 
           def option_usage_full(option)
             if option.long.present?
-              [option.short, option_long(option)].reject(&:blank?).join(word_separator)
+              [option.short, option_long(option)].compact_blank.join(word_separator)
             else
               option_short(option)
             end
@@ -53,7 +53,7 @@ module EacCli
         def option_definition(option)
           [self.class.option_usage_full(option), option.description,
            option.default_value? ? "[Default: \"#{option.default_value}\"]" : nil]
-            .reject(&:blank?).join(OPTION_DESCRIPTION_SEPARATOR)
+            .compact_blank.join(OPTION_DESCRIPTION_SEPARATOR)
         end
 
         # @return [String]

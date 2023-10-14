@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Rails/CompactBlank:
-  Exclude:
-  - lib/eac_cli/runner_with/help/builder/alternative.rb
-  - lib/eac_cli/runner_with/help/builder.rb
 Rails/Exit:
   Exclude:
   - lib/eac_cli/runner/class_runner.rb
