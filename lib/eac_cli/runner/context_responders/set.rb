@@ -18,9 +18,9 @@ module EacCli
           responders_instances.any?(&:callable?)
         end
 
-        def call(*args, &block)
+        def call(...)
           caller = responder_to_call
-          return caller.call(*args, &block) if caller
+          return caller.call(...) if caller
 
           raise ::NameError, "No method \"#{method_name}\" found in #{runner} or in its ancestors"
         end
