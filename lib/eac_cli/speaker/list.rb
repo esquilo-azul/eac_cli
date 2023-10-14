@@ -51,7 +51,7 @@ module EacCli
 
       def build_value(value)
         key = to_key(value)
-        values.each do |v| # rubocop:disable Style/HashEachMethods
+        values.each do |v|
           return v.value if v.key == key
         end
         raise "Value not found: \"#{value}\" (#{values})"

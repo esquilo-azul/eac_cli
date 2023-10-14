@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/RedundantCopDisableDirective:
-  Exclude:
-  - lib/eac_cli/runner/instance_methods.rb
-  - lib/eac_cli/speaker/list.rb
 Lint/UselessMethodDefinition:
   Exclude:
   - lib/eac_cli/config.rb
