@@ -68,7 +68,7 @@ module EacCli
       def check_positional_blocked(new_pos_arg)
         positional_arguments_blocked_reason(new_pos_arg).if_present do |v|
           raise ::EacCli::Definition::Error, "Positional arguments are blocked: #{v} " \
-            "(New argument: #{new_pos_arg})"
+                                             "(New argument: #{new_pos_arg})"
         end
       end
 

@@ -17,7 +17,7 @@ module EacCli
       def banner
         infom 'Do you wanna to store passwords?'
         infom 'Warning: the passwords will be store in clear text in ' \
-          "\"#{console_configs.configs.storage_path}\""
+              "\"#{console_configs.configs.storage_path}\""
         infom 'Enter "yes" or "no"'
       end
     end
