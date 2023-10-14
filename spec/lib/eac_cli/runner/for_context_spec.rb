@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner'
 
-::RSpec.describe ::EacCli::Runner do
+::RSpec.describe ::EacCli::Runner, '#for_context' do
   let(:parent_runner_class) do
     example = self
     ::Class.new do
