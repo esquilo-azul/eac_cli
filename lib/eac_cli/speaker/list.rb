@@ -17,11 +17,11 @@ module EacCli
         private
 
         def hash_to_values(list)
-          list.map { |key, value| ::OpenStruct.new(key: key, label: key, value: value) }
+          list.map { |key, value| ::OpenStruct.new(key: key, label: key, value: value) } # rubocop:disable Style/OpenStructUse
         end
 
         def array_to_values(list)
-          list.map { |value| ::OpenStruct.new(key: value, label: value, value: value) }
+          list.map { |value| ::OpenStruct.new(key: value, label: value, value: value) }  # rubocop:disable Style/OpenStructUse
         end
       end
 
@@ -29,7 +29,7 @@ module EacCli
 
       def initialize(values)
         @values = values.map do |v|
-          ::OpenStruct.new(key: to_key(v.key), label: to_label(v.label), value: v.value)
+          ::OpenStruct.new(key: to_key(v.key), label: to_label(v.label), value: v.value)  # rubocop:disable Style/OpenStructUse
         end
       end
 
