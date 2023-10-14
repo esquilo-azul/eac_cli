@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantInitialize:
-  Exclude:
-  - lib/eac_cli/config.rb
 Style/RedundantReturn:
   Exclude:
   - lib/eac_cli/speaker.rb
