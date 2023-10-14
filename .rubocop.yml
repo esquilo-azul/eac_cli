@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/SpecFilePathFormat:
-  Exclude:
-  - spec/lib/eac_cli/runner/for_context_spec.rb
 Rails/CompactBlank:
   Exclude:
   - lib/eac_cli/runner_with/help/builder/alternative.rb
