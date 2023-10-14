@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/EmptyLiteral:
-  Exclude:
-  - lib/eac_cli/runner_with_set.rb
 Style/GlobalStdStream:
   Exclude:
   - lib/eac_cli/speaker/options.rb

@@ -33,7 +33,7 @@ module EacCli
     private
 
     def namespace_set
-      @namespace_set ||= ::Array.new
+      @namespace_set ||= []
     end
 
     def key_to_module(key)
