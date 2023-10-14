@@ -22,7 +22,7 @@ require 'eac_cli/runner'
     end
   end
 
-  let(:child_runner_class1) do
+  let(:child_runner_class1) do # rubocop:disable RSpec/IndexedLet
     example = self
     ::Class.new do
       include example.described_class
@@ -39,7 +39,7 @@ require 'eac_cli/runner'
     end
   end
 
-  let(:child_runner_class2) do
+  let(:child_runner_class2) do # rubocop:disable RSpec/IndexedLet
     example = self
     ::Class.new do
       include example.described_class

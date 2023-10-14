@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/IndexedLet:
-  Exclude:
-  - spec/lib/eac_cli/runner/for_context_spec.rb
 RSpec/MultipleMemoizedHelpers:
   Exclude:
   - spec/lib/eac_cli/runner/for_context_spec.rb
