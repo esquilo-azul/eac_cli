@@ -62,15 +62,6 @@ module EacCli
         argv_enum.next
       end
 
-      def collect_option_argv_value
-        alternative.options.each do |option|
-        end
-
-        raise ::EacCli::Parser::Error.new(
-          alternative, argv, "Invalid option: #{argv_enum.current}"
-        )
-      end
-
       def raise_error(message)
         raise ::EacCli::Parser::Error.new(alternative, argv, message)
       end
