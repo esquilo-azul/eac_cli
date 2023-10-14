@@ -83,7 +83,8 @@ module EacCli
     def list_value(list, input)
       values = list_values(list)
       return input, true unless values
-      return input, false unless values.include?(input)
+
+      [input, false] unless values.include?(input)
     end
 
     def list_values(list)
