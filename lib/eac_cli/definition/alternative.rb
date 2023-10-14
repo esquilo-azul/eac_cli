@@ -15,7 +15,8 @@ module EacCli
         @any_opt = true
       end
 
-      def any_opt?
+      # @return [Boolean]
+      def any_option?
         @any_opt ? true : false
       end
 
