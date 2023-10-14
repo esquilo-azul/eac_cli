@@ -4,7 +4,7 @@ require 'eac_cli/runner'
 require 'eac_cli/runner_with/help'
 require 'eac_cli/runner_with/subcommands'
 
-RSpec.describe ::EacCli::RunnerWith::Subcommands do
+RSpec.describe EacCli::RunnerWith::Subcommands do
   let(:parent_runner) do
     the_module = described_class
     the_child = child_runner
@@ -26,8 +26,8 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
   end
 
   let(:child_runner) do
-    ::Class.new do
-      include ::EacCli::Runner
+    Class.new do
+      include EacCli::Runner
 
       runner_definition do
         bool_opt '-c', '--child-opt', 'A boolean option.'
@@ -61,7 +61,7 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
     let(:instance) { parent_runner.create(%w[456]) }
 
     it do
-      expect { instance.run }.to raise_error(::EacCli::Parser::Error)
+      expect { instance.run }.to raise_error(EacCli::Parser::Error)
     end
   end
 
@@ -88,7 +88,7 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
     end
 
     before do
-      parent_runner.include(::EacCli::RunnerWith::Help)
+      parent_runner.include(EacCli::RunnerWith::Help)
     end
 
     it 'show help text' do

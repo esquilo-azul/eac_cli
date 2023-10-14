@@ -3,7 +3,7 @@
 require 'eac_cli/runner_with/output'
 require 'eac_ruby_utils/fs/temp'
 
-RSpec.describe ::EacCli::RunnerWith::Output do
+RSpec.describe EacCli::RunnerWith::Output do
   let(:runner) do
     the_module = described_class
     Class.new do
@@ -36,7 +36,7 @@ RSpec.describe ::EacCli::RunnerWith::Output do
     r.temp_dir = temp_dir
     r
   end
-  let(:temp_dir) { ::EacRubyUtils::Fs::Temp.directory }
+  let(:temp_dir) { EacRubyUtils::Fs::Temp.directory }
 
   after { temp_dir.remove }
 
@@ -49,7 +49,7 @@ RSpec.describe ::EacCli::RunnerWith::Output do
   end
 
   context 'without --output option as to stdout' do
-    let(:runner_argv) { ['--output', ::EacCli::RunnerWith::Output::STDOUT_OPTION, stub_text] }
+    let(:runner_argv) { ['--output', EacCli::RunnerWith::Output::STDOUT_OPTION, stub_text] }
 
     it do
       expect { instance.run }.to output(stub_text).to_stdout_from_any_process
@@ -59,7 +59,7 @@ RSpec.describe ::EacCli::RunnerWith::Output do
   context 'without --output option as to default file' do # rubocop:disable RSpec/MultipleMemoizedHelpers
     let(:output_file) { temp_dir.join('default_file') }
     let(:runner_argv) do
-      ['--output', ::EacCli::RunnerWith::Output::DEFAULT_FILE_OPTION,
+      ['--output', EacCli::RunnerWith::Output::DEFAULT_FILE_OPTION,
        stub_text]
     end
 

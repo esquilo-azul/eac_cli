@@ -2,13 +2,13 @@
 
 require 'eac_cli/parser/alternative'
 
-RSpec.describe ::EacCli::Parser::Alternative do
+RSpec.describe EacCli::Parser::Alternative do
   let(:instance) { described_class.new(alternative, argv) }
   let(:actual_parsed) { instance.parsed.to_h.symbolize_keys }
 
   context 'without subcommands' do
     let(:alternative) do
-      r = ::EacCli::Definition::Alternative.new
+      r = EacCli::Definition::Alternative.new
       r.bool_opt '-b', '--opt1', 'A boolean option'
       r.arg_opt '-a', '--opt2', 'A argument option'
       r.bool_opt '-c', '--opt3', 'A required boolean option', required: true
@@ -73,7 +73,7 @@ RSpec.describe ::EacCli::Parser::Alternative do
 
     context 'with excedent positional' do
       let(:alternative) do
-        r = ::EacCli::Definition::Alternative.new
+        r = EacCli::Definition::Alternative.new
         r.pos_arg :pos1
         r
       end
@@ -88,7 +88,7 @@ RSpec.describe ::EacCli::Parser::Alternative do
 
   context 'with subcommands' do
     let(:alternative) do
-      r = ::EacCli::Definition::Alternative.new
+      r = EacCli::Definition::Alternative.new
       r.bool_opt '-b', '--opt1', 'A boolean option'
       r.arg_opt '-a', '--opt2', 'A argument option'
       r.subcommands
@@ -100,8 +100,8 @@ RSpec.describe ::EacCli::Parser::Alternative do
       let(:parsed_expected) do
         {
           opt1: true, opt2: 'OPT2',
-          ::EacCli::Definition::Alternative::SUBCOMMAND_NAME_ARG => 'CMD',
-          ::EacCli::Definition::Alternative::SUBCOMMAND_ARGS_ARG => %w[CMD_ARG_1 --CMD_ARG_2]
+          EacCli::Definition::Alternative::SUBCOMMAND_NAME_ARG => 'CMD',
+          EacCli::Definition::Alternative::SUBCOMMAND_ARGS_ARG => %w[CMD_ARG_1 --CMD_ARG_2]
         }
       end
 
@@ -114,8 +114,8 @@ RSpec.describe ::EacCli::Parser::Alternative do
       let(:parsed_expected) do
         {
           opt1: false, opt2: nil,
-          ::EacCli::Definition::Alternative::SUBCOMMAND_NAME_ARG => 'CMD',
-          ::EacCli::Definition::Alternative::SUBCOMMAND_ARGS_ARG => []
+          EacCli::Definition::Alternative::SUBCOMMAND_NAME_ARG => 'CMD',
+          EacCli::Definition::Alternative::SUBCOMMAND_ARGS_ARG => []
         }
       end
 
@@ -128,8 +128,8 @@ RSpec.describe ::EacCli::Parser::Alternative do
       let(:parsed_expected) do
         {
           opt1: true, opt2: nil,
-          ::EacCli::Definition::Alternative::SUBCOMMAND_NAME_ARG => nil,
-          ::EacCli::Definition::Alternative::SUBCOMMAND_ARGS_ARG => []
+          EacCli::Definition::Alternative::SUBCOMMAND_NAME_ARG => nil,
+          EacCli::Definition::Alternative::SUBCOMMAND_ARGS_ARG => []
         }
       end
 

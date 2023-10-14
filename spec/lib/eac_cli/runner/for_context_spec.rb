@@ -2,10 +2,10 @@
 
 require 'eac_cli/runner'
 
-::RSpec.describe EacCli::Runner, '#for_context' do # rubocop:disable RSpec/MultipleMemoizedHelpers
+RSpec.describe EacCli::Runner, '#for_context' do # rubocop:disable RSpec/MultipleMemoizedHelpers
   let(:parent_runner_class) do
     example = self
-    ::Class.new do
+    Class.new do
       include example.described_class
 
       def self.name
@@ -24,7 +24,7 @@ require 'eac_cli/runner'
 
   let(:child_runner_class1) do # rubocop:disable RSpec/IndexedLet
     example = self
-    ::Class.new do
+    Class.new do
       include example.described_class
 
       def self.name
@@ -41,7 +41,7 @@ require 'eac_cli/runner'
 
   let(:child_runner_class2) do # rubocop:disable RSpec/IndexedLet
     example = self
-    ::Class.new do
+    Class.new do
       include example.described_class
 
       def self.name
@@ -73,7 +73,7 @@ require 'eac_cli/runner'
     let(:child_runner_class) { child_runner_class2 }
 
     it do
-      expect { child_runner.run }.to raise_error(::NameError)
+      expect { child_runner.run }.to raise_error(NameError)
     end
   end
 end

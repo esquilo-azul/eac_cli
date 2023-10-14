@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner_with/help/layout'
 
-::RSpec.describe ::EacCli::RunnerWith::Help::Layout do
+RSpec.describe EacCli::RunnerWith::Help::Layout do
   describe '#list_section' do
     {
       ['Options', ['Option A', 'Option B']] => <<~TEXT

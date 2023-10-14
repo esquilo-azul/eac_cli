@@ -2,7 +2,7 @@
 
 require 'eac_cli/speaker'
 
-RSpec.describe ::EacCli::Speaker do
+RSpec.describe EacCli::Speaker do
   let(:instance) { described_class.new }
 
   describe '#input' do

@@ -2,7 +2,7 @@
 
 require 'eac_cli/old_configs'
 
-RSpec.describe ::EacCli::OldConfigs do
+RSpec.describe EacCli::OldConfigs do
   describe '#entry_key_to_envvar_name' do
     {
       'a.entry.value' => 'A_ENTRY_VALUE',

@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner_with/confirmation'
 
-::RSpec.describe ::EacCli::RunnerWith::Confirmation do
+RSpec.describe EacCli::RunnerWith::Confirmation do
   let(:runner) do
     the_module = described_class
     Class.new do
@@ -14,9 +14,9 @@ require 'eac_cli/runner_with/confirmation'
 
       def run
         if confirm?
-          ::Kernel.puts 'Accepted'
+          Kernel.puts 'Accepted'
         else
-          ::Kernel.puts 'Denied'
+          Kernel.puts 'Denied'
         end
       end
     end

@@ -2,10 +2,10 @@
 
 require 'eac_cli/runner'
 
-RSpec.describe ::EacCli::Runner do
+RSpec.describe EacCli::Runner do
   let(:runner_class) do
     the_module = described_class
-    ::Class.new do
+    Class.new do
       include the_module
 
       runner_definition do
@@ -59,7 +59,7 @@ RSpec.describe ::EacCli::Runner do
     let(:argv) { %w[-op aaa pos1] }
 
     it do
-      expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
+      expect { instance.parsed }.to raise_error(EacCli::Parser::Error)
     end
   end
 
@@ -81,7 +81,7 @@ RSpec.describe ::EacCli::Runner do
     let(:argv) { %w[] }
 
     it do
-      expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
+      expect { instance.parsed }.to raise_error(EacCli::Parser::Error)
     end
   end
 
@@ -109,7 +109,7 @@ RSpec.describe ::EacCli::Runner do
   context 'when extra args are not supplied' do
     let(:runner_class) do
       the_module = described_class
-      ::Class.new do
+      Class.new do
         include the_module
 
         runner_definition do
@@ -123,7 +123,7 @@ RSpec.describe ::EacCli::Runner do
     let(:argv) { %w[aaa bbb] }
 
     it do
-      expect { instance.parsed }.to raise_error(::EacCli::Parser::Error)
+      expect { instance.parsed }.to raise_error(EacCli::Parser::Error)
     end
   end
 end

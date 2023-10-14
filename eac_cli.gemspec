@@ -6,7 +6,7 @@ require 'eac_cli/version'
 
 Gem::Specification.new do |s|
   s.name        = 'eac_cli'
-  s.version     = ::EacCli::VERSION
+  s.version     = EacCli::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Utilities to build CLI applications with Ruby.'
 

@@ -1,26 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantConstantBase:
-  Exclude:
-  - Gemfile
-  - eac_cli.gemspec
-  - lib/eac_cli/core_ext.rb
-  - lib/eac_cli/patches/object.rb
-  - lib/eac_cli/patches.rb
-  - spec/lib/eac_cli/definition/alternative_spec.rb
-  - spec/lib/eac_cli/old_configs_spec.rb
-  - spec/lib/eac_cli/parser/alternative_spec.rb
-  - spec/lib/eac_cli/runner/for_context_spec.rb
-  - spec/lib/eac_cli/runner_spec.rb
-  - spec/lib/eac_cli/runner_with/confirmation_spec.rb
-  - spec/lib/eac_cli/runner_with/help/layout_spec.rb
-  - spec/lib/eac_cli/runner_with/help_spec.rb
-  - spec/lib/eac_cli/runner_with/output_spec.rb
-  - spec/lib/eac_cli/runner_with/subcommands_spec.rb
-  - spec/lib/eac_cli/speaker_spec.rb
-  - spec/rubocop_spec.rb
-  - spec/spec_helper.rb
 Style/RedundantFilterChain:
   Exclude:
   - lib/eac_cli/parser.rb

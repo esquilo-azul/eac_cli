@@ -3,7 +3,7 @@
 require 'eac_cli/runner_with/help'
 require 'eac_ruby_utils/fs/temp'
 
-RSpec.describe ::EacCli::RunnerWith::Help do
+RSpec.describe EacCli::RunnerWith::Help do
   let(:runner) do
     the_module = described_class
     Class.new do
