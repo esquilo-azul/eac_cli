@@ -22,7 +22,8 @@ RSpec.describe EacCli::RunnerWith::Help do
 
   [
     ['--help'],
-    ['trash-pos-arg-before', '--help', 'trash-pos-arg-after']
+    ['trash-pos-arg-before', '--help', 'trash-pos-arg-after', '--any-option', '-XYZ',
+     'other-trash-arg']
   ].each do |runner_argv|
     context "when runner ARGV is #{runner_argv}" do
       let(:instance) { runner.create(argv: runner_argv) }
