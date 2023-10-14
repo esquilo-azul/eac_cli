@@ -7,6 +7,9 @@ require 'eac_cli/definition/positional_argument'
 module EacCli
   class Definition
     class Alternative
+      ANY_OPTION_DESCRIPTION = 'ANY_OPTION'
+      ANY_OPTION_LONG = '__'
+      ANY_OPTION_SHORT = '_'
       SUBCOMMAND_NAME_ARG = :subcommand
       SUBCOMMAND_ARGS_ARG = :subcommand_args
 
@@ -18,6 +21,14 @@ module EacCli
       # @return [Boolean]
       def any_option?
         @any_opt ? true : false
+      end
+
+      # @return [EacCli::Definition::BooleanOption]
+      def any_options_option
+        @any_options_option ||= ::EacCli::Definition::BooleanOption.new(
+          ANY_OPTION_SHORT, ANY_OPTION_LONG, ANY_OPTION_DESCRIPTION,
+          optional: true, repeat: true, usage: false
+        )
       end
 
       def arg_opt(*args)
@@ -58,7 +69,7 @@ module EacCli
         return 'there are subcommands' if subcommands?
         return 'last argument repeats' if last.repeat?
         return 'new argument is required and last is optional' if
-          last.optional? && new_pos_arg.if_present(&:required?)
+        last.optional? && new_pos_arg.if_present(&:required?)
 
         nil
       end
