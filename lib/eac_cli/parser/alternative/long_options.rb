@@ -24,7 +24,7 @@ module EacCli
             else
               option_argument_collect(option, value)
             end
-          end || raise_argv_current_invalid_option
+          end || any_option_collect_option
         end
 
         def parse_option_current_argv
