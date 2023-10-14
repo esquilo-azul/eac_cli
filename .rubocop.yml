@@ -1,11 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/BeEq:
-  Exclude:
-  - spec/lib/eac_cli/runner/for_context_spec.rb
-  - spec/lib/eac_cli/runner_spec.rb
-  - spec/lib/eac_cli/runner_with/subcommands_spec.rb
 RSpec/FilePath:
   Exclude:
   - spec/lib/eac_cli/runner/for_context_spec.rb

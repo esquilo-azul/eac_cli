@@ -37,7 +37,7 @@ RSpec.describe ::EacCli::Runner do
 
     it { expect(parsed_actual).to eq(parsed_expected) }
     it { expect(instance.parsed.opt1).to eq('aaa') }
-    it { expect(instance.parsed.opt2?).to eq(true) }
+    it { expect(instance.parsed.opt2?).to be(true) }
     it { expect(instance.parsed.pos1).to eq('bbb') }
     it { expect(instance.parsed.pos2).to eq(%w[ccc ddd]) }
   end
@@ -52,7 +52,7 @@ RSpec.describe ::EacCli::Runner do
     let(:argv) { %w[-po aaa pos1] }
 
     it { expect(instance.parsed.opt1).to eq('aaa') }
-    it { expect(instance.parsed.opt2?).to eq(true) }
+    it { expect(instance.parsed.opt2?).to be(true) }
   end
 
   context 'with invalid grouped short options' do
@@ -72,7 +72,7 @@ RSpec.describe ::EacCli::Runner do
 
     it { expect(parsed_actual).to eq(parsed_expected) }
     it { expect(instance.parsed.opt1).to be_nil }
-    it { expect(instance.parsed.opt2?).to eq(false) }
+    it { expect(instance.parsed.opt2?).to be(false) }
     it { expect(instance.parsed.pos1).to eq('bbb') }
     it { expect(instance.parsed.pos2).to eq([]) }
   end
@@ -93,7 +93,7 @@ RSpec.describe ::EacCli::Runner do
     end
 
     it { expect(parsed_actual).to eq(parsed_expected) }
-    it { expect(instance.parsed.opt3?).to eq(true) }
+    it { expect(instance.parsed.opt3?).to be(true) }
   end
 
   context 'when repeated options are supplied' do

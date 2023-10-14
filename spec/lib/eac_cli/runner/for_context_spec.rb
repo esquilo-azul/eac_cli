@@ -58,8 +58,8 @@ require 'eac_cli/runner'
   let(:context_args) { [{ argv: [], parent: parent_runner }] }
   let(:child_runner) { child_runner_class.create(*context_args) }
 
-  it { expect(parent_runner.for_context?(:method_for_context)).to eq(true) }
-  it { expect(parent_runner.for_context?(:method_not_for_context)).to eq(false) }
+  it { expect(parent_runner.for_context?(:method_for_context)).to be(true) }
+  it { expect(parent_runner.for_context?(:method_not_for_context)).to be(false) }
 
   context 'when method is for context' do
     let(:child_runner_class) { child_runner_class1 }

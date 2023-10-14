@@ -49,7 +49,7 @@ RSpec.describe ::EacCli::RunnerWith::Subcommands do
     it { expect(instance.parsed.root_var).to eq('123') }
     it { expect(instance.parsed.subcommand).to eq('child-cmd') }
     it { expect(instance.parsed.subcommand_args).to eq(%w[--child-opt 456]) }
-    it { expect(instance.subcommand_runner.parsed.child_opt).to eq(true) }
+    it { expect(instance.subcommand_runner.parsed.child_opt).to be(true) }
     it { expect(instance.subcommand_runner.parsed.child_var).to eq('456') }
 
     it do
