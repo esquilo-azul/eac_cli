@@ -22,8 +22,9 @@ module EacCli
         root_node
       end
 
+      # @return [Object, nil]
       def value
-        value!
+        sub_entry.found? ? sub_value_to_return : nil
       end
 
       def value!
