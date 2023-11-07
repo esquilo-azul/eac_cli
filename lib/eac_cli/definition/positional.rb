@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
+require 'eac_cli/definition/option_or_positional'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Definition
-    class Positional
+    class Positional < ::EacCli::Definition::OptionOrPositional
       DEFAULT_REQUIRED = true
       DEFAULT_VISIBLE = true
 
-      enable_listable
-      lists.add_symbol :option, :optional, :repeat, :required, :subcommand, :visible
+      lists.add_symbol :option, *OPTION_LIST, :subcommand, :visible
 
       # @!method initialize(name, options = {})
       # @param name [String]
@@ -40,31 +40,8 @@ module EacCli
       end
 
       # @return [Boolean]
-      def optional?
-        !required?
-      end
-
-      # @return [Boolean]
-      def repeat?
-        options[OPTION_REPEAT]
-      end
-
-      # @return [Boolean]
-      def required?
-        return true if options.key?(OPTION_REQUIRED) && options.fetch(OPTION_REQUIRED)
-        return false if options.key?(OPTION_OPTIONAL) && options.fetch(OPTION_OPTIONAL)
-
-        DEFAULT_REQUIRED
-      end
-
-      # @return [Boolean]
       def subcommand?
         options[OPTION_SUBCOMMAND]
-      end
-
-      # @return [String]
-      def to_s
-        "#{self.class.name.demodulize}[#{identifier}]"
       end
 
       # @return [Boolean]

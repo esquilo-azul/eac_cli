@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
+require 'eac_cli/definition/option_or_positional'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Definition
     # @abstract
-    class Option
+    class Option < ::EacCli::Definition::OptionOrPositional
       require_sub __FILE__
 
       class << self
@@ -19,9 +20,8 @@ module EacCli
 
       DEFAULT_REQUIRED = false
 
-      enable_listable
-      enable_abstract_methods :build_value
-      lists.add_symbol :option, :default, :optional, :usage, :repeat, :required
+      enable_abstract_methods
+      lists.add_symbol :option, *OPTION_LIST, :default, :usage
 
       # @!method initialize(short, long, description, options = {})
       # @param short [String]
@@ -54,24 +54,6 @@ module EacCli
         end
 
         raise(::EacCli::Definition::Error, 'No short or long option to build identifier')
-      end
-
-      # @return [Boolean]
-      def repeat?
-        options[OPTION_REPEAT]
-      end
-
-      # @return [Boolean]
-      def required?
-        return true if options.key?(:required) && options.fetch(:required)
-        return false if options.key?(:optional) && options.fetch(:optional)
-
-        DEFAULT_REQUIRED
-      end
-
-      # @return [String]
-      def to_s
-        "#{self.class.name.demodulize}[#{identifier}]"
       end
 
       # @return [Boolean]
