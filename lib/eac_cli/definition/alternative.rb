@@ -2,7 +2,7 @@
 
 require 'eac_cli/definition/argument_option'
 require 'eac_cli/definition/boolean_option'
-require 'eac_cli/definition/positional_argument'
+require 'eac_cli/definition/positional'
 
 module EacCli
   class Definition
@@ -54,7 +54,7 @@ module EacCli
       end
 
       def pos_arg(name, arg_options = {})
-        new_pos_arg = ::EacCli::Definition::PositionalArgument.new(name, arg_options)
+        new_pos_arg = ::EacCli::Definition::Positional.new(name, arg_options)
         check_positional_blocked(new_pos_arg)
         pos_set << new_pos_arg
       end
@@ -76,8 +76,8 @@ module EacCli
 
       def subcommands
         pos_arg(SUBCOMMAND_NAME_ARG, subcommand: true)
-        pos_set << ::EacCli::Definition::PositionalArgument.new(SUBCOMMAND_ARGS_ARG,
-                                                                optional: true, repeat: true)
+        pos_set << ::EacCli::Definition::Positional.new(SUBCOMMAND_ARGS_ARG,
+                                                        optional: true, repeat: true)
       end
 
       def subcommands?

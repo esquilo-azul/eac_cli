@@ -2,7 +2,7 @@
 
 require 'eac_cli/definition/argument_option'
 require 'eac_cli/definition/boolean_option'
-require 'eac_cli/definition/positional_argument'
+require 'eac_cli/definition/positional'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli

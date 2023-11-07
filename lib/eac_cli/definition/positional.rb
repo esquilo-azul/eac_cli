@@ -4,7 +4,7 @@ require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Definition
-    class PositionalArgument
+    class Positional
       DEFAULT_REQUIRED = true
       DEFAULT_VISIBLE = true
 
