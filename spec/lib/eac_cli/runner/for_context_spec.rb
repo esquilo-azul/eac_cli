@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner'
 
-RSpec.describe EacCli::Runner, '#for_context' do # rubocop:disable RSpec/MultipleMemoizedHelpers
+RSpec.describe EacCli::Runner, '#for_context' do
   let(:parent_runner_class) do
     example = self
     Class.new do
@@ -61,7 +61,7 @@ RSpec.describe EacCli::Runner, '#for_context' do # rubocop:disable RSpec/Multipl
   it { expect(parent_runner.for_context?(:method_for_context)).to be(true) }
   it { expect(parent_runner.for_context?(:method_not_for_context)).to be(false) }
 
-  context 'when method is for context' do # rubocop:disable RSpec/MultipleMemoizedHelpers
+  context 'when method is for context' do
     let(:child_runner_class) { child_runner_class1 }
 
     it do
@@ -69,7 +69,7 @@ RSpec.describe EacCli::Runner, '#for_context' do # rubocop:disable RSpec/Multipl
     end
   end
 
-  context 'when method is not for context' do # rubocop:disable RSpec/MultipleMemoizedHelpers
+  context 'when method is not for context' do
     let(:child_runner_class) { child_runner_class2 }
 
     it do

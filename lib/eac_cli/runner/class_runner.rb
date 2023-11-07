@@ -29,7 +29,7 @@ module EacCli
 
       def run_parser_error(runner_instance, error)
         $stderr.write("#{runner_instance.program_name}: #{error}\n")
-        ::Kernel.exit(PARSER_ERROR_EXIT_CODE) # rubocop:disable Rails/Exit
+        ::Kernel.exit(PARSER_ERROR_EXIT_CODE)
       end
     end
   end
