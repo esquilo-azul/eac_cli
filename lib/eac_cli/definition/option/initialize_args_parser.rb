@@ -2,7 +2,7 @@
 
 module EacCli
   class Definition
-    class BaseOption
+    class Option
       class InitializeArgsParser
         PROPERTIES = %i[short long description options].freeze
         attr_reader(*PROPERTIES)

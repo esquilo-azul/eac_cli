@@ -30,7 +30,7 @@ module EacCli
           end
         end
 
-        # @return [EacCli::Definition::BaseOption] The option collected.
+        # @return [EacCli::Definition::Option] The option collected.
         def short_option_collect_char(char)
           option = find_short_option(char)
           option ? option_collect_option(option) : any_option_collect_option

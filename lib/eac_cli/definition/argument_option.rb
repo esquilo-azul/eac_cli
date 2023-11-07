@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'eac_cli/definition/base_option'
+require 'eac_cli/definition/option'
 
 module EacCli
   class Definition
-    class ArgumentOption < ::EacCli::Definition::BaseOption
+    class ArgumentOption < ::EacCli::Definition::Option
       def argument?
         true
       end

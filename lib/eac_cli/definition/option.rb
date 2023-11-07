@@ -4,12 +4,12 @@ require 'eac_ruby_utils/core_ext'
 
 module EacCli
   class Definition
-    class BaseOption
+    class Option
       require_sub __FILE__
 
       class << self
         def from_args(args)
-          p = ::EacCli::Definition::BaseOption::InitializeArgsParser.new(args)
+          p = ::EacCli::Definition::Option::InitializeArgsParser.new(args)
           new(p.short, p.long, p.description, p.options)
         end
       end
@@ -22,7 +22,7 @@ module EacCli
       common_constructor :short, :long, :description, :options, default: [{}] do
         raise 'Nor short neither long selector was set' if short.blank? && long.blank?
 
-        self.options = ::EacCli::Definition::BaseOption.lists.option.hash_keys_validate!(
+        self.options = ::EacCli::Definition::Option.lists.option.hash_keys_validate!(
           options.symbolize_keys
         )
       end
