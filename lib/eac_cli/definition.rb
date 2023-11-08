@@ -13,6 +13,7 @@ module EacCli
     SUBCOMMAND_NAME_ARG = 'subcommand'
     SUBCOMMAND_ARGS_ARG = 'subcommand_args'
 
+    # @return [String, nil]
     attr_accessor :description
 
     def initialize
@@ -20,6 +21,7 @@ module EacCli
       alternatives_set[MAIN_ALTERNATIVE_KEY] = main_alternative
     end
 
+    # @return [EacCli::Definition::Alternative]
     def alt(&block)
       r = ::EacCli::Definition::Alternative.new
       r.instance_eval(&block)
@@ -27,18 +29,23 @@ module EacCli
       r
     end
 
+    # @return [Enumerable<EacCli::Definition::Alternative>]
     def alternatives
       alternatives_set.values
     end
 
+    # @return [EacCli::Definition::Alternative]
+    # @raise [KeyError] If there is not a alternative with provided key.
     def alternative(key)
       alternatives_set.fetch(key)
     end
 
+    # Same as {#description=}.
     def desc(description)
       self.description = description
     end
 
+    # @return [EacCli::Definition::Alternative]
     def main_alternative
       @main_alternative ||= begin
         r = ::EacCli::Definition::Alternative.new
@@ -47,10 +54,13 @@ module EacCli
       end
     end
 
+    # Same as {#options_argument=}.
+    # @param options_argument [Boolean]
     def options_arg(options_argument)
       self.options_argument = options_argument
     end
 
+    # @return [Boolean]
     def options_argument
       main_alternative.options_argument?
     end
