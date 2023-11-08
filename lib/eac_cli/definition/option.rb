@@ -30,8 +30,7 @@ module EacCli
       # @param options [Hash<Symbol, Object>]
       # @raise [RuntimeError]
       common_constructor :short, :long, :description, :options, default: [{}] do
-        raise 'Nor short neither long selector was set' if short.blank? && long.blank?
-
+        validate
         self.options = ::EacCli::Definition::Option.lists.option.hash_keys_validate!(
           options.symbolize_keys
         )
@@ -78,6 +77,14 @@ module EacCli
       # @return [Boolean]
       def show_on_usage?
         options[:usage]
+      end
+
+      private
+
+      # @return [void]
+      # @raise [RuntimeError]
+      def validate
+        raise 'Nor short neither long selector was set' if short.blank? && long.blank?
       end
     end
   end
