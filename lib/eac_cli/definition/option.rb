@@ -28,7 +28,7 @@ module EacCli
       # @param long [String]
       # @param description [String]
       # @param options [Hash<Symbol, Object>]
-      # @raise [RuntimeError]
+      # @raise [EacCli::Definition::Error]
       common_constructor :short, :long, :description, :options, default: [{}] do
         validate
         self.options = ::EacCli::Definition::Option.lists.option.hash_keys_validate!(
@@ -53,7 +53,7 @@ module EacCli
           v.to_s.if_present { |vv| return vv.variableize.to_sym }
         end
 
-        raise(::EacCli::Definition::Error, 'No short or long option to build identifier')
+        raise('No short or long option to build identifier')
       end
 
       # @return [Boolean]
@@ -64,7 +64,7 @@ module EacCli
       private
 
       # @return [void]
-      # @raise [RuntimeError]
+      # @raise [EacCli::Definition::Error]
       def validate
         raise 'Nor short neither long selector was set' if short.blank? && long.blank?
       end

@@ -16,8 +16,7 @@ module EacCli
       def default_value
         return super unless default_value?
 
-        raise(::EacCli::Definition::Error,
-              "Unallowed default value for boolean options (Option: #{self})")
+        raise("Unallowed default value for boolean options (Option: #{self})")
       end
 
       def default_default_value

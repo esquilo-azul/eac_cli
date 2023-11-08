@@ -16,6 +16,11 @@ module EacCli
         !required?
       end
 
+      # @raise [EacCli::Definition::Error]
+      def raise(*args)
+        ::Kernel.raise ::EacCli::Definition::Error, *args
+      end
+
       # @return [Boolean]
       def repeat?
         options[:repeat] ? true : false
