@@ -5,6 +5,7 @@ module EacCli
     class Alternative
       module ShortOptions
         SHORT_OPTION_PREFIX = '-'
+        SHORT_OPTION_CHAR_PATTERN = /\A[0-9a-zA-Z]\z/.freeze
 
         private
 
@@ -26,6 +27,7 @@ module EacCli
         def short_option_collect_argv_value
           last_option = nil
           short_without_prefix(argv_enum.peek).each_char do |char|
+            raise_error "Invalid option: \"#{char}\"" unless SHORT_OPTION_CHAR_PATTERN.match?(char)
             raise_error "Option \"#{last_option}\" requires a argument not provided" if
             last_option.present?
 
