@@ -22,10 +22,14 @@ module EacCli
     end
 
     # @return [EacCli::Definition::Alternative]
-    def alt(&block)
+    def alt(key = nil, &block)
+      key ||= new_alternative_key
+      raise(::EacCli::Definition::Error, "A alternative with key=\"#{key}\" already exists") if
+        key.present? && alternatives_set.key?(key)
+
       r = ::EacCli::Definition::Alternative.new
       r.instance_eval(&block)
-      alternatives_set[new_alternative_key] = r
+      alternatives_set[key] = r
       r
     end
 
