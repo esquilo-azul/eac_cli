@@ -30,6 +30,14 @@ RSpec.describe EacCli::RunnerWith::OutputList do
       1,João
       2,Maria
     OUTPUT
+    'tty' => <<~OUTPUT,
+      ┌──┬─────┐
+      │id│name │
+      │1 │João │
+      ├──┼─────┤
+      │2 │Maria│
+      └──┴─────┘
+    OUTPUT
     'yaml' => <<~OUTPUT
       ---
       - id: '1'

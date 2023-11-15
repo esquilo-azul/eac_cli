@@ -11,6 +11,7 @@ module EacCli
 
       FORMATS = {
         'csv' => ::EacCli::RunnerWith::OutputList::CsvFormatter,
+        'tty' => ::EacCli::RunnerWith::OutputList::TtyFormatter,
         'yaml' => ::EacCli::RunnerWith::OutputList::YamlFormatter
       }.freeze
 
