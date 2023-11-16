@@ -20,6 +20,12 @@ module EacCli
           columns.map(&:to_s)
         end
 
+        # @param row [Object]
+        # @return [Object]
+        def build_row(_row)
+          raise_abstract_method __method__
+        end
+
         # @return [Array<Hash<String, String>>]
         def build_rows
           rows.map { |row| build_row(row) }
