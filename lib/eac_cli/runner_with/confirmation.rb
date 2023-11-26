@@ -39,6 +39,8 @@ module EacCli
       def cached_confirm_uncached?(message = nil)
         confirm?(message)
       end
+
+      require_sub __FILE__
     end
   end
 end
