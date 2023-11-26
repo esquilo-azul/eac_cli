@@ -19,10 +19,13 @@ module EacCli
       end
 
       def confirm?(message = nil)
+        return for_all_answers.fetch(message) if for_all_answers.key?(message)
         return false if parsed.no?
         return true if parsed.yes?
 
-        confirm_input(message).confirm?
+        r = confirm_input(message)
+        for_all_answers[message] = r.for_all?
+        r.confirm?
       rescue ::EacCli::Speaker::InputRequested => e
         fatal_error e.message
       end
@@ -43,6 +46,11 @@ module EacCli
         ::EacCli::RunnerWith::Confirmation::InputResult.by_message(
           message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT)
         )
+      end
+
+      # @return [Hash<String, Boolean>]
+      def for_all_answers_uncached
+        {}
       end
 
       require_sub __FILE__
