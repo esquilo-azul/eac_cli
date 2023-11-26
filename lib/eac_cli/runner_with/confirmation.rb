@@ -22,10 +22,7 @@ module EacCli
         return false if parsed.no?
         return true if parsed.yes?
 
-        input(
-          message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT),
-          bool: true
-        )
+        confirm_input(message)
       rescue ::EacCli::Speaker::InputRequested => e
         fatal_error e.message
       end
@@ -38,6 +35,14 @@ module EacCli
 
       def cached_confirm_uncached?(message = nil)
         confirm?(message)
+      end
+
+      # @return [Boolean]
+      def confirm_input(message)
+        input(
+          message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT),
+          bool: true
+        )
       end
 
       require_sub __FILE__
