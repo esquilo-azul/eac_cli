@@ -22,7 +22,7 @@ module EacCli
         return false if parsed.no?
         return true if parsed.yes?
 
-        confirm_input(message)
+        confirm_input(message).confirm?
       rescue ::EacCli::Speaker::InputRequested => e
         fatal_error e.message
       end
@@ -37,11 +37,11 @@ module EacCli
         confirm?(message)
       end
 
+      # @param message [String, nil]
       # @return [Boolean]
       def confirm_input(message)
-        input(
-          message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT),
-          bool: true
+        ::EacCli::RunnerWith::Confirmation::InputResult.by_message(
+          message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT)
         )
       end
 
