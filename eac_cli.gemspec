@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'colorize', '~> 0.8', '>= 0.8.1'
   s.add_dependency 'eac_config', '~> 0.14', '>= 0.14.1'
-  s.add_dependency 'eac_ruby_utils', '~> 0.119', '>= 0.119.2'
+  s.add_dependency 'eac_ruby_utils', '~> 0.120'
   s.add_dependency 'tty-table', '~> 0.12'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.9'
