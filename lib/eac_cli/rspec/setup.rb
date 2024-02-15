@@ -15,6 +15,10 @@ module EacCli
 
       def disable_config_input_request
         rspec_config.before do
+          # Fixes EacCli::Config::Entry does not implement #input_value error
+          ::EacCli::Config::Entry.define_method(:input_value) do
+            super
+          end
           allow_any_instance_of(::EacCli::Config::Entry).to receive(:input_value) do |obj|
             raise "Console input requested for entry (Path: #{obj.path})"
           end
