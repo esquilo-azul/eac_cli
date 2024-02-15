@@ -29,7 +29,7 @@ module EacCli
 
       def initialize(values)
         @values = values.map do |v|
-          ::OpenStruct.new(key: to_key(v.key), label: to_label(v.label), value: v.value)  # rubocop:disable Style/OpenStructUse
+          ::OpenStruct.new(key: to_key(v.key), label: to_label(v.label), value: v.value) # rubocop:disable Style/OpenStructUse
         end
       end
 
