@@ -29,8 +29,10 @@ module EacCli
         end
       end
 
+      DEFAULT_IGNORE_CASE = true
+
       enable_listable
-      lists.add_symbol :option
+      lists.add_symbol :option, :ignore_case
 
       # @!attribute [r] values
       #   @return [Array<VALUE_STRUCT>]
@@ -46,6 +48,11 @@ module EacCli
         end
       end
 
+      # @return [Boolean]
+      def ignore_case?
+        options.if_key(OPTION_IGNORE_CASE, DEFAULT_IGNORE_CASE, &:to_bool)
+      end
+
       def valid_labels
         values.map(&:label)
       end
@@ -54,8 +61,11 @@ module EacCli
         values.any? { |v| v.key == to_key(value) }
       end
 
+      # @param value [Object]
+      # @return [String]
       def to_key(value)
-        to_label(value).downcase
+        r = to_label(value)
+        ignore_case? ? r.downcase : r
       end
 
       def to_label(value)
