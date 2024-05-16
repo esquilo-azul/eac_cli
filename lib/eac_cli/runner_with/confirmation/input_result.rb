@@ -29,7 +29,7 @@ module EacCli
           # @param message [String]
           # @return [String]
           def input_value_by_speaker(message)
-            input(message, list: INPUT_LIST)
+            input(message, list: INPUT_LIST, ignore_case: false)
           end
         end
 

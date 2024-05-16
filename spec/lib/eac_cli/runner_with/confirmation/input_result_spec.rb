@@ -16,10 +16,10 @@ RSpec.describe EacCli::RunnerWith::Confirmation::InputResult do
   end
 
   [
-    ['n', false, true],
+    ['n', false, false],
     ['N', false, true],
     ['y', true, false],
-    ['Y', true, false]
+    ['Y', true, true]
   ].each do |test_values|
     user_input, confirm, for_all = test_values
     context "when user input is \"#{user_input}\"" do
