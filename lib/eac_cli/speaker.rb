@@ -99,16 +99,6 @@ module EacCli
       request_from_list(question, { yes: true, y: true, no: false, n: false }, noecho)
     end
 
-    def request_from_list(question, list, noecho)
-      list = ::EacCli::Speaker::List.build(list)
-      loop do
-        input = request_string("#{question} [#{list.valid_labels.join('/')}]", noecho)
-        return list.build_value(input) if list.valid_value?(input)
-
-        warn "Invalid input: \"#{input}\" (Valid: #{list.valid_labels.join(', ')})"
-      end
-    end
-
     def request_string(question, noecho)
       err_out.write "#{question}: ".to_s.yellow
       noecho ? request_string_noecho : request_string_echo
