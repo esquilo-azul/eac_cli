@@ -12,7 +12,6 @@ module EacCli
 
       # @return [String]
       def result
-        list = ::EacCli::Speaker::List.build(list_values)
         loop do
           return list.build_value(input) if list.valid_value?(input)
 
@@ -29,6 +28,11 @@ module EacCli
           "#{question} [#{list.valid_labels.join('/')}]",
           noecho
         )
+      end
+
+      # @return [EacCli::Speaker::List]
+      def list_uncached
+        ::EacCli::Speaker::List.build(list_values)
       end
     end
   end
