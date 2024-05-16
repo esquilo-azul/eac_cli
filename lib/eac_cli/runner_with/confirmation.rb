@@ -18,14 +18,14 @@ module EacCli
         end
       end
 
+      # @param message [String, nil]
+      # @return [Boolean]
       def confirm?(message = nil)
         return for_all_answers.fetch(message) if for_all_answers.key?(message)
         return false if parsed.no?
         return true if parsed.yes?
 
-        r = confirm_input(message)
-        for_all_answers[message] = r.for_all?
-        r.confirm?
+        confirm_input_and_register(message)
       rescue ::EacCli::Speaker::InputRequested => e
         fatal_error e.message
       end
@@ -46,6 +46,14 @@ module EacCli
         ::EacCli::RunnerWith::Confirmation::InputResult.by_message(
           message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT)
         )
+      end
+
+      # @param message [String, nil]
+      # @return [Boolean]
+      def confirm_input_and_register(message)
+        r = confirm_input(message)
+        for_all_answers[message] = r.for_all?
+        r.confirm?
       end
 
       # @return [Hash<String, Boolean>]
