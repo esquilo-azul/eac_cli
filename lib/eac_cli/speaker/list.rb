@@ -25,10 +25,12 @@ module EacCli
         end
       end
 
-      attr_reader :values
-
-      def initialize(values)
-        @values = values.map do |v|
+      # @!attribute [r] values
+      #   @return [Array<VALUE_STRUCT>]
+      # @!method initialize(values)
+      #   @param values [Array<VALUE_STRUCT>]
+      common_constructor :values do
+        self.values = values.map do |v|
           ::OpenStruct.new(key: to_key(v.key), label: to_label(v.label), value: v.value) # rubocop:disable Style/OpenStructUse
         end
       end
