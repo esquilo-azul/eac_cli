@@ -9,9 +9,11 @@ module EacCli
       VALUE_STRUCT = ::Struct.new(:key, :label, :value)
 
       class << self
-        def build(list)
-          return List.new(hash_to_values(list)) if list.is_a?(::Hash)
-          return List.new(array_to_values(list)) if list.is_a?(::Array)
+        # @param list [Array, Hash]
+        # @param options [Hash]
+        def build(list, options = {})
+          return List.new(hash_to_values(list), options) if list.is_a?(::Hash)
+          return List.new(array_to_values(list), options) if list.is_a?(::Array)
 
           raise "Invalid list: #{list} (#{list.class})"
         end
@@ -27,11 +29,18 @@ module EacCli
         end
       end
 
+      enable_listable
+      lists.add_symbol :option
+
       # @!attribute [r] values
       #   @return [Array<VALUE_STRUCT>]
+      #   # @!attribute [r] options
+      #   @return [Hash]
       # @!method initialize(values)
       #   @param values [Array<VALUE_STRUCT>]
-      common_constructor :values do
+      #   @param options [Hash]
+      common_constructor :values, :options, default: [{}] do
+        self.options = self.class.lists.option.hash_keys_validate!(options)
         self.values = values.map do |v|
           VALUE_STRUCT.new(to_key(v.key), to_label(v.label), v.value)
         end
