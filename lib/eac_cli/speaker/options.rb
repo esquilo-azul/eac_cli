@@ -7,7 +7,8 @@ module EacCli
     module Options
       common_concern do
         enable_listable
-        lists.add_symbol :option, :out_out, :err_out, :in_in, :parent, :err_line_prefix
+        lists.add_symbol :option, :out_out, :err_out, :in_in, :parent, :err_line_prefix,
+                         :ignore_case
       end
 
       def err_out
@@ -20,6 +21,11 @@ module EacCli
 
       def in_in
         option(OPTION_IN_IN, $stdin)
+      end
+
+      # @return [Boolean]
+      def ignore_case
+        option(OPTION_IGNORE_CASE, nil)
       end
 
       def err_line_prefix
