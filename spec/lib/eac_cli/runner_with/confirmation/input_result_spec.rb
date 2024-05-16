@@ -1,0 +1,36 @@
+# frozen_string_literal: true
+
+require 'eac_cli/runner_with/confirmation/input_result'
+require 'eac_cli/speaker'
+require 'eac_ruby_utils/speaker'
+
+RSpec.describe EacCli::RunnerWith::Confirmation::InputResult do
+  let(:speaker) { EacCli::Speaker.new }
+
+  around do |example|
+    EacRubyUtils::Speaker.context.on(speaker) { example.run }
+  end
+
+  before do
+    allow(speaker).to receive(:warn) { |message| raise(message.to_s.to_s) }
+  end
+
+  [
+    ['n', false, true],
+    ['N', false, true],
+    ['y', true, false],
+    ['Y', true, false]
+  ].each do |test_values|
+    user_input, confirm, for_all = test_values
+    context "when user input is \"#{user_input}\"" do
+      let(:instance) { described_class.by_message('A message') }
+
+      before do
+        allow(speaker).to receive(:request_string).and_return(user_input)
+      end
+
+      it { expect(instance.confirm?).to eq(confirm) }
+      it { expect(instance.for_all?).to eq(for_all) }
+    end
+  end
+end
