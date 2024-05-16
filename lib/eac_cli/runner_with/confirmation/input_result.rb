@@ -23,7 +23,13 @@ module EacCli
           # @param message [String]
           # @return [EacCli::RunnerWith::Confirmation::InputResult]
           def by_message(message)
-            new(input(message, list: INPUT_LIST))
+            new(input_value_by_speaker(message))
+          end
+
+          # @param message [String]
+          # @return [String]
+          def input_value_by_speaker(message)
+            input(message, list: INPUT_LIST)
           end
         end
 
