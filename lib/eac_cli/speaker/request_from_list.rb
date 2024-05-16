@@ -8,7 +8,8 @@ module EacCli
     class RequestFromList
       acts_as_instance_method
       enable_simple_cache
-      common_constructor :speaker, :question, :list_values, :noecho
+      common_constructor :speaker, :question, :list_values, :noecho,
+                         :ignore_case
 
       # @return [String]
       def result
@@ -32,7 +33,10 @@ module EacCli
 
       # @return [EacCli::Speaker::List]
       def list_uncached
-        ::EacCli::Speaker::List.build(list_values)
+        list_options = {}
+        list_options[::EacCli::Speaker::List::OPTION_IGNORE_CASE] = ignore_case unless
+          ignore_case.nil?
+        ::EacCli::Speaker::List.build(list_values, list_options)
       end
     end
   end

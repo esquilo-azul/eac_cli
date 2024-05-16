@@ -52,9 +52,10 @@ module EacCli
     #   +list+ ([Hash] or [Array], default: +nil+): requires a answer from a list.
     #   +noecho+ ([Boolean], default: +false+): does not output answer.
     def input(question, options = {})
-      bool, list, noecho = options.to_options_consumer.consume_all(:bool, :list, :noecho)
+      bool, list, noecho, ignore_case =
+        options.to_options_consumer.consume_all(:bool, :list, :noecho, :ignore_case)
       if list
-        request_from_list(question, list, noecho)
+        request_from_list(question, list, noecho, ignore_case)
       elsif bool
         request_from_bool(question, noecho)
       else
@@ -96,7 +97,7 @@ module EacCli
     end
 
     def request_from_bool(question, noecho)
-      request_from_list(question, { yes: true, y: true, no: false, n: false }, noecho)
+      request_from_list(question, { yes: true, y: true, no: false, n: false }, noecho, true)
     end
 
     def request_string(question, noecho)
