@@ -7,21 +7,28 @@ module EacCli
   class Speaker
     class RequestFromList
       acts_as_instance_method
+      enable_simple_cache
       common_constructor :speaker, :question, :list_values, :noecho
 
       # @return [String]
       def result
         list = ::EacCli::Speaker::List.build(list_values)
         loop do
-          input = speaker.send(
-            :request_string,
-            "#{question} [#{list.valid_labels.join('/')}]",
-            noecho
-          )
           return list.build_value(input) if list.valid_value?(input)
 
           speaker.warn "Invalid input: \"#{input}\" (Valid: #{list.valid_labels.join(', ')})"
         end
+      end
+
+      protected
+
+      # @return [String]
+      def input_uncached
+        speaker.send(
+          :request_string,
+          "#{question} [#{list.valid_labels.join('/')}]",
+          noecho
+        )
       end
     end
   end
