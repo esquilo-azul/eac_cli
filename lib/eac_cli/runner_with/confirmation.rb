@@ -52,7 +52,7 @@ module EacCli
       # @return [Boolean]
       def confirm_input_and_register(message)
         r = confirm_input(message)
-        for_all_answers[message] = r.for_all?
+        for_all_answers[message] = r.confirm? if r.for_all?
         r.confirm?
       end
 
