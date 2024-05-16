@@ -6,6 +6,8 @@ require 'ostruct'
 module EacCli
   class Speaker
     class List
+      VALUE_STRUCT = ::Struct.new(:key, :label, :value)
+
       class << self
         def build(list)
           return List.new(hash_to_values(list)) if list.is_a?(::Hash)
@@ -17,11 +19,11 @@ module EacCli
         private
 
         def hash_to_values(list)
-          list.map { |key, value| ::OpenStruct.new(key: key, label: key, value: value) } # rubocop:disable Style/OpenStructUse
+          list.map { |key, value| VALUE_STRUCT.new(key, key, value) }
         end
 
         def array_to_values(list)
-          list.map { |value| ::OpenStruct.new(key: value, label: value, value: value) }  # rubocop:disable Style/OpenStructUse
+          list.map { |value| VALUE_STRUCT.new(value, value, value) }
         end
       end
 
@@ -31,7 +33,7 @@ module EacCli
       #   @param values [Array<VALUE_STRUCT>]
       common_constructor :values do
         self.values = values.map do |v|
-          ::OpenStruct.new(key: to_key(v.key), label: to_label(v.label), value: v.value) # rubocop:disable Style/OpenStructUse
+          VALUE_STRUCT.new(to_key(v.key), to_label(v.label), v.value)
         end
       end
 
