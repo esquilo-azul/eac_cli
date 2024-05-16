@@ -5,6 +5,10 @@ require 'eac_cli/speaker'
 RSpec.describe EacCli::Speaker do
   let(:instance) { described_class.new }
 
+  before do
+    allow(instance).to receive(:warn) { |message| raise(message.to_s.to_s) }
+  end
+
   describe '#input' do
     it 'recover value from hash list' do
       allow(instance).to receive(:request_string).and_return('opt1')
