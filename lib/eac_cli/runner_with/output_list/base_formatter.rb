@@ -30,6 +30,13 @@ module EacCli
         def build_rows
           rows.map { |row| build_row(row) }
         end
+
+        # @param row [Object]
+        # @param column [String]
+        # @return [Object]
+        def build_value(row, column)
+          row.send(column)
+        end
       end
     end
   end

@@ -10,7 +10,7 @@ module EacCli
       class YamlFormatter < ::EacCli::RunnerWith::OutputList::BaseFormatter
         # @return [Hash<String, String>]
         def build_row(row)
-          build_columns.inject({}) { |a, e| a.merge(e => row.send(e).to_s) }
+          build_columns.inject({}) { |a, e| a.merge(e => build_value(row, e).to_s) }
         end
 
         # @return [String]

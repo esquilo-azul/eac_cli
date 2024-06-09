@@ -10,7 +10,7 @@ module EacCli
       class CsvFormatter < ::EacCli::RunnerWith::OutputList::BaseFormatter
         # @return [Array]
         def build_row(row)
-          build_columns.map { |c| row.send(c) }
+          build_columns.map { |c| build_value(row, c) }
         end
 
         # @return [String]
