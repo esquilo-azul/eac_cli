@@ -35,7 +35,11 @@ module EacCli
         # @param column [String]
         # @return [Object]
         def build_value(row, column)
-          row.send(column)
+          return row.send(column) if row.respond_to?(column)
+          return row.with_indifferent_access.fetch(column) if row.is_a?(::Hash)
+
+          raise ::ArgumentError, "Row \"#{row}\" do not respond to column \"#{column}\" neither " \
+                                 "is a Hash (Row: #{row}, Column: #{column})"
         end
       end
     end
