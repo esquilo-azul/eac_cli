@@ -32,9 +32,7 @@ module EacCli
 
       # @param method_name [Symbol]
       # @return [Boolean]
-      def for_context?(method_name)
-        self.class.for_context?(method_name)
-      end
+      delegate :for_context?, to: :class
     end
   end
 end

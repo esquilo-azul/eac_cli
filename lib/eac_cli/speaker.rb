@@ -101,7 +101,7 @@ module EacCli
     end
 
     def request_string(question, noecho)
-      err_out.write "#{question}: ".to_s.yellow
+      err_out.write "#{question}: ".yellow
       noecho ? request_string_noecho : request_string_echo
     end
 

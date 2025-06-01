@@ -8,9 +8,7 @@ module EacCli
     enable_speaker
 
     class << self
-      def entry_key_to_envvar_name(entry_key)
-        ::EacCli::OldConfigs::EntryReader.entry_key_to_envvar_name(entry_key)
-      end
+      delegate :entry_key_to_envvar_name, to: :'::EacCli::OldConfigs::EntryReader'
     end
 
     attr_reader :configs

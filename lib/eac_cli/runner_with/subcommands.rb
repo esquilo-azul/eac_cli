@@ -9,9 +9,7 @@ module EacCli
       require_sub __FILE__
 
       class << self
-        def runner?(object)
-          ::EacCli::Runner.runner?(object)
-        end
+        delegate :runner?, to: :'::EacCli::Runner'
 
         # @return [Hash<String, EacCli::Runner>]
         def subcommands_from_module(a_module)

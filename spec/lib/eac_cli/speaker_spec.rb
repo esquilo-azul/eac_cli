@@ -6,7 +6,7 @@ RSpec.describe EacCli::Speaker do
   let(:instance) { described_class.new }
 
   before do
-    allow(instance).to receive(:warn) { |message| raise(message.to_s.to_s) }
+    allow(instance).to receive(:warn) { |message| raise(message.to_s) }
   end
 
   describe '#input' do

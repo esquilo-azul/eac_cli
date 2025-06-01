@@ -12,7 +12,7 @@ RSpec.describe EacCli::RunnerWith::Confirmation::InputResult do
   end
 
   before do
-    allow(speaker).to receive(:warn) { |message| raise(message.to_s.to_s) }
+    allow(speaker).to receive(:warn) { |message| raise(message.to_s) }
   end
 
   [
