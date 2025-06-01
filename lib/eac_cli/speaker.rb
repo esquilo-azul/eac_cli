@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/speaker/receiver'
+require 'eac_ruby_utils'
 
 module EacCli
   class Speaker

@@ -2,7 +2,7 @@
 
 require 'eac_cli/parser/collector'
 require 'eac_cli/parser/error'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 
 module EacCli
   class Parser

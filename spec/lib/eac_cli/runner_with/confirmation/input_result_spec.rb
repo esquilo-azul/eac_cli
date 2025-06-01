@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner_with/confirmation/input_result'
 require 'eac_cli/speaker'
-require 'eac_ruby_utils/speaker'
+require 'eac_ruby_utils'
 
 RSpec.describe EacCli::RunnerWith::Confirmation::InputResult do
   let(:speaker) { EacCli::Speaker.new }

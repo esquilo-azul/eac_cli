@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/by_reference'
+require 'eac_ruby_utils'
 
 module EacCli
   class Speaker

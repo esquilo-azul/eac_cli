@@ -2,7 +2,7 @@
 
 require 'eac_cli/old_configs/read_entry_options'
 require 'eac_config/paths_hash'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 
 module EacCli
   class OldConfigs

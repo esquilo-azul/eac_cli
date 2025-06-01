@@ -3,7 +3,7 @@
 require 'eac_cli/speaker/input_requested'
 require 'eac_config/entry/not_found_error'
 require 'eac_config/node_entry'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 
 module EacCli
   class Config < ::SimpleDelegator

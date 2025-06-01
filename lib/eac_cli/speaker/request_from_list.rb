@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/speaker/list'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 
 module EacCli
   class Speaker

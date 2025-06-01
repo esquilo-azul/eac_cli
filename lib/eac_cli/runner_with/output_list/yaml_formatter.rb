@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 require 'eac_cli/runner_with/output_list/base_formatter'
 require 'yaml'
 

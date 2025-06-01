@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/definition/option_or_positional'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 
 module EacCli
   class Definition

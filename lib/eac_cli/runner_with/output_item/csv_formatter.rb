@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'csv'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils'
 require 'eac_cli/runner_with/output_item/base_formatter'
 
 module EacCli

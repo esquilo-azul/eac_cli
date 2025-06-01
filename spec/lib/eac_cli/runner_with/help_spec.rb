@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/runner_with/help'
-require 'eac_ruby_utils/fs/temp'
+require 'eac_ruby_utils'
 
 RSpec.describe EacCli::RunnerWith::Help do
   let(:runner) do

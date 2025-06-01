@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/struct'
+require 'eac_ruby_utils'
 
 module EacCli
   class Parser
