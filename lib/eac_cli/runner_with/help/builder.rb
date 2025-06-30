@@ -5,7 +5,7 @@ module EacCli
     module Help
       class Builder
         include ::EacCli::RunnerWith::Help::Layout
-        require_sub __FILE__, require_dependency: true
+        require_sub __FILE__, require_mode: :kernel
         common_constructor :runner
 
         class << self
