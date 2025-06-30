@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-require 'eac_cli/runner/context_responders/parent'
-require 'eac_cli/runner/context_responders/runner'
-require 'eac_cli/runner/context_responders/runner_missing_method'
-require 'eac_cli/runner/context_responders/set'
-
 module EacCli
   module Runner
     class Context

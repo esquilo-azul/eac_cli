@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/speaker'
-require 'eac_ruby_utils'
-
 module EacCli
   module Runner
     class ClassRunner

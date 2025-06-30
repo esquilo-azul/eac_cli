@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/speaker'
-require 'eac_config/entry_path'
-require 'eac_config/node_entry'
-require 'eac_ruby_utils'
-
 module EacCli
   class Config < ::SimpleDelegator
     class Entry < ::EacConfig::NodeEntry

@@ -9,4 +9,6 @@ end
 module EacCli
 end
 
+require 'eac_config'
+require 'colorize'
 require 'eac_cli/core_ext'

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-
 module EacCli
   module RunnerWith
     module OutputItem

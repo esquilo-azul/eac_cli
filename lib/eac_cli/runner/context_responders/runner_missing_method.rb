@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-require 'eac_cli/runner/context_responders/base'
-
 module EacCli
   module Runner
     module ContextResponders

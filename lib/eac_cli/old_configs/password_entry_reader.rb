@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/old_configs/entry_reader'
-
 module EacCli
   class OldConfigs
     class PasswordEntryReader < ::EacCli::OldConfigs::EntryReader

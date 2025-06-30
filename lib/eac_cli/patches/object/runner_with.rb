@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-require 'eac_cli/runner'
-require 'eac_cli/runner_with'
-require 'eac_cli/runner_with_set'
-
 class Object
   def runner_with(*runners, &block)
     include ::EacCli::Runner

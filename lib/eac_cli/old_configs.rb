@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-
 module EacCli
   class OldConfigs
     require_sub __FILE__

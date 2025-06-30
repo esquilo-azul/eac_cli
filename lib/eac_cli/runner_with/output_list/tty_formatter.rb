@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-require 'eac_cli/runner_with/output_list/base_formatter'
 require 'tty/table'
 
 module EacCli

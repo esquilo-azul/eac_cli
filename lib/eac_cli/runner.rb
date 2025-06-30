@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/definition'
-require 'eac_cli/parser'
-require 'eac_ruby_utils'
-
 module EacCli
   module Runner
     require_sub __FILE__

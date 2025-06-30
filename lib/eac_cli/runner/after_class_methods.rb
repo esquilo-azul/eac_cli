@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/definition'
-require 'eac_cli/definition/error'
-require 'eac_cli/runner/class_runner'
-
 module EacCli
   module Runner
     module AfterClassMethods

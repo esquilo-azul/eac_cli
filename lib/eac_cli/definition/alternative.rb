@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/definition/argument_option'
-require 'eac_cli/definition/boolean_option'
-require 'eac_cli/definition/positional'
-
 module EacCli
   class Definition
     class Alternative

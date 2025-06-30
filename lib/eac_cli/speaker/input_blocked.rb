@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/speaker/input_requested'
-
 module EacCli
   class Speaker
     class InputBlocked
