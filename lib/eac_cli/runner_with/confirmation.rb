@@ -50,7 +50,7 @@ module EacCli
 
       # @param message [String, nil]
       # @return [Boolean]
-      def confirm_input_and_register(message)
+      def confirm_input_and_register(message) # rubocop:disable Naming/PredicateMethod
         r = confirm_input(message)
         for_all_answers[message] = r.confirm? if r.for_all?
         r.confirm?

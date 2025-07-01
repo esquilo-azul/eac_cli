@@ -65,7 +65,7 @@ module EacCli
     end
 
     # @return [Boolean]
-    def options_argument
+    def options_argument # rubocop:disable Naming/PredicateMethod
       main_alternative.options_argument?
     end
 

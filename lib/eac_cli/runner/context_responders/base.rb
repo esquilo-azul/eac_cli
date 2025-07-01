@@ -12,7 +12,7 @@ module EacCli
         end
         delegate :parent, :runner, to: :context
 
-        def if_callable
+        def if_callable # rubocop:disable Naming/PredicateMethod
           return false unless callable?
 
           yield(self)
