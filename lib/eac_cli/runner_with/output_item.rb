@@ -37,6 +37,11 @@ module EacCli
           [e, ::EacCli::RunnerWith::OutputItem.const_get("#{e.camelize}Formatter")]
         end
       end
+
+      # @return [Hash<String, Enumerable<String>]
+      def help_extra_text
+        help_list_section('Formats', formats.keys.sort)
+      end
     end
   end
 end
