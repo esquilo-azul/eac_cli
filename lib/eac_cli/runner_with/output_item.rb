@@ -5,10 +5,7 @@ module EacCli
     module OutputItem
       require_sub __FILE__
 
-      FORMATS = {
-        'csv' => ::EacCli::RunnerWith::OutputItem::CsvFormatter,
-        'yaml' => ::EacCli::RunnerWith::OutputItem::YamlFormatter
-      }.freeze
+      FORMATS = %w[csv yaml].freeze
 
       common_concern do
         acts_as_abstract :item_hash
@@ -31,7 +28,14 @@ module EacCli
 
       # @return [Class]
       def formatter_class
-        FORMATS.fetch(parsed.format)
+        formats.fetch(parsed.format)
+      end
+
+      # @return [Hash<String, Class>]
+      def formats
+        FORMATS.to_h do |e|
+          [e, ::EacCli::RunnerWith::OutputItem.const_get("#{e.camelize}Formatter")]
+        end
       end
     end
   end
