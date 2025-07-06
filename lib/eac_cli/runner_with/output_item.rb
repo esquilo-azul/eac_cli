@@ -5,7 +5,7 @@ module EacCli
     module OutputItem
       require_sub __FILE__
 
-      FORMATS = %w[csv yaml].freeze
+      FORMATS = %w[asciidoc csv yaml].freeze
 
       common_concern do
         acts_as_abstract :item_hash
