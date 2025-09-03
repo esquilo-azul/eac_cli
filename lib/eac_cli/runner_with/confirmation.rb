@@ -7,6 +7,7 @@ module EacCli
 
       common_concern do
         include ::EacCli::Runner
+
         enable_settings_provider
         enable_simple_cache
         runner_definition do

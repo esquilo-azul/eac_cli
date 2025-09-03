@@ -10,6 +10,7 @@ RSpec.describe EacCli::RunnerWith::Subcommands do
     the_child = child_runner
     Class.new do
       include the_module
+
       const_set('ChildCmd', the_child)
 
       runner_definition do

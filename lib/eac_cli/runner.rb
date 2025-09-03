@@ -40,6 +40,7 @@ module EacCli
       include InstanceMethods
       include ::EacCli::Runner::ForContext
       include ActiveSupport::Callbacks
+
       define_callbacks :run
     end
   end
