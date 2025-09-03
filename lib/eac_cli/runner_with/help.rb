@@ -6,6 +6,7 @@ module EacCli
       require_sub __FILE__, require_mode: :kernel
       common_concern do
         include ::EacCli::Runner
+        include ::EacCli::RunnerWith::Help::Layout
 
         runner_definition.alt do
           bool_opt '-h', '--help', 'Show help.', usage: true, required: true
