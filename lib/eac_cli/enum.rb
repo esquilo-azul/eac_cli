@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'colorized_string'
+
 module EacCli
   # A [EacRubyUtils::Enum] which each value is associated with one console color.
   class Enum < ::EacRubyUtils::Enum
