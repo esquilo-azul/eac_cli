@@ -4,7 +4,7 @@ module EacCli
   class RunnerWithSet
     class << self
       def default
-        @default ||= new
+        @default ||= ::EacCli::RunnerWithSet::FromGemsRegistry.new
       end
     end
 
@@ -12,12 +12,6 @@ module EacCli
       namespace = sanitize_namespace(namespace)
       namespace_set << namespace unless namespace_set.include?(namespace)
       self
-    end
-
-    def add_from_gems_registry
-      ::EacRubyUtils::GemsRegistry.new('RunnerWith').registered.each do |registered_gem|
-        add_namespace(registered_gem.registered_module)
-      end
     end
 
     def item_to_module(item)
