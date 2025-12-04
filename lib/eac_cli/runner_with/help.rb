@@ -3,7 +3,6 @@
 module EacCli
   module RunnerWith
     module Help
-      require_sub __FILE__, require_mode: :kernel
       common_concern do
         include ::EacCli::Runner
         include ::EacCli::RunnerWith::Help::Layout
