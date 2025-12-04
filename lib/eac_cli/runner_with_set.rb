@@ -36,9 +36,10 @@ module EacCli
     end
 
     def key_to_module_in_namespace(namespace, key)
-      namespace.const_get(key.to_s.camelize)
-    rescue ::NameError
-      nil
+      leaf_name = key.to_s.camelize.to_sym
+      namespace.const_get(leaf_name)
+    rescue ::NameError => e
+      e.receiver == namespace && e.name == leaf_name ? nil : raise(e)
     end
 
     def sanitize_namespace(source)
