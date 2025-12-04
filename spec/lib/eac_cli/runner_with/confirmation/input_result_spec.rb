@@ -21,7 +21,7 @@ RSpec.describe EacCli::RunnerWith::Confirmation::InputResult do
     ['y', true, false],
     ['Y', true, true]
   ].each do |test_values|
-    user_input, confirm, for_all = test_values
+    user_input, confirm, for_all = test_values # rubocop:disable RSpec/LeakyLocalVariable
     context "when user input is \"#{user_input}\"" do
       let(:instance) { described_class.by_message('A message') }
 
