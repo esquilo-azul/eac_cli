@@ -4,8 +4,6 @@ module EacCli
   class Definition
     # @abstract
     class Option < ::EacCli::Definition::OptionOrPositional
-      require_sub __FILE__
-
       class << self
         # @param args [Enumerable<String>]
         # @return [EacCli::Definition::Option]

@@ -58,8 +58,6 @@ module EacCli
       def for_all_answers_uncached
         {}
       end
-
-      require_sub __FILE__
     end
   end
 end

@@ -3,8 +3,6 @@
 module EacCli
   module RunnerWith
     module OutputItem
-      require_sub __FILE__
-
       FORMATS = %w[asciidoc csv yaml].freeze
 
       common_concern do

@@ -2,8 +2,6 @@
 
 module EacCli
   class Definition
-    require_sub __FILE__
-
     MAIN_ALTERNATIVE_KEY = :main
     SUBCOMMAND_NAME_ARG = 'subcommand'
     SUBCOMMAND_ARGS_ARG = 'subcommand_args'

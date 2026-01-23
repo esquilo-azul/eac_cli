@@ -2,7 +2,6 @@
 
 module EacCli
   module Runner
-    require_sub __FILE__
     extend ::ActiveSupport::Concern
 
     class << self

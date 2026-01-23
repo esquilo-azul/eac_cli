@@ -3,8 +3,6 @@
 module EacCli
   module RunnerWith
     module OutputList
-      require_sub __FILE__
-
       FORMATS = {
         'csv' => ::EacCli::RunnerWith::OutputList::CsvFormatter,
         'tty' => ::EacCli::RunnerWith::OutputList::TtyFormatter,

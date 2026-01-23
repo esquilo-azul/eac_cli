@@ -2,7 +2,6 @@
 
 module EacCli
   class Parser
-    require_sub __FILE__
     enable_simple_cache
     common_constructor :definition, :argv
 

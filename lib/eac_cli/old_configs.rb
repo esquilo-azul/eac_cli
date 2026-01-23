@@ -2,7 +2,6 @@
 
 module EacCli
   class OldConfigs
-    require_sub __FILE__
     enable_speaker
 
     class << self

@@ -3,8 +3,6 @@
 module EacCli
   module RunnerWith
     module Subcommands
-      require_sub __FILE__
-
       class << self
         delegate :runner?, to: :'::EacCli::Runner'
 

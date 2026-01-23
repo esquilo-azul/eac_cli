@@ -14,9 +14,7 @@ RSpec.describe EacCli::RunnerWith::Help do
         pos_arg :a_argument
       end
 
-      def run
-        puts 'Runner run'
-      end
+      def run; end
     end
   end
 
