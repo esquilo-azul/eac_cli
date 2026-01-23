@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner_with/help/layout'
-
 RSpec.describe EacCli::RunnerWith::Help::Layout do
   describe '#list_section' do
     {

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/definition/alternative'
-
 RSpec.describe EacCli::Definition::Alternative do
   let(:instance) { described_class.new }
 

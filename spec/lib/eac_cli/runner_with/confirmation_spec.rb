@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner_with/confirmation'
-
 RSpec.describe EacCli::RunnerWith::Confirmation do
   let(:runner) do
     the_module = described_class

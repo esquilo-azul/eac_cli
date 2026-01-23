@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner'
-
 RSpec.describe EacCli::Runner, '#for_context' do
   let(:parent_runner_class) do
     example = self

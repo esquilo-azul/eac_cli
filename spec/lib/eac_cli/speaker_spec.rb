@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/speaker'
-
 RSpec.describe EacCli::Speaker do
   let(:instance) { described_class.new }
 

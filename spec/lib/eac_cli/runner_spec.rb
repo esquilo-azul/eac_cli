@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner'
-
 RSpec.describe EacCli::Runner do
   let(:runner_class) do
     the_module = described_class

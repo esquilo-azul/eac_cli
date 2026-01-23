@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner_with/output_list'
-
 RSpec.describe EacCli::RunnerWith::OutputList do
   let(:runner) do
     the_module = described_class
