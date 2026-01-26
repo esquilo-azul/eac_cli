@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+require 'clipboard'
+
 module EacCli
   module RunnerWith
     module Input
+      CLIPBOARD_OPTION = '!'
       STDIN_OPTION = '-'
       BLANK_OPTION = '+'
       DEFAULT_DEFAULT_INPUT_OPTION = BLANK_OPTION
@@ -18,6 +21,7 @@ module EacCli
 
       def input_content
         case input_option
+        when CLIPBOARD_OPTION then ::Clipboard.paste
         when STDIN_OPTION then $stdin.read
         when BLANK_OPTION then ''
         else input_option.to_pathname.read
