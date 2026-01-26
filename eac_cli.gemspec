@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.7.0'
 
+  s.add_dependency 'clipboard', '~> 2.0'
   s.add_dependency 'colorize', '~> 0.8', '>= 0.8.1'
   s.add_dependency 'eac_config', '~> 0.15'
   s.add_dependency 'eac_ruby_utils', '~> 0.128', '>= 0.128.6'
