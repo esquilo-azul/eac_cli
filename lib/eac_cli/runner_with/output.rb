@@ -3,6 +3,7 @@
 module EacCli
   module RunnerWith
     module Output
+      CLIPBOARD_OPTION = '!'
       STDOUT_OPTION = '-'
       DEFAULT_FILE_OPTION = '+'
       DEFAULT_DEFAULT_OUTPUT_OPTION = STDOUT_OPTION
@@ -30,6 +31,7 @@ module EacCli
 
       def object_to_write
         case output_option
+        when CLIPBOARD_OPTION then ::EacCli::RunnerWith::Output::ClipboardWriter.new
         when STDOUT_OPTION then $stdout
         when DEFAULT_FILE_OPTION then default_file_to_output_value
         else output_option.to_pathname
