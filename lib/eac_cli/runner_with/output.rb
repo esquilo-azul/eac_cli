@@ -21,7 +21,7 @@ module EacCli
       end
 
       def run_output
-        file = file_to_output
+        file = object_to_write
         if file
           file.to_pathname.write(output_content)
         else
@@ -33,7 +33,7 @@ module EacCli
         parsed.output || default_output_option_value
       end
 
-      def file_to_output
+      def object_to_write
         case output_option
         when STDOUT_OPTION then nil
         when DEFAULT_FILE_OPTION then default_file_to_output_value
