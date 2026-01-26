@@ -21,12 +21,7 @@ module EacCli
       end
 
       def run_output
-        file = object_to_write
-        if file
-          file.to_pathname.write(output_content)
-        else
-          $stdout.write(output_content)
-        end
+        object_to_write.write(output_content)
       end
 
       def output_option
@@ -35,9 +30,9 @@ module EacCli
 
       def object_to_write
         case output_option
-        when STDOUT_OPTION then nil
+        when STDOUT_OPTION then $stdout
         when DEFAULT_FILE_OPTION then default_file_to_output_value
-        else output_option
+        else output_option.to_pathname
         end
       end
 
@@ -46,8 +41,9 @@ module EacCli
                       default: DEFAULT_DEFAULT_OUTPUT_OPTION)
       end
 
+      # @return [Pathname]
       def default_file_to_output_value
-        setting_value(:default_file_to_output, default: DEFAULT_DEFAULT_FILE_TO_OUTPUT)
+        setting_value(:default_file_to_output, default: DEFAULT_DEFAULT_FILE_TO_OUTPUT).to_pathname
       end
     end
   end
