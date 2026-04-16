@@ -43,27 +43,7 @@ module EacCli
           "* #{string.to_s.strip}\n"
         end
 
-        # @param title [String]
-        # @param content [String]
-        # @param level [Integer]
-        # @return [String]
-        def section(title, content, level)
-          "#{section_title(title, level)}\n\n#{section_content(content, level)}"
-        end
-
-        # @param title [String]
-        # @param level [Integer]
-        # @return [String]
-        def section_title(title, level)
-          "#{'=' * level} #{title}"
-        end
-
-        # @param content [String]
-        # @param level [Integer]
-        # @return [String]
-        def section_content(content, level)
-          output_object(content, level)
-        end
+        require_sub __FILE__, require_mode: :kernel
       end
     end
   end
