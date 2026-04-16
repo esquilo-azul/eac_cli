@@ -10,14 +10,14 @@ module EacCli
 
           # @return [String]
           def result
-            "#{formatted_title}\n\n#{formatted_content}"
+            "#{formatted_title}#{formatted_content}"
           end
 
           protected
 
           # @return [String]
           def formatted_title
-            "#{'=' * level} #{title}"
+            title.if_present('') { |_e| "#{'=' * level} #{title}\n\n" }
           end
 
           # @return [String]
