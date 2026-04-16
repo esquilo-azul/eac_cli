@@ -22,7 +22,7 @@ module EacCli
 
           # @return [String]
           def formatted_content
-            caller.send(:output_object, content, level)
+            caller.send(:output_object, content, level + 1)
           end
         end
       end
