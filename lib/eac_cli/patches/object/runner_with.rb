@@ -4,6 +4,7 @@ class Object
   def runner_with(*runners, &block)
     include ::EacCli::Runner
 
+    enable_memoized
     enable_simple_cache
     enable_speaker
     runners.each do |runner|
