@@ -8,8 +8,8 @@ module EacCli
           responder_runner.present?
         end
 
-        def call(*args, &block)
-          responder_runner.send(method_name, *args, &block)
+        def call(*, &)
+          responder_runner.send(method_name, *, &)
         end
 
         private

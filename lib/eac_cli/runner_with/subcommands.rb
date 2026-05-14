@@ -49,8 +49,8 @@ module EacCli
         help_list_section('Subcommands', available_subcommands.keys.sort)
       end
 
-      def method_missing(method_name, *arguments, &block)
-        return run_with_subcommand(*arguments, &block) if
+      def method_missing(method_name, *, &)
+        return run_with_subcommand(*, &) if
         run_with_subcommand_alias_run?(method_name)
 
         super

@@ -8,8 +8,8 @@ module EacCli
           runner.respond_to?(method_name)
         end
 
-        def call(*args, &block)
-          runner.send(method_name, *args, &block)
+        def call(*, &)
+          runner.send(method_name, *, &)
         end
       end
     end

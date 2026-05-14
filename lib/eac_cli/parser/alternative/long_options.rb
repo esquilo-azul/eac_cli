@@ -5,7 +5,7 @@ module EacCli
     class Alternative
       module LongOptions
         LONG_OPTION_PREFIX = '--'
-        OPTION_WITH_ARGUMENT_PATTERN = /\A([^=]+)(?:=(.*))\z/.freeze
+        OPTION_WITH_ARGUMENT_PATTERN = /\A([^=]+)(?:=(.*))\z/
 
         private
 

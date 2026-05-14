@@ -15,8 +15,8 @@ module EacCli
       end
 
       # @raise [EacCli::Definition::Error]
-      def raise(*args)
-        ::Kernel.raise ::EacCli::Definition::Error, *args
+      def raise(*)
+        ::Kernel.raise(::EacCli::Definition::Error, *)
       end
 
       # @return [Boolean]

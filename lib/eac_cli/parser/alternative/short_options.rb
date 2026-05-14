@@ -5,7 +5,7 @@ module EacCli
     class Alternative
       module ShortOptions
         SHORT_OPTION_PREFIX = '-'
-        SHORT_OPTION_CHAR_PATTERN = /\A[0-9a-zA-Z]\z/.freeze
+        SHORT_OPTION_CHAR_PATTERN = /\A[0-9a-zA-Z]\z/
 
         private
 
