@@ -10,7 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Utilities to build CLI applications with Ruby.'
 
-  s.files = Dir['{lib}/**/*', 'Gemfile']
+  s.files = Dir.glob('{lib}/**/*', File::FNM_DOTMATCH)
+              .reject { |f| ['.', '..'].include?(File.basename(f)) }
 
   s.required_ruby_version = '>= 2.7.0'
 
