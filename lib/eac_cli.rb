@@ -1,14 +1,7 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-EacRubyUtils::RootModuleSetup.perform __FILE__ do
-  ignore 'core_ext'
-  ignore 'patches'
+require 'eac_ruby_base1'
+EacRubyBase1::RootModuleSetup.perform __FILE__ do
+  require 'eac_config'
+  require 'colorize'
 end
-
-module EacCli
-end
-
-require 'eac_config'
-require 'colorize'
-require 'eac_cli/core_ext'
