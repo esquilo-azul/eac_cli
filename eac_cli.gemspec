@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'clipboard', '~> 2.0'
   s.add_dependency 'colorize', '~> 0.8', '>= 0.8.1'
-  s.add_dependency 'eac_config', '~> 0.15'
-  s.add_dependency 'eac_ruby_utils', '~> 0.131', '>= 0.131.4'
+  s.add_dependency 'eac_config', '~> 0.15', '>= 0.15.2'
+  s.add_dependency 'eac_ruby_utils', '~> 0.134'
   s.add_dependency 'tty-table', '~> 0.12'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.14'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.15'
 end
