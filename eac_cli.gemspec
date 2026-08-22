@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = Dir.glob('{lib}/**/*', File::FNM_DOTMATCH)
               .reject { |f| ['.', '..'].include?(File.basename(f)) }
 
-  s.required_ruby_version = '>= 3.2'
+  s.required_ruby_version = '>= 3.2' # rubocop:disable Gemspec/RequiredRubyVersion
 
   s.add_dependency 'clipboard', '~> 2.0'
   s.add_dependency 'colorize', '~> 0.8', '>= 0.8.1'

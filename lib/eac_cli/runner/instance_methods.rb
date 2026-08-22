@@ -33,9 +33,9 @@ module EacCli
         runner_context.runner_missing_method_responder(method).callable? || super
       end
 
-      def method_missing(method, *args, &block)
+      def method_missing(method, *, &)
         runner_context.runner_missing_method_responder(method).if_callable do |v|
-          return v.call(*args, &block)
+          return v.call(*, &)
         end
 
         super
